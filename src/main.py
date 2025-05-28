@@ -10,30 +10,28 @@ def load_data(file_path):
 
 
 if __name__ == "__main__":
-    df = load_data('/home/azureuser/FactorLab_earnings_estimates/input_data/universe_with_affactor.csv')
-
+    df = load_data('input_data/universe_with_affactor.csv')
 
     # drop the columns with more than 20% missing values
     df_clean0 = pp.missing_value_treatment(df, 20)[0]
 
-    print(df_clean0)
-
     # check the duplicate columns
     duplicate_groups = pp.extract_near_duplicate_groups(df_clean0.columns.tolist())
-    print("Duplicate groups found:")
-    for base_name, cols in duplicate_groups.items():
-        print(f"Base name: {base_name}, Columns: {cols}")
-    # keep EPS, EPS_et, EPS_normalized, and EPS_normalizedDiff
-    # keep revenue, revenue_et
-    # keep BVEV (cz it's adjusted)
-    # keep AssetTurn_2 (avoid negative values)
-    # keep ChgATO_2
-    # keep EbitToAst_2
-    # keep OCFAst_2
-    # keep REToAst_2
-    # keep ROA_2
-    # keep both IO_Level and IO_Level_AM
-    # keep both STO and STO_6M
+
+    # drop the fuzzy variables
+    df_clean1 = pp.drop_fuzzy_variables(df_clean0)
 
 
+    # define and change into categorical variables
+    df_clean2 = pp.encode_categorical_variables(df_clean1)
 
+    # check the correlation
+    df_clean3 = pp.check_correlation(df_clean2)
+
+    # winsorize the outliers in outcome variables   
+    df_clean4 = pp.winsorize_financial_variables(df_clean3)
+
+    # check the normalized and standardized variables
+
+
+    # check the missing values
