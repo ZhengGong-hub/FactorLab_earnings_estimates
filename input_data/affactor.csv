@@ -1,0 +1,649 @@
+factorid,factorname,factorabbreviation,styleid,factordefinition,factorrelativeid,parentfactorid
+29,Book to Price,BP,5,The factor is a ratio of book value to market value of common equity.,1001,
+30,Cash to Total Assets,CashAst,5,The ratio of cash and short term investments to total assets.,1001,
+39,12M Realized Price Volatility,AnnVol12M,8,The annualized volatility of monthly stock returns over the prior twelve months.,1001,
+40,1M Realized Price Volatility,AnnVol1M,8,The annualized volatility of daily returns over the prior month.,1001,
+41,1M Price High - 1M Price Low,HL1M,1,The ratio of the monthly high minus the current price to the current price minus the monthly low price.,1001,
+43,Log TTM Sales,LogTTMSales,7,The natural logarithm of the trailing four quarter sum of sales.,1001,
+60,1Y Chg in Asset Adjusted EPS,AstAdjChg1YEPS,2,"The 1 year change in trailing four quarter earning per share, relative to the average level of total assets per share over the year.",1001,
+50,Earnings to Price,EP,5,The ratio of trailing four-quarter earnings per share to current stock price.,1001,
+53,EBITDA to Price,EBITDAP,5,"The ratio of trailing four quarter earnings before interest, taxes, depreciation, and amortization expense to average market value to common equity over the same period.",1001,
+58,Pretax Income Per Share to Price,PTIP,5,The ratio of trailing four quarter pretax income to average market value of common equity over the same period.,1001,
+73,3Y Chg in Asset Adjusted Cash Flow,AstAdjChg3YCF,2,"The 3 year change in trailing four quarter cash flow, relative to average total assets over the three years.",1001,
+74,3Y Chg in Asset Adjusted EPS,AstAdjChg3YEPS,2,"The 3 year change in trailing four quarter earnings per share, relative to average total assets per share over the three year period.",1001,
+78,3Y Chg in Cash Flow per Share,Chg3YCF,2,The percentage change from 3 years ago in trailing four quarter cash flow per share.,1001,
+79,3Y Chg in Earnings per Share,Chg3YEPS,2,The percentage change from 3 years ago in trailing four quarter earnings per share.,1001,
+82,3Y Chg in Operating Margin,Chg3YOPM,2,The percentage change from 3 years ago in trailing four quarter operating margin.,1001,
+83,3Y Chg in Cash Flow to Price,PAdjChg3YCF,2,"The 3 year change in trailing four quarter cash flow per share, divided by the current stock price.",1001,
+84,3Y Chg in Earnings to Price,PAdjChg3YEPS,2,"The 3 year change in trailing four quarter earnings per share, divided by the current stock price.",1001,
+91,9 Month Price Momentum,PM9M,1,The simple stock return over the past nine months.,1001,
+92,15/36 Week Price Ratio,PRatio15To36W,1,The ratio of a 15 week simple moving average of daily closing prices to a 36 week simple moving average of daily closing prices.,1001,
+93,26W Relative Price Strength,RSI26W,1,The simple stock return over the past six months.,1001,
+95,Short Interest Ratio,ShortIntRatio,1,The ratio of monthly short interest to the number of shares outstanding.,1001,
+96,Short Interest Trading Volume,ShortIntTrdVol,1,The ratio of monthly short interest to average daily trading volume.,1001,
+97,Share Turnover,STO,1,The ratio of average daily trading volume over the past month to the number of shares outstanding.,1001,
+100,52W High Low,HL52W,1,The ratio of the stock's 52 week high minus the current price to the current price minus the 52-week low.,1001,
+101,Sustainable Growth Rate,SusGrwRate,2,The product of retention ratio and return on equity.,1001,
+103,3Y Chg in Sales to Price,PAdjChg3YSales,2,"The 3 year change in trailing four quarter sales per share, divided by the current stock price.",1001,
+104,10 Day MACD Trend,10DMACD,1,The 10 day exponential moving average of the moving average convergence/divergence ratio (the 12 day exponential moving average of daily closing prices relative to the 26 day exponential moving average of daily closing prices).,1001,
+114,60M CAPM Alpha,Alpha60M,1,The average of beta-adjusted returns over the past 60 months.,1001,
+115,6M Chg in 12M CAPM Alpha,Alpha12M6MPChg,1,The relative change from six months ago to the current month in the trailing twelve month average of beta-adjusted returns.,1001,
+116,6M Chg in 18M CAPM Alpha,Alpha18M6MPChg,1,The relative change from six months ago to the current month in the trailing eighteen month average of beta-adjusted returns.,1001,
+117,6M Chg in 36M CAPM Alpha,Alpha36M6MPChg,1,The relative change from six months ago to the current month in the trailing thirty-six month average of beta-adjusted returns.,1001,
+118,4W to 52W Price Oscillator,4To52WPrcOsc,1,The ratio of a 52 week exponential moving average of weekly closing stock prices to a 4 week exponential moving average.,1001,
+119,39W Lagged Return,39WRtnLag4W,1,"9M Price Momentum, lagged one month.",1001,
+120,Slope of 52W Price Trend,52WSlope,1,Slope of time trend line fitted to weekly closing prices over the past 52 weeks.,1001,
+121,24M Residual Return Variance,24MResRtnVar,1,The variance of beta-adjusted returns over the preceding 24 months.,1001,
+122,90 Day Coefficient of Variation,90DCV,8,The ratio of the standard deviation of daily closing prices over the past 90 days to the average of daily closing prices over the past 90 days.,1001,
+123,50 Day to 200 Day Stock Price,50To200PrcRatio,1,The ratio of a 50 day simple moving average of daily closing prices to a 200 day simple moving average of daily closing prices.,1001,
+124,Closing Price to 52 Week High,PrcTo52WH,1,The ratio of the daily closing price to the highest daily closing price over the past 52 weeks.,1001,
+125,Closing Price to 260 Day Low,PrcTo260DL,1,The ratio of the daily closing price to the lowest daily closing price over the past 260 days.,1001,
+131,Equity Turnover,ETO,4,The ratio of trailing four quarter sales to average book value of common equity over the same period.,1001,
+132,Operating Margin,OPM,4,The ratio of trailing four quarter operating income before depreciation to trailing four quarter sales.,1001,
+133,Pretax Income to Net Operating Assets,PTIToNOA,4,The ratio of trailing four quarter pretax net income to average net operating assets over the same period.,1001,
+134,Research & Development Intensity,RDInt,4,The ratio of trailing four quarter research and development expenses to trailing four quarter sales.,1001,
+135,Retained Earnings to Total Assets,REToAst,4,The ratio of retained earnings to total assets.,1001,
+136,1Y Chg in Sales to Earnings,SalesToEPSChg,4,The change from a year ago in the ratio of trailing four quarter sales per share to trailing four quarter earnings per share.,1001,
+137,Sales to Invested Capital,SalesToInvCap,4,The ratio of trailing four quarter sales to average invested capital over the same period.,1001,
+138,SG&A to Sales,SGAToSales,4,"The ratio of trailing four quarter selling, general and administrative expense to trailing four quarter sales.",1001,
+70,1Y Chg in Earnings to Price,PAdjChg1YEPS,2,"The 1 year change in trailing four quarter earnings per share, divided by current stock price.",1001,
+128,Cash to Sales,CashToSales,4,The ratio of average cash and short term investments over the past 4 quarters to trailing four quarter sum of sales.,1001,
+141,Assets to Price Ratio,AstP,5,The ratio of total assets to market value  of common equity.,1001,
+144,Growth Flow to Price,GFP,5,"The ratio of trailing four quarter income before extraordinary items plus research and development expense, relative to average market value of common equity over the same period.",1001,
+224,Solvency Ratio,SolvencyRatio,5,This ratio measures a company's ability to meet its long term obligations by comparing its income and non-cash spendings to its total liabilities.,1001,
+154,Operating Earnings to Price Ratio,OEP,5,The ratio of earnings from operations per share (diluted) to current stock price.,1001,
+156,Sales to Price Ratio,SP,5,The ratio of trailing four quarter sales to average market value of common equity over the same period.,1001,
+160,Current Ratio,CACL,4,This is a financial liquidity ratio that measures a firm's ability to pay off short term liabilities.,1001,
+161,Quick Ratio,QuickRatio,4,"This ratio measures a company's ability to pay off short term liabilities with its most liquid current assets, excluding inventories.",1001,
+162,Cash Ratio,CashRatio,4,"This ratio measures a company's liquidity by including only cash, cash equivalent and short term investment to cover short term liabilities.",1001,
+146,Indicated Annual Dividends to Price Ratio,IndiDivP,5,The ratio of projected annual dividends per share to the current stock price.,1001,
+164,EBIT Margin,EBITMargin,4,This ratio measures the company's profitability by comparing its earnings before interests and taxes to its total revenue.,1001,
+165,Gross Profit Margin,GPMargin,4,This ratio measures a company's profitability by comparing its gross profit to its revenue.,1001,
+167,Operating Earnings to Assets Ratio,OEA,4,This ratio measures how effectively a company uses its assets to generate operating earnings.,1001,
+184,Inventory to Assets Ratio,InvToAst,4,This ratio measures the inventory of a firm as a percentage of its total assets.,1001,
+212,Accrual Ratio - Balance Sheet,AccrualRatioBS,4,Accrual ratio measures the earning qualities. This is one the two similar definitions that based on balance sheet items.,1001,
+180,Working Capital Turnover Ratio,WCTurn,6,This ratio measures how effectively a company is using its working capital to generate sales.,1001,
+217,Year over Year Change of Inventory to Assets,InvToAstChg1Y,4,This factor measures the year-over-year change of the company's inventory-to-assets ratio.,1001,
+218,Year over Year Change of EPS to Sales,EPSToSalesChg1Y,4,This factor measure the company's year-over-year change of EPS-to-sales ratio.,1001,
+220,Max Daily Return in the Past 6 Months,MaxRetPayoff,1,This factor is the max return of a stock in the past 6 months.,1001,
+221,50 Day Volume Signal,50DVolSig,1,This ratio compares the average of the last 50-day trading volume to the average of the one year trading volume.,1001,
+455,Book Leverage,BookLev,8,This ratio indicates the proportion of assets a company has relative to its common equity.,1001,
+456,130 Day Minimum Return,130DMinRtn,8,This factor is the minimum return of a stock in the past 130 days.,1001,
+457,Adj 50 Day Volume Signal,Adj50DVolSig,8,This ratio compares the average of the last 50-day trading volume to the average of the one year trading volume.,1001,
+463,Sales Acceleration,SalesAcc,2,This factor measures the growth in the percent change of sales per share.,1001,
+472,180D Price TStat,StdErr180D,1,This factor is the 180 day price T-statistic.,1001,
+473,Change in Non Performing Loans to Total Gross Loans,ChgNonPerfLnGL,4,This factor is the ratio of non-performing loans to the total gross loans.,1001,
+474,Provisions and Charge Offs To Sales,ProvChgOffSales,4,This factor is the ratio of loan loss provisions and loan charge-offs to sales.,1001,
+477,US Growth Model - Liquidity_Leverage Composite,US_GRW_LiqLev_Comp,6,"The Liquidity Leverage Composite Model uses leverage, minimum return, and volume signal to predict future stock performance.",2002,
+478,US Growth Model - Quality composite,US_GRW_Qua_Comp,4,"This model looks at the quality of earnings through ratios involving cash flows, assets, accruals, and loans.",2002,
+479,US Growth Model - Growth Composite,US_GRW_HG_Comp,2,"This model is a combination of change in cash flow, earnings growth and sales growth.",2002,
+480,US Growth Model - Value Composite,US_GRW_VL_Comp,5,The Value Composite Model uses various price based ratios to predict future stock performance.,2002,
+482,US Growth Model - Investor Sentiment Composite,US_GRW_PriceMo_Comp,1,This model combines intermediate-term price momentum and volatility of stock's beta.,2002,
+483,US Growth Model,US_GRW_Comp,2,"The Growth Model was developed over the Russell 1000, 2000, and 3000 and the respective Growth index counterparts.",2002,
+484,Free Cash Flow Stability,FCFStab,4,This factor measures the stability of the free cash flow using the ratio of the one year change in free cash flow(FCF) over the standard deviation of the FCF for a period of 2 years.,1001,
+469,Adj Growth Flow to Price,AdjGFP,5,"The growth-flow-to-price ratio indicates how much the company spends on R&D. Note, however, that this does not indicate how profitable the R&D will turn out in the future.",1001,
+488,Risk Adjusted Relative Strength,RskAdjRS,1,"A technical momentum indicator that compares the magnitude of recent gains to recent losses, adjusting for risk, in an attempt to determine overbought and oversold conditions of the stock.",1001,
+491,Change in Net Charge off to Gross Loan,ChgChgOfftoGL,4,This factor is the ratio of the change in net loan charge-offs to total gross loans.,1001,
+492,Change in Non performing Asset to Reserve Loan Loss,ChgNonPerAsttoResLnLos,4,This factor is the one year change in the ratio of non-performing assets to the reserve for loan losses.,1001,
+495,Cash Flow to Total Asset,CFAst,4,This metric compares the company's average four quarter net cash flow to its total assets.,1001,
+498,Change of Asset Turnover,ChgATO,2,This factor is the change in the ratio of Trailing Twelve Month Sales to Total Assets.,1001,
+501,Banking FCF to Price,FCFP_BK,5,"This valuation ratio compares a bank's annual free cash flow to its market value. Generally, the lower this ratio is, the more expensive the bank is.",1001,
+509,US Value Model - Composite,US_Value_Comp,5,Our Value Model is organized into five main subcomponents and an overall supercomposite score; all components were ranked on a sector neutral basis.,2002,
+510,US Value Model - Growth Composite,US_Value_GRW_Comp,2,This indicator is a combination of various earnings and cash flow stability and one year change factors.,2002,
+511,US Value Model - Price Momentum,US_Value_PM_Comp,1,This indicator combines various relative strength factors with trading volume ratios.,2002,
+512,US Value Model - Quality,US_Value_Qua_Comp,4,"This indicator looks at the quality of earnings through ratios involving cash flows, assets, accruals, and loans.",2002,
+513,US Value Model - Street Sentiment,US_Value_StrSent_Comp,1,This model combines analyst revisions and valuation measures to predict future stock return.,2002,
+514,US Value Model - Valuation,US_Value_VL_Comp,5,"This model combines various price based, equity based and enterprise value based ratios.",2002,
+515,US Value Model - Financial Health,US_Value_FH_Comp,6,"This indicator is a combination of coverage, cash flow, and liability to price ratios.",2002,
+516,Non Performing Asset to Reserve Loan Loss,NonPerfAstResLnLs,4,This factor is the ratio of non-performing assets to the reserve for loan losses.,1001,
+525,US Quality Model - Growth Stability Composite,US_Quality_GS_Comp,2,This indicator is a combination of various earnings and cash flow stability and one year change factors.,2002,
+526,US Quality Model - Quality Composite,US_Quality_EQ_Comp,4,"This indicator looks at the quality of earnings through ratios involving cash flows, assets, accruals, and loans.",2002,
+527,US Quality Model - Valuation,US_Quality_VL_Comp,5,"This model combines various price based, equity based and enterprise value based ratios.",2002,
+528,US Quality Model - Operating Efficiency,US_Quality_OE_Comp,6,This model uses ratios that measure a company's cability to generate cash flows and the rate at which a company uses up cash.,2002,
+529,US Quality Model - Financial Health,US_Quality_FH_Comp,6,"This indicator is a combination of coverage, cash flow, leverage, and liability to price ratios.",2002,
+530,US Price Momentum Model - Short Term,US_PM_ST_Comp,1,"This indicator combines relative strength, price, and volume factors over a short-term horizon.",2002,
+531,US Quality Model,US_Quality_Comp,4,"Earnings Quality measures, specifically those based on Accruals, seek to align the expected future financial benefits and obligations to a firm over a period.",2002,
+533,30 Day Coefficient of Variation of Volume to Price,CVVolPrc30D,1,Coefficient of variation is defined as the standard deviation divided by the mean; this factor is calculated using the volume to price relationship over a period of 30 days,1001,
+709,US Price Momentum Model,US_PM_Comp,1,Our Price Momentum Model encompasses both a Short-Term and Long-Term Subcomponent; these two components are equally weighted within the model.,2002,
+521,20 Day Coefficient of Variation of Volume to Price,CVVolPrc20D,1,Coefficient of variation is defined as the standard deviation divided by the mean; this factor is calculated using the volume to price relationship over a period of 20 days.,1001,
+522,60 Day Coefficient of Variation of Volume to Price,CVVolPrc60D,1,Coefficient of variation is defined as the standard deviation divided by the mean; this factor is calculated using the volume to price relationship over a period of 60 days,1001,
+523,6 Month Average Share Turn Over,STO_6M,1,This factor is defined as the six month average trading volume divided by number of shares outstanding.,1001,
+519,5 Day Volume Signal,5DVolSig,1,This ratio compares the average of the last 5-day trading volume to the average of the one year trading volume.,1001,
+607,Change in Slope of 4-Quarter Trendline through Quarterly Sales,Chg4QSalesTrend,2,"First, we calculate TTM sales for each of the past 4 quarters, and subsequently the average of those TTM values for the past four quarters. The slope of the trend line through the TTM sales will then be calculated and divided by the average quarterly sales. Lastly, the same ratio will be calculated for one year ago, which will be subtracted from the current ratio to obtain the change in slope.",1001,
+612,12-Quarter Trendline in Trailing 12-Month Cash Flows,12QTTMCFTrend,2,This factor is constructed in the same way as Factor 12QTrendTTMEPS. The only difference is that this is the calculation for cash flows instead of earnings.,1001,
+617,Number of Consecutive Qtrs of Positive Changes in TTM Quarterly Earnings,ConsQPosChgTTMEPS,2,This factor is constructed the same way as Factor ConsQPosChginTTMCF. The only difference is that this calculation is for TTM earnings.,1001,
+618,52-Week Volume Price Trend with 20-Day Lag,52WVPT20DLag,1,"This factor is the price volume trend over the last 52 weeks, lagged by 20 days. It is calculated as the sum of daily return weighted daily trading volume, divided by the average shares outstanding over the 52 weeks.",1001,
+619,Percent Above 260-Day Low,PA52WL20DLag,1,"This factor is the percent of current closing price over the low of the past year, lagged by 20 days.",1001,
+623,Consecutive Quarters of Declines in TTM Overhead/Sales,CQDOHtoSales,2,"Starting from the most recent quarter and counting back, if the consecutive quarter-to-quarter changes are negative, each change counts as +1; and if they are positive, each change counts as -1. All TTM values are calculated as the summation of the quarterly values for the past four quarters.",1001,
+624,Num of Quarters of Declines in Receivables and Inventories/TTM Sales,CQDRItoSales,2,This factor is constructed the same way as Factor ConsQtrsDeclOverheadtoSales but for different data items. Receivables and inventories are calculated as the average of the current quarterly values and the quarterly values one year ago.,1001,
+625,Num of Qtrs of Pos Chgs in TTM Cash Flows/TTM Sales,CQPTTMCFtoSales,2,"Staring from the most recent quarter and counting back, if the consecutive quarter-to-quarter changes are positive, each change counts as +1; if they are negative, each change counts as -1.",1001,
+954,3M Revision in FY1 EPS Estimate,Rev3MFY1C,3,"The change in the consensus EPS estimate for FY1 from three months ago, relative to the current stock price.",1001,
+955,3M Revision in FY2 EPS Estimate,Rev3MFY2C,3,"The change in the consensus EPS estimate for FY2 from three months ago, relative to the current stock price.",1001,
+956,Street Revision Magnitude,RevMagFY1C,3,"The change in the consensus estimate of FY1 earnings per share from three months ago, relative to the average of current estimates.",1001,
+966,6M Avg Chg 1M Recommendation,6MAvgChg1MRecC,3,This factor is the average one month change in the mean number of recommendations made by analysts in a six month period.,1001,
+634,Trailing 12-Month Receivables and Inventories/Trailing 12-Month Sales,TTMRecInvToSales,2,This factor is calculated by taking the ratio of between TTM receivables plus TTM inventories and TTM sales.,1001,
+783,Stores Opened Momentum,RET_StoreOPMOM,2,Year over year change in the total number of stores opened in the last 12 months.,1001,
+645,EBIT to Price,EBITP,5,EBIT-to-price ratio measures the company's average four quarter earnings before interests and taxes per share relative to the price that investors would like to pay for a share.,1001,
+982,Inverse P/E Ratio Adj for Growth and Yield,InvPEGYC,5,"The ratio of trailing four quarter earnings per share to current stock price, multiplied by the sum of consensus long-term growth estimates and dividend yield.",1001,
+1024,ROE Standard Deviation,ROEStddev,2,This factor is measured as the standard deviation of ROE going eight periods back.,1001,
+632,Log of Total Last Quarter Assets,LogAssets,7,This is the log value of the company's total assets.,1001,
+633,Trailing 12-Month Overhead/Trailing 12-Month Sales,TTMOverheadtoSales,2,This factor is calculated by taking the ratio of the TTM overhead and TTM sales.,1001,
+1023,ROA Standard Deviation,ROAStddev,2,This factor is measured as the standard deviation of ROA going eight periods back.,1001,
+1025,Dividend per Share Growth,DivperShareGrowth,2,This factor is the one year percent change in trailing twelve month cash dividends per share.,1001,
+1035,ROA 20 Qtr Standard Deviation,ROAStddev20Q,4,This factor is measured as the standard deviation of ROA going twenty quarters back.,1001,
+1036,ROE 20 Qtr Standard Deviation,ROEStddev20Q,4,This factor is measured as the standard deviation of ROE going twenty quarters back.,1001,
+1037,ROA 60 Month Slope,ROA60MSlope,4,Slope of time trend line fitted to monthly return on asset over the past 60 months.,1001,
+1179,Sharpe Ratio,SharpeRatio,1,Annualized Sharpe ratio of monthly return over trailing 36 months,1001,
+1181,Institution Ownership Concentration,IO_Concentration,1,"Ratio of shares held by top 5 institutional investors to shares held by all institutional investors.Data is sourced from the CIQ Ownership package in Xpressfeed.  Data is not Point-in-Time, for data prior to 2016, a 2 month lag was applied for US companies, and 12 month lag for ex-US.",1001,
+1182,Ownership Breadth Stability of Institution Ownership by Buyers,IO_BreadthStabBY,1,"Ratio of average number of buyers to stddev of number of buyers, over trailing 12 quarters.Data is sourced from the CIQ Ownership package in Xpressfeed.  Data is not Point-in-Time, for data prior to 2016, a 2 month lag was applied for US companies, and 12 month lag for ex-US.",1001,
+1183,Institution Ownership Level,IO_Level,1,"Percentage of company shares owned by total institutional shareholders.Data is sourced from the CIQ Ownership package in Xpressfeed.  Data is not Point-in-Time, for data prior to 2016, a 2 month lag was applied for US companies, and 12 month lag for ex-US.",1001,
+1184,Foreign Institution Ownership,IO_Foreign,1,Percentage of shares held by foreign institutional investors.,1001,
+1185,Change of Ownership Level - All Managers,IO_ChgofIO_AM,1,"Change in the total % ownership by all managers, quarter to quarterData is sourced from the CIQ Ownership package in Xpressfeed.  Data is not Point-in-Time, for data prior to 2016, a 2 month lag was applied for US companies, and 12 month lag for ex-US.",1001,
+1186,Change of Ownership Level - Hedge Fund,IO_ChgofIO_HF,1,"Change in percent of ownership in Hedge Funds.Data is sourced from the CIQ Ownership package in Xpressfeed.  Data is not Point-in-Time, for data prior to 2016, a 2 month lag was applied for US companies, and 12 month lag for ex-US.",1001,
+1187,Stability of Change in Number of Holders,IO_StabofChgHD,1,"Ratio of change in breadth to the standard deviation of the change.Note that in cases where the numerator of the ratio is negative, the value is mutlipled by the standard deviation of the change rather than divided.  So negative values will be penalized more for volatility and the magnitude of negative values will appear largerData is sourced from the CIQ Ownership package in Xpressfeed.  Data is not Point-in-Time, for data prior to 2016, a 2 month lag was applied for US companies, and 12 month lag for ex-US.",1001,
+1188,Investment Duration,IO_InvDuration,1,"The factor is defined by weighted average length of time that institutional investors have held a stock in their portfolios.Example:  an owner owns 5% of total shares of IBM.  It bought 2% of those shares 3 quarters back, and the other 3% of shares 5 quarters back.  Weighted average age is calculated as (3*2% + 5*3%)/5% = 4.2   Calculation is weighted over prior eight quarters.Data is sourced from the CIQ Ownership package in Xpressfeed.  Data is not Point-in-Time, for data prior to 2016, a 2 month lag was applied for US companies, and 12 month lag for ex-US.",1001,
+1189,Institution Ownership Level - Active Manager,IO_Level_AM,1,"Percentage of company shares owned by active managers.Data is sourced from the CIQ Ownership package in Xpressfeed.  Data is not Point-in-Time, for data prior to 2016, a 2 month lag was applied for US companies, and 12 month lag for ex-US.",1001,
+1190,Change in Number of Holders,IO_ChgofNumHD,1,"Quarterly change in number of holders in %; it measures the change of ownership breadth.Data is sourced from the CIQ Ownership package in Xpressfeed.  Data is not Point-in-Time, for data prior to 2016, a 2 month lag was applied for US companies, and 12 month lag for ex-US.",1001,
+1191,Change in Number of Buyers,IO_ChgofNumBY,1,"Quarterly change in number of buyers in %; it measures the change of ownership breadth.Data is sourced from the CIQ Ownership package in Xpressfeed.  Data is not Point-in-Time, for data prior to 2016, a 2 month lag was applied for US companies, and 12 month lag for ex-US.",1001,
+1192,Ownership Breadth Stability of Institution Ownership by Holders,IO_BreadthStabHD,1,"Measured by stability of number of holders. It is a standardized measure of the average number of institutional investors holding a firm’s shares.Data is sourced from the CIQ Ownership package in Xpressfeed.  Data is not Point-in-Time, for data prior to 2016, a 2 month lag was applied for US companies, and 12 month lag for ex-US.",1001,
+1197,Gross Profit to Assets,GrPftToAst,6,The ratio of trailing four quarter gross profit to total assets over the same period where gross profit is defined as revenue less cost of goods sold.,1001,
+1198,EBITDA to Assets,EbitdaToAst,6,The ratio of trailing four quarter EBITDA to total assets over the same period.,1001,
+1199,EBIT to Assets,EbitToAst,6,The ratio of trailing four quarter EBIT to total assets over the same period.,1001,
+1200,Asset Growth - 1 Year,AstGrwth,6,One-year percent change in the simple average trailing four quarter total assets.,1001,
+1201,Net Arbitrage Trading,IO_NAT,1,"Net Arbitrage Trading is defined as the difference between the change of hedge fund holdings and the change of short interest on a stock. Data is sourced from the CIQ Ownership package in Xpressfeed. Data is not Point-in-Time, for data prior to 2016, a 2 month lag was applied for US companies.  This item is covered in US only.",1001,
+1208,Loss Absorption Power (Bank Reg),BNK_LossAbsorpPowerS,6,This is the ratio of a bank's non-accrual loans and loans past due over tangible common equity and loan loss reserves. Based on SNL Bank Regulatory Data.,1001,
+1209,Loan Loss Indicator (Bank Reg),BNK_LoanLossIndS,4,Ratio of all loans past due at least 30 days over the total loan and lease financing receivables. Based on SNL Bank Regulatory Data.,1001,
+1210,Loan Funding (Bank Reg),BNK_LoanFundS,6,This is the ratio of loans and leases over core deposits. Based on SNL Bank Regulatory Data.,1001,
+1211,1YChg30DLoanDue/TotLoan (Bank Reg),BNK_YoYChg30DLTLS,4,One year change in the ratio of loans & leases past due 30-89 days over total loans and lease financing receivables. Based on SNL Bank Regulatory Data.,1001,
+1212,Problem Loan Ratio (Bank Reg),BNK_ProbLoansS,4,The ratio of problem loans (non-accrual loans and loans past due) over total assets. Based on SNL Bank Regulatory Data.,1001,
+1213,Tangible Book Value/Price (Bank Reg),BNK_TBVPS,5,This is the ratio of a bank's tangible common equity over price and shares outstanding. Based on SNL Bank Regulatory Data.,1001,
+1214,Non-Perf Asts / Earn Asts (Bank Reg),BNK_NonPerAstEAS,4,This is the ratio of a bank's non-performing assets to its average earning assets. Based on SNL Bank Regulatory Data.,1001,
+1215,Texas Ratio (Bank Reg),BNK_TexasRatioS,6,This is the ratio of non-performing loans and other real estate loans over tangible common equity and loan loss reserves. Based on SNL Bank Regulatory Data.,1001,
+1216,Tier 1 Capital Ratio (Bank Reg),BNK_Tier1CapS,6,This ratio equals Tier 1 capital over total risk-weighted assets. Based on SNL Bank Regulatory Data.,1001,
+1217,Loan Diversity (Bank Reg),BNK_LnDiverseS,4,This factor is the sum of the various loan types over gross loans squared. Based on SNL Bank Regulatory Data.,1001,
+1218,Adj Op Income / Tot Asset (Bank Reg),BNK_OpIncAstS,4,This is the ratio of adjusted operating income over total assets. Based on SNL Bank Regulatory Data.,1001,
+1219,Deposit Cost (Bank Reg),BNK_DepCostS,6,This is the ratio of interest paid on deposits over average interest bearing deposits. Based on SNL Bank Regulatory Data.,1001,
+1220,Core Deposit Mix (Bank Reg),BNK_CoreDepMixS,6,This is the ratio of core deposits over total deposits. Based on SNL Bank Regulatory Data.,1001,
+1221,Provision Rate (Bank Reg),BNK_ProvRateS,4,This is the ratio of the provision for loans and lease losses over total assets. Based on SNL Bank Regulatory Data.,1001,
+1222,PreProvision Profit/Price (Bank Reg),BNK_PPPPS,5,This is the ratio of a bank's pre-provision profit over price and shares outstanding. Based on SNL Bank Regulatory Data.,1001,
+1223,Cost Efficiency (Bank Reg),BNK_CostEffS,4,This is the ratio of non-interest expense over non-interest income. Based on SNL Bank Regulatory Data.,1001,
+1224,Demand Deposit Mix (Bank Reg),BNK_DemandDepMixS,6,This is the ratio of demand deposits over total deposits. Based on SNL Bank Regulatory Data.,1001,
+1225,Time Deposit Mix (Bank Reg),BNK_TimeDepMixS,6,This is the ratio of time deposits to total deposits. Based on SNL Bank Regulatory Data.,1001,
+1226,PreProv Profit/Earn Asts (Bank Reg),BNK_PPPEAS,6,This is the ratio of a bank's pre-provision profit over average earning assets.  Based on SNL Bank Regulatory Data.,1001,
+1227,PreProv Profit/Assets (Bank Reg),BNK_PPPAS,6,This is the ratio of a bank's pre-provision profit over total assets.  Based on SNL Bank Regulatory Data.,1001,
+1228,Return on Tang Comm Eqty (Bank Reg),BNK_ROTCES,6,This is the ratio of net income over tangible common equity. Based on SNL Bank Regulatory Data.,1001,
+1229,Adjusted EBIT to Price,AdjEBITP,5,EBIT-to-price ratio measures the company's average four quarter earnings before interests and taxes per share relative to the price that investors would like to pay for a share.,1001,
+1230,Adjusted 6 Month Average Share Turn Over,AdjSTO_6M,1,This factor is defined as the six month average trading volume divided by number of shares outstanding.,1001,
+1231,1Y Chg in Share Turnover,Chg1YTurnover,1,"The 12-month change in stock-level turnover is calculated as daily stock turnover subtract prior 12-month average turnover, divided by the prior 12-month volatility in the monthly turnovers.",1001,
+1232,Amihud Illiquidity Measure,Amihud,8,"A stock’s Amihud measure is defined as the absolute value of a stock's daily return divided by its daily dollar volume, averaged for the past month.",1001,
+1233,1Y Chg in Amihud,Chg1YAmihud,8,"The 12-month change in stock-level Amihud measure is calculated as daily Amihud ratio subtract prior 12-month average Amihud ratio, divided by the 12-month volatility in the monthly Amihud ratio.",1001,
+1234,Buy-to-Sell Recommendation Ratio Less 3M EMA,BuyToSellRecLess3MEMA,3,The 3-month change in the ratio of analyst buys minus sells to total recommendations. Uses an exponentially smoothed moving average to calculate change.,1001,
+1235,Buy-to-Sell Recommendation Ratio Less 3M SMA,BuyToSellRecLess3MSMA,3,The 3-month change in the ratio of analyst buys minus sells to total recommendations. Uses simple moving average to calculate change.,1001,
+1236,Target Price Gap to 6M EMA,6MChgTgtPrcGapEMA,3,"Calculates the change in the difference between target price and current price gap (“target price gap”) over the past six month, using an exponentially smoothed moving average to calculate the change.",1001,
+1237,6M Chg in Target Price,6MChgTgtPrc,3,The ratio of the current analysts’ consensus target price to the consensus target price six months ago.,1001,
+1238,6M Chg in Target Price Gap,6MChgTgtPrcGap,3,The ratio of the consensus target price minus current price (“target price gap”) divided by the same metric six months ago.,1001,
+1239,Revenue Estimate Dispersion,RevEstDisp,3,The 1-month average standard deviation of the individual estimates within the consensus revenue estimate divided by the absolute value of the 1-month average of the consensus revenue estimate mean.,1001,
+1240,EBIT Estimate Dispersion,EBITEstDisp,3,The 1-month average standard deviation of the individual estimates within the consensus EBIT estimate divided by the absolute value of the 1-month average of the consensus EBIT estimate mean.,1001,
+1244,1-Year Change in ROA,Chg1YROA,2,The change from a year ago in trailing four quarters return on assets. Factor value is set to NULL when total assets has negative value.,1001,
+1245,1-Year Change in Long Term Debt to Avg Total Assets,Chg1YLTDA,2,The change from a year ago in long term debts to total assets. Factor value is set to NULL when total assets has negative value.,1001,
+1246,1-Year Change in Current Ratio,Chg1YCACL,2,The change from a year ago in the current ratio. Factor value is set to NULL when current liabilities has negative value.,1001,
+1247,1-Year Change in Gross Profit Margin,Chg1YGPMargin,2,The change from a year ago in trailing four quarters gross profit margin. Factor value is set to NULL when sales has negative value.,1001,
+1248,Total Market Value of Equity to Total Liabilities,MVEToTL,6,"The ratio of equity measured by the combined market value of all shares of common and preferred stocks, and total liabilities. Factor value is set to NULL when total liabilities have negative values.",1001,
+1249,Piotroski F-Score,Piotroski_FScore,4,"The Piotroski F-score is a discrete number between 0-9 that reflects nine criteria which cover profitability, financial leverage, liquidity, and operating efficiency. It is used to determine the strength of a company's financial position.",2002,
+1250,Altman Z-Score,Altman_ZScore,4,"The Altman Z-score is based on five financial ratios including profitability, leverage, liquidity, solvency, and activity to predict whether a company has a high probability of becoming insolvent.",2002,
+1251,SNL FFO 1-year Growth,REIT_SFFO1YG,2,The one year growth in standardized actual FFO.,1001,
+1252,Same Store NOI Growth,REIT_SSNOIG,2,This metric looks at the percentage change in net operating income (NOI) for properties held for at least 1 year.,1001,
+1253,Same Store Revenue Growth,REIT_SSRG,2,This metric looks at the percentage change in rental revenue for properties held for at least 1 year.,1001,
+1254,FFO Payout Ratio,REIT_PayoutRatio,4,Cash dividend declared divided by FFO as reported by company.,1001,
+1255,SNL FFO Growth,REIT_SFFOStab,2,This metric is calculated as the most recent year-on-year change in FFO divided by the standard deviation of the change over the last 8 quarters.,1001,
+1256,Adjusted FFO Yield,REIT_AFFOY,5,Adjusted funds from operations (AFFO) per share as reported by the company divided by price.,1001,
+1257,Implied Cap Rate,REIT_ICR,5,Implied cap rate is a measure of yield calculated as the Net Operating Income generated in the last 12-month divided by the Enterprise Value.,1001,
+496,Change of Sales to Change of EPS,ChgSalestoChgEPS,4,This factor is the difference between the company's change in EPS and change in sales.,1001,
+497,Operating Cash Flow to Invested Capital,OCFIC,4,This factor is the ratio of operating cash flow to invested capital.,1001,
+454,1Y Chg in Debt to Assets,YoYChgDA,8,This ratio indicates the year over year change in the proportion of debt a company has relative to its assets.,1001,
+490,Change in Non performing Asset to Total Asset,ChgNonPerAsttoAst,4,This factor is the one year change in the ratio of non-performing assets to total assets.,1001,
+493,Change EPS to Sales,AdjChgEPStoSales,4,This factor measures the company's year-over-year change of EPS-to-sales ratio.,1001,
+494,Operating Cash Flow to Asset,OCFAst,4,This metric compares the company's four quarter operating cash flow to its total assets.,1001,
+471,Cash Burn Rate,CashBurn,4,This factor is the rate of net cash flow from all activities over the total cash and short-term investments (marketable securities).,1001,
+485,Cash Flow to Equity,CFEqt,5,This ratio measures how much net cash flow the company can generate for the common equity holders.,1001,
+486,Cash Flow to Invested Capital,CFIC,4,This factor is the ratio of net cash flow to invested capital,1001,
+487,Cash to Adjusted Enterprise Value,CashAdjEV,5,"This ratio measure the company's cash holding relative to its enterprise value.*Note that EV in denominator is only updated at the same time as the fundamental data items are updated, either quarterly or annually.",1001,
+481,US Growth Model - Capital Efficiency Composite,US_GRW_CapEff_Comp,6,This model is a combination of ratios that measure a company's capability to generate returns and the rate at which a company uses up cash.,2002,
+476,US Growth Model - Earnings Momentum Composite,US_GRW_EarnMo_Comp,3,The earnings momentum composite model uses analsyt recommendations and revisions to predict future stock performance.,2002,
+465,Adj 1Y Chg in Earnings per Share,AdjChgEPS,2,This factor is the 1 Year percentage change in Trailing Twelve Month Earnings per Share.,1001,
+466,Adj Free Cash Flow to Price,AdjFCFP,5,"This valuation ratio compares the company's annual free cash flow to its market value. Generally, the lower this ratio is, the more expensive the company is.",1001,
+468,Adj. EBITDA to Enterprise Value,AdjEBITDAEV,5,The metric measure how much return the company can generate relative to its enterprise value.*Note that the EV in denominator is updated with monthly frequency,1001,
+458,Free Cash Flow to Sales,FCFSales,4,This valuation ratio compares the company's annual free cash flow to its total sales.,1001,
+459,EPS Stability,EPSStab,2,"This factor is measured by the ratio of the one year change in EPS over the standard deviation in the one year change in EPS going eight periods back.For the North American model, securities with a negative value in the numerator are multiplied by the standard deviation rather than divided.",1001,
+461,Adj 1Y Chg in Asset Adjusted FCF,AdjAstAdjChg1YFCF,2,This factor is the 1 year change in trailing twelve month free cash flow divided by the average total asset.,1001,
+222,Long Term Debt to Assets Ratio,LTDA,6,This ratio compares a company's long term debts to its total assets. It not only signals a company's capital structure but also long term solvency.,1001,
+219,Adjusted Accruals,AdjAccruals,4,This is an accrual ratio that measures a company's earnings quality.,1001,
+182,Depreciation to Capex Ratio,DepToCapex,4,"This factor gives the ratio of the accounting charge for depreciation as a percentage of the amount that a firm spends on new property, plant and equipment.",1001,
+213,Accrual Ratio - Cash Flows,AccrualRatioCF,4,Accrual ratio measures the earning qualities. This is one the two similar definitions that based on cash flow items.,1001,
+214,Year over Year Change of Total Debt,DebtChg1Y,6,This factor measures the year-over-year change in debts. It is normalized by the company's total assets to enable cross sectional comparison.,1001,
+215,6 Months Price Reversal,PM6M,1,The simple stock return over the past six months.,1001,
+216,Year over Year Change in SGA to Sales,SGAToSalesChg1Y,4,This factor measures the year-over-year change in a company's SGA to Sales ratio.,1001,
+168,Financial Leverage (Equity Multiplier),FL,6,"This ratio measures a company's total assets per dollar of stock holders' common equities. The higher the ratio, the higher the financial leverage is used to finance a company's assets.",1001,
+169,Pretax Profit Margin,PTMargin,6,This ratio is a measure of how efficiently a company can generate before-tax profit with certain sales.,1001,
+177,Tobin's Q Ratio,TobinQ,6,This ratio compares a company's market value with its book value.,1001,
+166,Working Capital to Assets Ratio,WCA,4,"Average current assets and current liabilities over the past four quarters, relative to average total assets over the same period.",1001,
+153,Net Current Assets to Price Ratio,NCAP,5,The ratio of net current assets (current assets minus total liabilities) to market value of common equity.,1001,
+163,Receivables Turnover Ratio,RecTurn,6,This ratio measures how efficiently a company collects its debt.,1001,
+228,Return on Net Tangible Assets,RONA,5,The ratio measures a company's ability to generate profits using its net fixed assets and working capital.,1001,
+145,Dividends to Price Ratio,DivP,5,The ratio of trailing four quarter dividends per share to current stock price.,1001,
+142,Cash to EV Ratio,CashEV,5,The ratio of cash and short term investments to enterprise value.,1001,
+143,Cash to Price,CashP,5,The ratio of cash and short term investments to market value of common equity.,1001,
+129,Dividends to Cash Flow,DivToCF,5,The ratio of trailing four quarter sum of cash dividends to trailing four quarter cash flow.,1001,
+130,1Y Chg in EPS to Operating Cash Flow,EPSToOCFChg,4,The change from a year ago in the ratio of trailing four quarter earnings per share to trailing four quarter operating cash flow per share.,1001,
+71,1Y Chg in Free Cash Flow to Price,PAdjChg1YFCF,2,"The 1 year change in trailing four quarter free cash flow per share, divided by the current stock price.",1001,
+72,1Y Chg in Operating Cash Flow to Price,PAdjChg1YOCF,2,"The 1 year change in trailing four quarter operating cash flow per share, divided by the current stock price.",1001,
+139,Working Capital to Total Assets,WCapToAst,4,This ratio measures a company's liquidity by revealing the percentage of remaining liquid assets compared to its total assets.,1001,
+140,Working Capital to Sales,WCapToSales,4,"Average current assets and current liabilities over the past four quarters, relative to sales over the same period.",1001,
+126,Capital Expenditure to Total Assets,CapExToAst,6,The ratio of trailing four quarter sum of capital expenditures to average total assets over the same period.,1001,
+127,Capital Expenditure to Sales,CapExToSales,4,The ratio of trailing four quarter sum of capital expenditures to trailing four quarter sum of sales.,1001,
+102,1Y Chg in Sales to Price,PAdjChg1YSales,2,"The 1 year change in trailing four quarter sales per share, divided by the current stock price.",1001,
+94,60M CAPM Beta,Beta60M,8,The sensitivity of a stock's return to the return on the market.,1001,
+85,3Y Chg in Free Cash Flow to Price,PAdjChg3YFCF,2,"The 3 year change in trailing four quarter free cash flow per share, divided by the current stock price.",1001,
+86,3Y Chg in Operating Cash Flow to Price,PAdjChg3YOCF,2,"The 3 year change in trailing four quarter operating cash flow per share, divided by the current stock price.",1001,
+80,3Y Chg in Free Cash Flow per Share,Chg3YFCF,2,The percentage change from three years ago in trailing four quarter free cash flow per share.,1001,
+81,3Y Chg in Operating Cash Flow per Share,Chg3YOCF,2,The percentage change from three years ago in trailing four quarter operating cash flow per share.,1001,
+76,3Y Chg in Asset Adjusted Operating Cash Flow,AstAdjChg3YOCF,2,"The 3 year change in trailing four quarter operating cash flow, relative to average total assets over the past three years.",1001,
+77,3Y Chg in Sales Turnover,Chg3YAstTo,2,The percentage change from three years ago in the ratio of trailing four quarter sales to average total assets over the same period.,1001,
+59,1Y Chg in Asset Adjusted Cash Flow,AstAdjChg1YCF,2,"The 1 year change in trailing four quarter cash flow, relative to average total assets over the year.",1001,
+51,Net Cash Flow to Enterprise Value,CFEV,5,The ratio of trailing four quarter net cash flow to average enterprise value over the same period.,1001,
+52,Net Cash Flow to Price,CFP,5,The ratio of trailing four quarter net cash flow to average market value of equity over the same period.,1001,
+61,1Y Chg in Asset Adjusted Free Cash Flow,AstAdjChg1YFCF,2,"The 1 year change in trailing four quarter free cash flow, divided by average total assets over the year.",1001,
+62,1Y Chg in Asset Adjusted Operating Cash Flow,AstAdjChg1YOCF,2,"The 1 year change in trailing four quarter operating cash flow, divided by average total assets over the year.",1001,
+63,1Y Chg in Sales Turnover,Chg1YAstTo,2,The percentage change from a year ago in the ratio of trailing four quarter sales to average total assets over the same period.,1001,
+64,1Y Chg in Cash Flow per Share,Chg1YCF,2,The percentage change from a year ago in trailing four quarter cash flow per share.,1001,
+65,1Y Chg in Earnings per Share,Chg1YEPS,2,The percentage change from a year ago in trailing four quarter earnings per share.,1001,
+66,1Y Chg in Free Cash Flow per Share,Chg1YFCF,2,The percentage change from a year ago in trailing four quarter free cash flow per share.,1001,
+67,1Y Chg in Operating Cash Flow per Share,Chg1YOCF,2,The percentage change from a year ago in trailing four quarter operating cash flow per share.,1001,
+68,1Y Chg in Operating Margin,Chg1YOPM,2,The percentage change from a year ago in trailing four quarter operating margin.,1001,
+69,1Y Chg in Cash Flow to Price,PAdjChg1YCF,2,"The 1 year change in trailing four quarter cash flow per share, divided by the current stock price.",1001,
+45,Free Cash Flow to Enterprise Value,FCFEV,5,It's the ratio of trailing four quarter free cash flow to average enterprise value over the same period.,1001,
+46,Operating Cash Flow to Enterprise Value,OCFEV,5,The factor is defined as a ratio of trailing four quarter net cash flow from operating activities to average enterprise value over the same period.,1001,
+47,Operating Cash Flow to Price,OCFP,5,The ratio of trailing four quarter net cash flow from operating activities to average market value of common equity over the same period.,1001,
+48,Free Cash Flow to Common Equity,FCFEqt,5,The ratio of trailing four quarter free cash flow to average book value of common equity over the same period.,1001,
+49,EBITDA to Enterprise Value,EBITDAEV,5,"The ratio of trailing four quarter earnings before interest, taxes, depreciation and amortization expense to enterprise value.",1001,
+42,Unexpected Inventory Change,UnexpectedInvChg,4,"The factor measures difference between inventory level and a measure of expected inventory level, relative to total assets four quarters ago.",1001,
+31,Asset Turnover,AssetTurn,4,The ratio of trailing four quarter sales to average total assets over the same period.,1001,
+32,Inventory Turnover,InvTurn,4,The ratio of trailing four quarter sales to average inventory over the same period.,1001,
+33,Unexpected Receivables Change,UnexpectedRecChg,4,"The difference between accounts receivable level and a measure of expected accounts receivable, relative to total assets four quarters ago.",1001,
+34,12M - 1M Price Momentum,PM12M1M,1,"The cumulative percentage stock price change over the prior twelve months, excluding the most recent month.",1001,
+35,1M Price Reversal,PM1M,1,The simple stock return over the past month.,1001,
+38,Log Market Cap,LogMktCap,7,The natural logarithm of market capitalization (month-end number of shares outstanding multipled by month-end price per share),1001,
+2,Return on Invested Capital,ROIC,6,This factor is the ratio of trailing four quarter after-tax net operating profit to average total invested capital over the same period.,1001,
+4,Return on Equity,ROE,6,The ratio of trailing four quarter income before extraordinary items available for common equity to average book value of common equity over the same period.,1001,
+9,Return on Assets,ROA,6,ROA is the ratio of trailing four quarter after-tax net operating profit to average total assets over the same period.,1001,
+11,Cash Flow Return on Invested Capital,CFROIC,6,The factor measures a ratio of trailing four quarter operating net cash flow to average invested capital over the same period.,1001,
+12,Debt to Assets Ratio,DA,6,The ratio of long term and short term debt to total assets.  It indicates the proportion of debt a company has relative to its assets.,1001,
+13,Long Term Debt to Equity Ratio,LTDE,6,The ratio of long term debt to total shareholders' equity.  It's  an indicator of a company’s financial leverage.,1001,
+14,Capital Acquisition Ratio,CapAcqRatio,6,The factor is a  ratio of trailing four quarter operating cash flow (net of cash dividends) to trailing four quarter capital expenditures.  It   measures how efficiently a company generates cash from its capital expenditures.,1001,
+15,Interest Coverage Ratio,IntCovRatio,6,The ratio of operating income after depreciation to interest and related expense.,1001,
+18,1Y Chg in Shares Outstanding,ShareChg,6,The percentage change in common shares outstanding from four quarters ago to the current quarter.,1001,
+22,Cash Conversion Cycle,CashCycle,4,"It's defined as the sum of average receivable collection period and average inventory processing period, minus payables payment period.",1001,
+23,Net Profit Margin,NetProfitMargin,4,"It's defined as the ratio of trailing four quarter income before extraordinary items to trailing four quarter sales.    Note: From 2010 onward, this factor is not calculated for Banks (GICS 4010).",1001,
+24,Working Capital Accruals,WCAccruals,4,"The factor is defined as the change from four quarters ago  in non-cash assets, minus the change in current liabilities (excluding short term debt and taxes payable) and minus depreciation, relative to average total assets over the past year.",1001,
+25,Balance Sheet Accruals,TotalAccruals,4,"The sum of total receivables, inventory, other current assets and accounts payable, relative to total sales.",1001,
+26,Change in TTM Depr. to Capex,ChgDeprCapex,4,"It's defined as the relative change in trailing four quarter depreciation and amortization expense from a year ago, minus the relative change in trailing four quarter capital expenditures from a year ago.",1001,
+27,Asset Adjusted Capital Investments,InvToAsset,4,"The ratio of the 1 year change in gross property, plant and equipment plus inventory to total assets a year ago.",1001,
+28,Sales to Gross Profit Margin Growth,ChgSalesMargin,4,"The percentage change in gross profit margin from four quarters ago, relative to the percentage change in sales over the same period.",1001,
+230,Ind Grp Rel Return on Invested Capital,IndRel_ROIC,6,This ratio measures how effectively the company uses its invested capital to generate returns.,1002,2
+231,5 Yr Hist Rel Return on Invested Capital,5YRel_ROIC,6,This ratio measures how effectively the company uses its invested capital to generate returns.,1003,2
+233,Ind Grp Rel Return on Equity,IndRel_ROE,6,This ratio is a measure of how much profit a company generates per unit of common equity.,1002,4
+234,5 Yr Hist Rel Return on Equity,5YRel_ROE,6,This ratio is a measure of how much profit a company generates per unit of common equity.,1003,4
+239,Ind Grp Rel Return on Assets,IndRel_ROA,6,ROA measures how a company is using its total assets and gives an indication how efficient the management is at using its assets to generate earnings.,1002,9
+240,5 Yr Hist Rel Return on Assets,5YRel_ROA,6,ROA measures how a company is using its total assets and gives an indication how efficient the management is at using its assets to generate earnings.,1003,9
+242,Ind Grp Rel Cash Flow Return on Invested Capital,IndRel_CFROIC,6,CFROIC measures a company’s ability to generate cash flow from the invested capital.,1002,11
+244,Ind Grp Rel Debt to Assets Ratio,IndRel_DA,6,This ratio indicates the proportion of debt a company has relative to its assets.,1002,12
+246,Ind Grp Rel Long Term Debt to Equity Ratio,IndRel_LTDE,6,This ratio is an indicator of a company’s financial leverage.,1002,13
+248,Ind Grp Rel Capital Acquisition Ratio,IndRel_CapAcqRatio,6,This ratio measures how efficiently a company generates cash from its capital expenditures.,1002,14
+250,Ind Grp Rel Interest Coverage Ratio,IndRel_IntCovRatio,6,This ratio is a measure of a company’s ability to pay for interest on outstanding debt.,1002,15
+254,Ind Grp Rel 1Y Chg in Shares Outstanding,IndRel_ShareChg,6,This factor indicates the percentage change in common shares outstanding over the last twelve months.,1002,18
+259,Ind Grp Rel 1Y Chg in Stock Buybacks,IndRel_BuyBackChg,6,This signal measures the change in stock repurchases over the last twelve months.,1002,21
+261,Ind Grp Rel Cash Conversion Cycle,IndRel_CashCycle,4,"Cash Cycle is defined as the number of days for a company to convert raw materials into cash flows. More specifically, a company can use credit(Accounts Payable) to purchase inventories and sell them for cash or credit(Accounts Receivable). The factor measures the time from paying out cash to generate sales and receive cash to finish the sales cycle.",1002,22
+263,Ind Grp Rel Net Profit Margin,IndRel_NetProfitMargin,4,This profitability measure is defined simply as the Net Income to Total Sales.,1002,23
+264,5 Yr Hist Rel Net Profit Margin,5YRel_NetProfitMargin,4,This profitability measure is defined simply as the Net Income to Total Sales.,1003,23
+265,Ind Grp Rel Working Capital Accruals,IndRel_WCAccruals,4,"Accruals are defined as the change in non-cash current assets less the change in current liabilities excluding short term debt and taxes payable and minus depreciation, adjusted by total assets.",1002,24
+267,Ind Grp Rel Balance Sheet Accruals,IndRel_TotalAccruals,4,This factor measures the total non-cash working capital adjusted by sales.,1002,25
+269,Ind Grp Rel Change in TTM Depr. to Capex,IndRel_ChgDeprCapex,4,This factor measures the difference between depreciation expenses and capital expenditures over the last 12 months.,1002,26
+271,Ind Grp Rel Asset Adjusted Capital Investments,IndRel_InvToAsset,4,"Investment-to-assets is defined as the annual change in gross property, plant, and equipment plus the annual change in inventories divided by the lagged book value of assets. This low-investment firms have higher average future returns than high-investment firms.",1002,27
+273,Ind Grp Rel Sales to Gross Profit Margin Growth,IndRel_ChgSalesMargin,4,This factor measures the difference in sales growth and gross margin growth.,1002,28
+274,5 Yr Hist Rel Sales to Gross Profit Margin Growth,5YRel_ChgSalesMargin,4,This factor measures the difference in sales growth and gross margin growth.,1003,28
+275,Ind Grp Rel Book to Price,IndRel_BP,5,This ratio compares the company's book value to its market price.,1002,29
+276,5 Yr Hist Rel Book to Price,5YRel_BP,5,This ratio compares the company's book value to its market price.,1003,29
+277,Ind Grp Rel Cash to Total Assets,IndRel_CashAst,5,This metric measures the company's quarterly cash and short term investment relative to its quarterly total assets.,1002,30
+278,5 Yr Hist Rel Cash to Total Assets,5YRel_CashAst,5,This metric measures the company's quarterly cash and short term investment relative to its quarterly total assets.,1003,30
+279,Ind Grp Rel Asset Turnover,IndRel_AssetTurn,4,This factor is the ratio of Trailing Twelve Month Sales to Total Assets.,1002,31
+281,Ind Grp Rel Inventory Turnover,IndRel_InvTurn,4,This factor is defined as Sales divided by Inventory.,1002,32
+285,Ind Grp Rel 12M - 1M Price Momentum,IndRel_PM12M1M,1,This factor is the difference between the company's lagged twelve month price momentum and its one month momentum.,1002,34
+286,Ind Grp Rel 1M Price Reversal,IndRel_PM1M,1,"1 Month Industry Relative Price Reversal is the one month simple return minus the average one month returns of the industry, scaled by the standard deviation of these returns.",1002,35
+294,Ind Grp Rel Free Cash Flow to Price,IndRel_FCFP,5,This metric measures a company's free cash flow to price ratio relative to its industry average. The difference is then standardized by the industry's standard deviations.,1002,44
+295,5 Yr Hist Rel Free Cash Flow to Price,5YRel_FCFP,5,"This valuation ratio compares the company's annual free cash flow to its market value. Generally, the lower this ratio is, the more expensive the company is.",1003,44
+296,Ind Grp Rel Free Cash Flow to Enterprise Value,IndRel_FCFEV,5,This metric measures average free cash flow generated from the company operations relative to the company's average enterprise value over the last four quarters.,1002,45
+297,5 Yr Hist Rel Free Cash Flow to Enterprise Value,5YRel_FCFEV,5,This metric measures average free cash flow generated from the company operations relative to the company's average enterprise value over the last four quarters.,1003,45
+298,Ind Grp Rel Operating Cash Flow to Enterprise Value,IndRel_OCFEV,5,This metric measures operating cash flow generated from the company operations relative to the company's enterprise value.,1002,46
+299,5 Yr Hist Rel Operating Cash Flow to Enterprise Value,5YRel_OCFEV,5,This metric measures operating cash flow generated from the company operations relative to the company's enterprise value.,1003,46
+449,Ind Grp Rel Operating Cash Flow to Price,IndRel_OCFP,5,This metric compares the company's OCFP ratio to the industry average then standardizes the difference by the industry's standard deviation.,1002,47
+301,5 Yr Hist Rel Operating Cash Flow to Price,5YRel_OCFP,5,This metric compares the company's average four quarter operating cash flow to its market value. The lower this ratio is the more expensive the company.,1003,47
+302,Ind Grp Rel Free Cash Flow to Common Equity,IndRel_FCFEqt,5,This ratio measures how much free cash flow the company can generate for the common equity holders.,1002,48
+303,5 Yr Hist Rel Free Cash Flow to Common Equity,5YRel_FCFEqt,5,This ratio measures how much free cash flow the company can generate for the common equity holders.,1003,48
+304,Ind Grp Rel EBITDA to Enterprise Value,IndRel_EBITDAEV,5,The metric measure how much return the company can generate relative to its enterprise value.,1002,49
+305,5 Yr Hist Rel EBITDA to Enterprise Value,5YRel_EBITDAEV,5,The metric measure how much return the company can generate relative to its enterprise value.,1003,49
+306,Ind Grp Rel Earnings to Price,IndRel_EP,5,"Earning-to-price ratio is a measure of the company's average four quarter earnings per share relative to the stock price. The higher the ratio, the better the earnings would be for each dollar paid for the stock. The industry relative earning-to-price ratio compares peers companies in the same industry.",1002,50
+307,5 Yr Hist Rel Earnings to Price,5YRel_EP,5,"This metric is is a measure of the company's average four quarter earnings per share relative to the stock price. The higher the ratio, the better the earnings would be for each dollar paid for the stock.",1003,50
+308,Ind Grp Rel Net Cash Flow to Enterprise Value,IndRel_CFEV,5,This metric measures the company's net cash flow relative to its average enterprise value.,1002,51
+309,5 Yr Hist Rel Net Cash Flow to Enterprise Value,5YRel_CFEV,5,This metric measures the company's net cash flow relative to its average enterprise value.,1003,51
+310,Ind Grp Rel Net Cash Flow to Price,IndRel_CFP,5,"This metric is a measure of the company's average four quarter net cash flow per share relative to the price paid to each share. The higher the ratio, the more net cash flow the investor receives for each dollar paid for a share.",1002,52
+311,5 Yr Hist Rel Net Cash Flow to Price,5YRel_CFP,5,"This metric is a measure of the company's average four quarter net cash flow per share relative to the price paid to each share. The higher the ratio, the more net cash flow the investor receives for each dollar paid for a share.",1003,52
+312,Ind Grp Rel EBITDA to Price,IndRel_EBITDAP,5,"EBITDA-to-price ratio measures the company's average four quarter earnings before interests, taxes and D&A per share relative to the price that investors would like to pay for a share. The industry relative version of this ratio compares peer companies in the same industry.",1002,53
+313,5 Yr Hist Rel EBITDA to Price,5YRel_EBITDAP,5,"This metric measures the company's average four quarter earnings before interests, taxes and D&A per share relative to the price that investors pay for a share.",1003,53
+318,Ind Grp Rel Pretax Income Per Share to Price,IndRel_PTIP,5,This metric measures the company's pretax income per share relative to its market share price.,1002,58
+319,5 Yr Hist Rel Pretax Income Per Share to Price,5YRel_PTIP,5,This metric measures the company's pretax income per share relative to its market share price.,1003,58
+332,Ind Grp Rel 1Y Chg in Earnings per Share,IndRel_Chg1YEPS,2,This factor is the 1 Year percentage change in Trailing Twelve Month Earnings per Share.,1002,65
+333,5 Yr Hist Rel 1Y Chg in Earnings per Share,5YRel_Chg1YEPS,2,This factor is the 1 Year percentage change in Trailing Twelve Month Earnings per Share.,1003,65
+334,Ind Grp Rel 1Y Chg in Free Cash Flow per Share,IndRel_Chg1YFCF,2,This factor is the 1 Year percentage Change in Free Cash Flow per Share.,1002,66
+336,Ind Grp Rel 1Y Chg in Operating Cash Flow per Share,IndRel_Chg1YOCF,2,This factor is the 1 Year percentage change in Trailing Twelve Months Operating Cash Flow per Share.,1002,67
+338,Ind Grp Rel 1Y Chg in Operating Margin,IndRel_Chg1YOPM,2,This factor is the 1 year percentage change the company's Trailing Twelve Month Operating Margin.,1002,68
+340,Ind Grp Rel 1Y Chg in Cash Flow to Price,IndRel_PAdjChg1YCF,2,This factor is the 1 year change in Trailing Twelve Month Cash Flow per Share divided by Current Stock Price.,1002,69
+342,Ind Grp Rel 1Y Chg in Earnings to Price,IndRel_PAdjChg1YEPS,2,This factor is the one year Change in Trailing Twelve Month Earnings per Share divided by Current Stock Price.,1002,70
+344,Ind Grp Rel 1Y Chg in Free Cash Flow to Price,IndRel_PAdjChg1YFCF,2,This factor is the 1 Year Change in Trailing Twelve Month Free Cash Flow per Share divided by Current Stock Price.,1002,71
+372,Ind Grp Rel 9M Price Momentum,IndRel_PM9M,1,9 Month Price Momentum is the stock's 9 month simple return.,1002,91
+376,Ind Grp Rel Short Interest Ratio,IndRel_ShortIntRatio,1,This factor is the ratio between short interest and shares outstanding.,1002,95
+377,Ind Grp Rel Short Interest Trading Volume,IndRel_ShortIntTrdVol,1,This factor is defined as daily short interest divided by average daily trading volume.,1002,96
+380,Ind Grp Rel Sustainable Growth Rate,IndRel_SusGrwRate,2,"This factor is defined as 1 minus the payout ratio then times the ratio of trailing twelve month earnings per share to common equity per share. When the payout ratio is greater than 1, this factor is set to 0.",1002,101
+382,Ind Grp Rel 1Y Chg in Sales to Price,IndRel_PAdjChg1YSales,2,This factor is the 1 year change in trailing twelve month sales per share divided by price.,1002,102
+384,Ind Grp Rel 3Y Chg in Sales to Price,IndRel_PAdjChg3YSales,2,This factor is the 3 year change in trailing twelve month sales per share divided by price.,1002,103
+398,Ind Grp Rel Capital Expenditure to Total Assets,IndRel_CapExToAst,6,This factor is the trailing twelve month capital expenditure to total asset ratio.,1002,126
+408,Ind Grp Rel Operating Margin,IndRel_OPM,4,This factor is the operating margin calculated as trailing twelve month operating income to sales ratio.,1002,132
+409,5 Yr Hist Rel Operating Margin,5YRel_OPM,4,This factor is the operating margin calculated as trailing twelve month operating income to sales ratio.,1003,132
+420,Ind Grp Rel SG&A to Sales,IndRel_SGAToSales,4,"This factor is the trailing twelve month selling, general and administrative expenses to sales ratio.",1002,138
+424,Ind Grp Rel Working Capital to Sales,IndRel_WCapToSales,4,This factor is the trailing twelve month working capital to sales ratio.,1002,140
+426,Ind Grp Rel Assets to Price Ratio,IndRel_AstP,5,"This ratio compares the company's assets per share value with the company's stock price. If the ratio is too low (high) relative to other comparable companies, the company's assets are undervalued (overvalued).",1002,141
+427,5 Yr Hist Rel Assets to Price Ratio,5YRel_AstP,5,"This ratio compares the company's assets per share value with the company's stock price. If the ratio is too low (high) relative to other comparable companies, the company's assets are undervalued (overvalued).",1003,141
+428,Ind Grp Rel Cash to EV Ratio,IndRel_CashEV,5,This ratio measure the company's cash holding relative to its enterprise value.,1002,142
+430,Ind Grp Rel Cash to Price,IndRel_CashP,5,This ratio measures the company's cash holding relative to its market value.,1002,143
+432,Ind Grp Rel Growth Flow to Price,IndRel_GFP,5,"The growth-flow-to-price ratio indicates how much the company spends on R&D. Note, however, that this does not indicate how profitable the R&D will turn out in the future.",1002,144
+433,5 Yr Hist Rel Growth Flow to Price,5YRel_GFP,5,"The growth-flow-to-price ratio indicates how much the company spends on R&D. Note, however, that this does not indicate how profitable the R&D will turn out in the future.",1003,144
+649,Ind Grp Rel Dividends to Price Ratio,IndRel_DivP,5,"This ratio measures how much investors pay for every dollar of dividends. Unlike earning-to-price ratio, dividends are more certain and therefore less likely to be manipulated than earnings.",1002,145
+434,Ind Grp Rel Indicated Annual Dividends to Price Ratio,IndRel_IndiDivP,5,Dividend-to-price measures how much investors pay for every dollar of dividends. This indicated-dividend-to-price ratio uses the most recent quarterly dividends as an indicator for future dividends.,1002,146
+435,5 Yr Hist Rel Indicated Annual Dividends to Price Ratio,5YRel_IndiDivP,5,Dividend-to-price measures how much investors pay for every dollar of dividends. This indicated-dividend-to-price ratio uses the most recent quarterly dividends as an indicator for future dividends.,1003,146
+436,Ind Grp Rel Net Current Assets to Price Ratio,IndRel_NCAP,5,Net-current-asset-to-price is a value metric that will favor stocks that have higher NCAV (Net Current Assets Value) relative to their market prices.,1002,153
+448,5 Yr Hist Rel Net Current Assets to Price Ratio,5YRel_NCAP,5,Net-current-asset-to-price is a value metric that will favor stocks that have higher NCAV (Net Current Assets Value) relative to their market prices.,1003,153
+437,5 Yr Hist Rel Operating Earnings to Price Ratio,5YRel_OEP,5,"Different from earning-to-price ratio, this operating-earning-to-price ratio uses operating earnings to measure the return for each dollar paid by the investors.",1003,154
+300,Ind Grp Rel Operating Earnings to Price Ratio,IndRel_OEP,5,"Different from earning-to-price ratio, this operating-earning-to-price ratio uses operating earnings to measure the return for each dollar paid by the investors.",1002,154
+438,Ind Grp Rel Sales to EV Ratio,IndRel_SEV,5,Sale-to-enterprise-value ratio is a valuation measure that compares the company's annual sales to its enterprise value. It indicates how much it would cost to buy the company's sales.,1002,155
+439,5 Yr Hist Rel Sales to EV Ratio,5YRel_SEV,5,Sale-to-enterprise-value ratio is a valuation measure that compares the company's annual sales to its enterprise value. It indicates how much it would cost to buy the company's sales.,1003,155
+440,Ind Grp Rel Sales to Price Ratio,IndRel_SP,5,This ratio indicates how much revenue the company could generate given each dollar paid by the shareholders.,1002,156
+441,5 Yr Hist Rel Sales to Price Ratio,5YRel_SP,5,This ratio indicates how much revenue the company could generate given each dollar paid by the shareholders.,1003,156
+534,Ind Grp Rel Current Ratio,IndRel_CACL,4,This is a financial liquidity ratio that measures a firm's ability to pay off short term liabilities.,1002,160
+561,5 Yr Hist Rel Current Ratio,5YRel_CACL,4,This is a financial liquidity ratio that measures a firm's ability to pay off short term liabilities.,1003,160
+562,5 Yr Hist Rel Quick Ratio,5YRel_QuickRatio,4,"This ratio measures a company's ability to pay off short term liabilities with its most liquid current assets, excluding inventories.",1003,161
+535,Ind Grp Rel Quick Ratio,IndRel_QuickRatio,4,"This ratio measures a company's ability to pay off short term liabilities with its most liquid current assets, excluding inventories.",1002,161
+536,Ind Grp Rel Cash Ratio,IndRel_CashRatio,4,"This ratio measures a company's liquidity by including only cash, cash equivalent and short term investment to cover short term liabilities.",1002,162
+563,5 Yr Hist Rel Cash Ratio,5YRel_CashRatio,4,"This ratio measures a company's liquidity by including only cash, cash equivalent and short term investment to cover short term liabilities.",1003,162
+564,5 Yr Hist Rel Receivables Turnover Ratio,5YRel_RecTurn,6,This ratio measures how efficiently a company collects its debt.,1003,163
+537,Ind Grp Rel Receivables Turnover Ratio,IndRel_RecTurn,6,This ratio measures how efficiently a company collects its debt.,1002,163
+538,Ind Grp Rel EBIT Margin,IndRel_EBITMargin,4,This ratio measures the company's profitability by comparing its earnings before interests and taxes to its total revenue.,1002,164
+565,5 Yr Hist Rel EBIT Margin,5YRel_EBITMargin,4,This ratio measures the company's profitability by comparing its earnings before interests and taxes to its total revenue.,1003,164
+566,5 Yr Hist Rel Gross Profit Margin,5YRel_GPMargin,4,This ratio measures a company's profitability by comparing its gross profit to its revenue.,1003,165
+539,Ind Grp Rel Gross Profit Margin,IndRel_GPMargin,4,This ratio measures a company's profitability by comparing its gross profit to its revenue.,1002,165
+540,Ind Grp Rel Working Capital to Assets Ratio,IndRel_WCA,4,This ratio measures a company's liquidity by revealing the percentage of remaining liquid assets compared to its total assets.,1002,166
+567,5 Yr Hist Rel Working Capital to Assets Ratio,5YRel_WCA,4,This ratio measures a company's liquidity by revealing the percentage of remaining liquid assets compared to its total assets.,1003,166
+568,5 Yr Hist Rel Operating Earnings to Assets Ratio,5YRel_OEA,4,This ratio measures how effectively a company uses its assets to generate operating earnings.,1003,167
+541,Ind Grp Rel Operating Earnings to Assets Ratio,IndRel_OEA,4,This ratio measures how effectively a company uses its assets to generate operating earnings.,1002,167
+542,Ind Grp Rel Pretax Profit Margin,IndRel_PTMargin,6,This ratio is a measure of how efficiently a company can generate before-tax profit with certain sales.,1002,169
+569,5 Yr Hist Rel Pretax Profit Margin,5YRel_PTMargin,6,This ratio is a measure of how efficiently a company can generate before-tax profit with certain sales.,1003,169
+570,5 Yr Hist Rel Tobin's Q Ratio,5YRel_TobinQ,6,This ratio compares a company's market value with its book value.,1003,177
+543,Ind Grp Rel Tobin's Q Ratio,IndRel_TobinQ,6,This ratio compares a company's market value with its book value.,1002,177
+544,Ind Grp Rel Working Capital Turnover Ratio,IndRel_WCTurn,6,This ratio measures how effectively a company is using its working capital to generate sales.,1002,180
+571,5 Yr Hist Rel Working Capital Turnover Ratio,5YRel_WCTurn,6,This ratio measures how effectively a company is using its working capital to generate sales.,1003,180
+572,5 Yr Hist Rel Depreciation to Capex Ratio,5YRel_DepToCapex,4,"This factor gives the ratio of the accounting charge for depreciation as a percentage of the amount that a firm spends on new property, plant and equipment.",1003,182
+545,Ind Grp Rel Depreciation to Capex Ratio,IndRel_DepToCapex,4,"This factor gives the ratio of the accounting charge for depreciation as a percentage of the amount that a firm spends on new property, plant and equipment.",1002,182
+546,Ind Grp Rel Inventory to Assets Ratio,IndRel_InvToAst,4,This ratio measures the inventory of a firm as a percentage of its total assets.,1002,184
+573,5 Yr Hist Rel Inventory to Assets Ratio,5YRel_InvToAst,4,This ratio measures the inventory of a firm as a percentage of its total assets.,1003,184
+574,5 Yr Hist Rel Accrual Ratio - Balance Sheet,5YRel_AccrualRatioBS,4,Accrual ratio measures the earning qualities. This is one the two similar definitions that based on balance sheet items.,1003,212
+547,Ind Grp Rel Accrual Ratio - Balance Sheet,IndRel_AccrualRatioBS,4,Accrual ratio measures the earning qualities. This is one the two similar definitions that based on balance sheet items.,1002,212
+548,Ind Grp Rel Accrual Ratio - Cash Flows,IndRel_AccrualRatioCF,4,Accrual ratio measures the earning qualities. This is one the two similar definitions that based on cash flow items.,1002,213
+575,5 Yr Hist Rel Accrual Ratio - Cash Flows,5YRel_AccrualRatioCF,4,Accrual ratio measures the earning qualities. This is one the two similar definitions that based on cash flow items.,1003,213
+549,Ind Grp Rel Year over Year Change of Total Debt,IndRel_DebtChg1Y,6,This factor measures the the year-over-year change in debts. It is normalized by the company's total assets to enable cross sectional comparison.,1002,214
+550,Ind Grp Rel Price Momentum - 6 Months,IndRel_PM6M,1,"This is a momentum factor based on 6-month price data, adjusted by the market 6-month momentum.",1002,215
+551,Ind Grp Rel YoY Change in SGA to Sales,IndRel_SGAToSalesChg1Y,4,This factor measures the year-over-year change in a company's SGA to Sales ratio.,1002,216
+552,Ind Grp Rel Year over Year Change of Inventory to Assets,IndRel_InvToAstChg1Y,4,This factor measures the year-over-year change of the company's inventory-to-assets ratio.,1002,217
+553,Ind Grp Rel Year over Year Change of EPS to Sales,IndRel_EPSToSalesChg1Y,4,This factor measure the company's year-over-year change of EPS-to-sales ratio.,1002,218
+554,Ind Grp Rel Adjusted Accruals,IndRel_AdjAccruals,4,This is an accrual ratio that measures a company's earnings quality.,1002,219
+576,5 Yr Hist Rel Adjusted Accruals,5YRel_AdjAccruals,4,This is an accrual ratio that measures a company's earnings quality.,1003,219
+555,Ind Grp Rel Max Daily Return in the Past 6 Months,IndRel_MaxRetPayoff,1,This factor is the max return of a stock in the past 6 months.,1002,220
+556,Ind Grp Rel 50 Day Volume Signal,IndRel_50DVolSig,1,This ratio compares the average of the last 50-day trading volume to the average of the one year trading volume.,1002,221
+557,Ind Grp Rel Long Term Debt to Assets Ratio,IndRel_LTDA,6,This ratio compares a company's long term debts to its total assets. It not only signals a company's capital structure but also long term solvency.,1002,222
+781,SameStoreSalesGrwthAccel,RET_SSSGrwAcc,2,Acceleration in the one year change in sales growth of all stores that have been open for a year or more.,1001,
+577,5 Yr Hist Rel Long Term Debt to Assets Ratio,5YRel_LTDA,6,This ratio compares a company's long term debts to its total assets. It not only signals a company's capital structure but also long term solvency.,1003,222
+579,5 Yr Hist Rel Solvency Ratio,5YRel_SolvencyRatio,5,This ratio measures a company's ability to meet its long term obligations by comparing its income and non-cash spendings to its total liabilities.,1003,224
+559,Ind Grp Rel Solvency Ratio,IndRel_SolvencyRatio,5,This ratio measures a company's ability to meet its long term obligations by comparing its income and non-cash spendings to its total liabilities.,1002,224
+560,Ind Grp Rel Return on Net Tangible Assets,IndRel_RONA,5,The ratio measures a company's ability to generate profits using its net fixed assets and working capital.,1002,228
+580,5 Yr Hist Rel Return on Net Tangible Assets,5YRel_RONA,5,The ratio measures a company's ability to generate profits using its net fixed assets and working capital.,1003,228
+503,Adjusted Industry Relative EBIT to Price,IndRelEBITP,5,EBIT-to-price ratio measures the company's average four quarter earnings before interests and taxes per share relative to the price that investors would like to pay for a share. The industry relative version of this ratio compares peer companies in the same industry.,1002,645
+520,4 Week Industry Relative Return,IndRelRtn4W,1,This factor is the 4 week simple return.,1002,
+489,12 month Relative Price Strength(Ind Grp Rel VolAdjRtn12M),RelPrStr_12M,1,A technical momentum indicator that compares the magnitude of recent gains to recent losses in an attempt to determine overbought and oversold conditions of the stock. This factor is the industry relative factor for VolAdjRtn12M.,1002,647
+650,Ind Grp Rel 5 Day Price Momentum,IndRel_PM5D,1,"5 Day Industry Relative Price Momentum is the 5 day simple return minus the average 5 day returns of the industry, scaled by the standard deviation of these returns.",1002,648
+1005,Ind Grp Rel Expected LTG,IndRel_LTGC,3,This factor is consensus estimate of long-term growth in earnings per share.,1002,952
+1008,Ind Grp Rel Earnings Surprise,IndRel_EPSSurpC,3,"The difference between realized quarterly earnings per share and the consensus estimate, relative the prior day's closing price.  *Note that price denominator is fixed at time of announcement and does not change until then next earnings release",1002,957
+1007,Ind Grp Rel Analyst Dispersion for FY1 EPS,IndRel_EPSEstDispFY1C,3,The ratio of the standard deviation of analysts' EPS estimates for FY1 to the absolute value of the mean estimate.,1002,958
+1006,Ind Grp Rel Standardized Unexpected Earnings,IndRel_SUEC,3,"The difference between realized quarterly earnings per share and the consensus estimate , relative to the standard deviation of the past differences.",1002,959
+1009,Ind Grp Rel Inverse PEG,IndRel_InvPEGC,3,"The ratio of the sum of consensus estimates of quarterly earnings per share for the next four quarters to the current stock price, multiplied by the consensus estimate of long-term growth in earnings per share.",1002,961
+1010,Ind Grp Rel Forward Earnings to Price,IndRel_FwdEPC,5,The ratio of consensus estimates for the next year's earnings to the current stock price.,1002,980
+1013,5 Yr Hist Rel Forward Earnings to Price,5YRel_FwdEPC,5,The ratio of consensus estimates for the next year's earnings to the current stock price.,1003,980
+1014,5 Yr Hist Rel Forward Free Cash Flow to Price Ratio,5YRel_FwdFCFPC,5,The ratio of the consensus forecast of annual free cash flow to the current market value of equity.,1003,981
+1011,Ind Grp Rel Forward Free Cash Flow to Price Ratio,IndRel_FwdFCFPC,5,The ratio of the consensus forecast of annual free cash flow to the current market value of equity.,1002,981
+1012,Ind Grp Rel Inverse P/E Ratio Adj for Growth and Yield,IndRel_InvPEGYC,5,"The ratio of trailing four quarter earnings per share to current stock price, multiplied by the sum of consensus long-term growth estimates and dividend yield.",1002,982
+1015,5 Yr Hist Rel Inverse P/E Ratio Adj for Growth and Yield,5YRel_InvPEGYC,5,"The ratio of trailing four quarter earnings per share to current stock price, multiplied by the sum of consensus long-term growth estimates and dividend yield.",1003,982
+1258,Reported FFO Yield,REIT_RFFOY,5,FFO as reported by company divided by price.,1001,
+1259,SNL FFO Yield,REIT_SFFOY,5,Funds from operations per share as calculated by SNL divided by price,1001,
+1260,Return on Assets v2,ROA_2,6,ROA is the ratio of trailing four quarter after-tax net operating profit to average total assets over the same period. Factor value is set to NULL when total assets has negative value.,1001,
+1261,Operating Cash Flow to Asset v2,OCFAst_2,4,This metric compares the company's four quarter operating cash flow to its total assets. Factor value is set to NULL when total assets has negative value.,1001,
+1262,Change of Asset Turnover v2,ChgATO_2,2,This factor is the change in the ratio of Trailing Twelve Month Sales to Total Assets. Factor value is set to NULL when current or lagged 1-year total assets have negative values.,1001,
+1263,Asset Turnover v2,AssetTurn_2,4,The ratio of trailing four quarter sales to average total assets over the same period. Factor value is set to NULL when total assets has negative value.,1001,
+1264,Retained Earnings to Total Assets v2,REToAst_2,4,The ratio of retained earnings to total assets. Factor value is set to NULL when total assets has negative value. Factor value is set to NULL when total assets has negative value.,1001,
+1265,Working Capital to Assets Ratio v2,WCA_2,4,"Average current assets and current liabilities over the past four quarters, relative to average total assets over the same period. Factor value is set to NULL when total assets has negative value.",1001,
+1266,EBIT to Assets v2,EbitToAst_2,6,The ratio of trailing four quarter EBIT to total assets over the same period. Factor value is set to NULL when total assets has negative value.,1001,
+1267,Core EPS to Price (Fundamentals),BNK_F_CoreEPSS,5,Core earnings per share on a diluted basis divided by price.,1001,
+1268,Pre-Provision Net Revenue / Price  (Fundamentals),BNK_F_PreProvNetRevPrcS,5,Bank operating revenue less expenses but before provision for loan losses on a per share basis as a percentage of price,1001,
+1269,1Y Change in Modified Texas Ratio (Fundamentals),BNK_F_Chg1YModTexasRatioS,4,The 1-year change in the ratio of non-performing assets and loans 90-days or more past due but still accruing interest divided by total equity and loan loss reserves,1001,
+1270,1Y Change in Nonaccrual Loans to Total Assets (Fundamentals),BNK_F_Chg1YNonAccLnToAstS,4,The 1-year growth of non-accrual loans divided by total assets,1001,
+1271,3Y Change in Operating Income to Tier 1 Common Equity (Fundamentals),BNK_F_Chg3YOpIncTier1EqtS,4,The 3-year change in the ratio of operating income (net interest income + noninterest income - noninterest expense - provision for loan losses) divided by Tier 1 common equity,1001,
+782,Stores Closed Momentum,RET_StoreCLSMOM,2,Year over year change in the total number of stores closed in last 12 months.,1001,
+1272,3Y Change in Total Pretax Expense to Average Assets (Fundamentals),BNK_F_Chg3YTotExpAvgAstS,4,The 3-year change in the ratio of total pre-tax expense (interest expense + noninterest expense + provision for loan losses) divided by average assets,1001,
+1273,Savings & Money Market Deposit Accounts to Total Deposits (Fundamentals),BNK_F_SMMDATotDepS,4,Savings and money market account deposits divided by total deposits,1001,
+1274,Problem Loans to Total Equity plus Loan Loss Reserves (Fundamentals),BNK_F_ProbLnsTotEqtResvS,4,Problem loans divided by total equity plus loan loss reserves,1001,
+1275,Return on Risk Weighted Assets (Fundamentals),BNK_F_RRWAS,6,The ratio of earnings from continuing operations over the last 12 months to average risk-weighted assets computed on the same period,1001,
+1276,Tier 1 Capital Ratio  (Fundamentals),BNK_F_Tier1CapS,6,This ratio equals Tier 1 capital over total risk-weighted assets.,1001,
+991,Adjusted Inverse PEG,AdjInvPEGC,3,This factor is a modified version of original inverse PEG ratio - securities with negative EPS Mean Estimate and Long Term Growth Rates are excluded from the analysis.,1001,
+647,Volatility adjusted 12M return,VolAdjRtn12M,1,The cumulative percentage stock price change from thirteen months ago to the previous month minus the percentage price change over the past month; all scaled by the standard deviation for the monthly percent changes over the past twelve months.,1001,
+648,5 Day Price Reversal,PM5D,1,This is a short term signal that measures a stock's 5-day price reversal.,1001,
+967,Adj Number of EPS FY2 Revisions,AdjEPSNumRevFY2C,3,"This factor represents the number of positive 1 month revisions minus number of negative 1 month revisions in a company's FY2 EPS estimates.  For FY2 estimates, this factor uses data from the daily estimates file, but uses data from the monthly estimate file if data is not available in the daily file.",1001,
+968,Adjusted Revision Magnitude,AdjRevMagC,3,"The change in the median consensus EPS estimate for FY1 from three months ago relative to the absolute value of the current median median consensus EPS estimate for FY1.  To limit the impact of small divisor, the factor is not calculated for firms with FY1 EPS less than 2 cents",1001,
+971,Price Momentum,PM-style,1,"This indicator is an equal weighted combination of the following momentum factors: PM12M1M, PM1M, HL1M, PM5D, PM9M.",2002,
+972,Historical Growth,HG-style,2,"This indicator is an equal weighted combination of the following historical growth factors: 1YChgAstAdjFCF, 1YChgAstAdjOCF, Chg1YAstTO, SusGrwRate, and Chg1YEPS.",2002,
+973,Capital Efficiency,CE-style,6,"This indicator is an equal weighted combination of the following capital efficiency factors: ROE, CFROIC, LTDE, CapAcqRatio, and ShareChg.",2002,
+974,Valuation,Val-style,5,"This indicator is an equal weighted combination of the following valuation indicators: BP, FCFP, EBITDAEV, EP, DivP, SEV.",2002,
+975,Earnings Quality,EQ-style,4,"This indicator is an equal weighted combination of the following earnings quality factors: CashCycle, NetProfitMargin, WCAccruals, AccrualRatioCF, NIStab.",2002,
+976,Size,Sz-style,7,"This indicator is a combination of the following size factors: LogMktCap, LogTTMSales",2002,
+977,Volatility,Vol-style,8,"This indicator is an equal weighted combination of the following volatility factors: AnnVol12M, AnnVol1M, 60MBeta, 90DCV.",2002,
+978,Analyst Expectations,AE-style,3,"This indicator is an equal weighted combination of the following analyst expectation factors: LTG, EstDiff, SUE, and EPSNumRevFY1.",2002,
+979,Adj Forward Free Cash Flow to Price Ratio,AdjFwdFCFPC,5,"This valuation ratio compares the company's forward looking annual free cash flow to its market value. Generally, the lower this ratio is, the more expensive the company is.",1001,
+980,Forward Earnings to Price,FwdEPC,5,The ratio of consensus estimates for the next year's earnings to the current stock price.,1001,
+981,Forward Free Cash Flow to Price Ratio,FwdFCFPC,5,The ratio of the consensus forecast of annual free cash flow to the current market value of equity.,1001,
+957,Earnings Surprise,EPSSurpC,3,"The difference between realized quarterly earnings per share and the consensus estimate, relative the prior day's closing price. *Note that price denominator is fixed at time of announcement and does not change until then next earnings release",1001,
+958,Analyst Dispersion for FY1 EPS,EPSEstDispFY1C,3,The ratio of the standard deviation of analysts' EPS estimates for FY1 to the absolute value of the mean estimate.,1001,
+959,Standardized Unexpected Earnings,SUEC,3,"The difference between realized quarterly earnings per share and the consensus estimate , relative to the standard deviation of the past differences.  For US & Canada, Normalized EPS is used; for ex-NA, we use GAAP EPS.",1001,
+960,Adjusted Number of EPS FY1 Revisions,AdjEPSNumRevFY1C,3,"This factor represents the number of positive 1 month revisions minus number of negative 1 month revisions in a company's FY1 EPS estimates.  For FY1 estimates, this factor uses data from the daily estimates file, but uses data from the monthly estimate file if data is not available in the daily file.",1001,
+961,Inverse PEG,InvPEGC,3,"The ratio of the sum of consensus estimates of quarterly earnings per share for the next four quarters to the current stock price, multiplied by the consensus estimate of long-term growth in earnings per share.",1001,
+962,Analyst Dispersion for FY2 EPS,EPSEstDispFY2C,3,The ratio of the standard deviation of analysts' EPS estimates for FY2 to the absolute value of the mean estimate.,1001,
+963,Number of EPS FY1 Revisions,EPSNumRevFY1C,3,"The factor is weighted average of number of net upward 1 month revisions in consensus estimate of FY1 earnings per share in current month, and the number of net upward 1 month revisions in the previous month.",1001,
+964,Adjusted Forward Earnings to Price,AdjFwdEPC,5,This metric compares the company's forward annual earnings to its current market price.,1001,
+965,Adjusted 3M Revision in FY1 EPS Estimate,AdjRev3MFY1C,3,"The factor measures the last 3 month changes in analyst average earnings estimate for Fiscal Year 1, adjusted by most recent stock price.  For FY1 estimates, this factor uses data from the daily estimates file, but uses data from the monthly estimate file if data is not available in the daily file.",1001,
+626,Trailing 12-Month Earnings/Trailing 12-Month Sales,TTMEPStoTTMSales,4,It's defined as the ratio of trailing four quarter income before extraordinary items to trailing four quarter sales,1001,
+630,Log of Market Capitalization Cubed,LogMktCapCubed,7,This factor is the log value of the market capitalization cubed.,1001,
+620,20-Day Lane's Stochastic Indicator,20DStochastic,1,"This stochastic factor is calculated as the difference between current closing price and low price of the last 20 days, divided by the difference between high and low of the last 20 days.",1001,
+621,14-Day Relative Strength Index,14DayRSI,1,This factor follows the definition of RSI. It is calculated over the last 14 days.,1001,
+622,5-Day Money Flow/Volume,5DMoneyFlowVol,1,"This factor is the money flow over volume of the last 5 days. The nominator is the 5 day sum of price times trading volume, weighted by the sign of the daily returns. The denominator is the simple 5 day sum of price times trading volume.",1001,
+613,12-Quarter Trendline in Trailing 12-Month Earnings,12QTrendTTMEPS,2,"For each of the past 12 quarters, we use the TTM earnings to calculate the slope of the linear trend line fitted to the 12 data points. Subsequently, the slope will then be divided by the average of all TTM earnings for the past 12 quarters.",1001,
+614,3Y Average Annual Earnings Growth,3YAvgAnnEPSGrw,2,This factor is constructed the same way as Factor  3YAvgAnnSalesGrw. The only difference is that this is a calculation for EPS instead of sales.,1001,
+615,3Y Average Annual Sales Growth,3YAvgAnnSalesGrw,2,"We first calculate the 1-year percentage changes in sales, for the past three years. Then, we calculate the three year average of all three 1-year percentage changes.",1001,
+616,Number of Consecutive Qtrs of Pos. Changes in TTM Cash Flows,ConsQPosChginTTMCF,2,"For each of the past 24 quarters, we calculate the TTM cash flows, and count the number of times the consecutive changes in those TTM cash flows are positive, we count each change as +1.",1001,
+608,4-Week Change in 12-Month Forward Earnings Consensus Estimate/Price,4WChgFwd12MEPS,5,The 4 week change in the Consensus Estimate divided by Price.,1001,
+609,8-Week Change in 12-Month Forward Earnings Consensus Estimate/Price,8WChgFwd12MEPS,5,The 8 week change in the Consensus Estimate divided by Price.,1001,
+610,Expected Earnings Growth: Fiscal Year 2/Fiscal Year 1,FY2OverFY1Growth,2,This factor is calculated by taking the ratio of the FY2 EPS estimation and the FY1 EPS estimation.,1001,
+611,5-Year Expected Earnings Growth,5YExpEGrowth,3,This factor is calculated using the mean EPS estimation long term growth divided by 100.,1001,
+605,3M Momentum in Trailing 12M Sales,3MSalesMom,2,"This factor is calculated first by taking the difference between the current TTM sales and the TTM sales one year ago divided by the absolute value of the TTM sales one year ago, and then taking the difference between the ratio today and the ratio 3 month ago.",1001,
+606,6M Momentum in Trailing 12M Sales,6MTTMSalesMom,2,This factor is calculated the same way as the factor 3MSalesMom. The only difference is that we now take the 6 month difference of the ratios than 3 month.,1001,
+524,26W Price Stat,PSlopeSERR_26W,1,This factor is the 26 week price T-statistic.,1001,
+748,Loss Absorption Power,BNK_LossAbsorpPower,6,This is the ratio of a bank's non-accrual loans and loans past due over tangible common equity and loan loss reserves,1001,
+750,Loan Loss Indicator,BNK_LoanLossInd,4,Ratio of all loans past due at least 30 days over the total loan and lease financing receivables,1001,
+751,Loan Funding,BNK_LoanFund,6,This is the ratio of loans and leases over core deposits,1001,
+752,1YChg30DLoanDue/TotLoan,BNK_YoYChg30DLTL,4,One year change in the ratio of loans & leases past due 30-89 days over total loans and lease financing receivables,1001,
+753,Problem Loan Ratio,BNK_ProbLoans,4,The ratio of problem loans (non-accrual loans and loans past due) over total assets,1001,
+754,Tangible Book Value/Price,BNK_TBVP,5,This is the ratio of a bank's tangible common equity over price and shares outstanding,1001,
+755,Non-Perf Asts / Earn Asts,BNK_NonPerAstEA,4,This is the ratio of a bank's non-performing assets to its average earning assets,1001,
+756,Texas Ratio,BNK_TexasRatio,6,This is the ratio of non-performing loans and other real estate loans over tangible common equity and loan loss reserves,1001,
+757,Tier 1 Capital Ratio,BNK_Tier1Cap,6,This ratio equals Tier 1 capital over total risk-weighted assets.,1001,
+758,Loan Diversity,BNK_LnDiverse,4,This factor is the sum of the various loan types over gross loans squared,1001,
+759,Adj Op Income / Tot Asset,BNK_OpIncAst,4,This is the ratio of adjusted operating income over total assets,1001,
+760,Deposit Cost,BNK_DepCost,6,This is the ratio of interest paid on deposits over average interest bearing deposits,1001,
+761,Core Deposit Mix,BNK_CoreDepMix,6,This is the ratio of core deposits over total deposits,1001,
+762,Provision Rate,BNK_ProvRate,4,This is the ratio of the provision for loans and lease losses over total assets,1001,
+763,PreProvision Profit/Price,BNK_PPPP,5,This is the ratio of a bank's pre-provision profit over price and shares outstanding,1001,
+764,Cost Efficiency,BNK_CostEff,4,This is the ratio of non-interest expense over non-interest income,1001,
+765,Demand Deposit Mix,BNK_DemandDepMix,6,This is the ratio of demand deposits over total deposits,1001,
+766,Time Deposit Mix,BNK_TimeDepMix,6,This is the ratio of time deposits to total deposits,1001,
+767,PreProv Profit/Earn Asts,BNK_PPPEA,6,This is the ratio of a bank's pre-provision profit over average earning assets,1001,
+768,PreProv Profit/Assets,BNK_PPPA,6,This is the ratio of a bank's pre-provision profit over total assets,1001,
+769,Return on Tang Comm Eqty,BNK_ROTCE,6,This is the ratio of net income over tangible common equity.,1001,
+770,1Yr SameStoreSales Growth,RET_CompSalesG,2,"This ratio represents the year-to-year sales growth rate of all stores that have been open for a year or more, as reported by retailers.",1001,
+771,1 Yr Retail SqFt Growth,RET_YoYGrwSqFt,2,The percentage growth in retail space added by a retailer over the last year.,1001,
+772,1Y Chg EPS minus 1Y Chg SqFt,RET_ChgEPSChgSqFT,2,The year-over-year percentage change in earnings per share per minus the year-over-year percentage change in retail space.,1001,
+773,1YChg Sales to 1YChg SqFt,RET_ChgSalesChgSqFT,2,The year-over-year percentage change in sales minus the year-over-year percentage change in square footage.,1001,
+774,Net Profit to Retail SqFt,RET_NetProfitSqFt,4,Net profit generated per net square foot of all stores operating during the period.,1001,
+775,Sales to Retail SqFt,RET_NetSalesSqFt,4,Sales generated per net square foot of all stores in operation during the period.,1001,
+776,TTMStoreOpen to TotStore,RET_TTMStoresOP,6,Ratio of total number of stores opened in last 12 months to total number of stores in operation at the end of 12 months.,1001,
+777,TTMStoreClose to TotStore,RET_TTMStoresCLS,6,Ratio of total number of stores closed in last 12 months to total number of stores in operation at the end of 12 months.,1001,
+778,1Y Chg Number of Stores,RET_1YChgNumStores,6,Change in Total number of stores in operation at the end of the period to the beginning of the period.,1001,
+779,1YChg SameStoreSalesGrwth,RET_ChgSSSGrw,2,One year change in sales growth of all stores that have been open for a year or more.,1001,
+780,1YChg Net Sales per SqFt,RET_ChgSalesPerSQFT,2,One year change in sales generated per net square foot of all stores operated during the period.,1001,
+792,Standardized 36M Residual,stdRR36M,1,Residual return from the Fama-French Model scaled by its 36-month standard deviation.,1001,
+822,1Y Chg in Discounted Future Cash Flows to Market Cap,OG_ChgDCFMktCap,2,One year difference in discounted future cash flows (estimated net future cash inflows discounted at a 10% rate) divided by market cap.,1001,
+823,Discounted Future Cash Flows to Market Cap,OG_DCFMktCap,5,"This ratio compares estimated net future cash flows, provided by oil & gas companies and discounted at a 10% rate, to a company's market capitalization.",1001,
+824,Future Cashflow Yield,OG_FCFMktCap,5,"This ratio looks at estimated future cash flows, provided by oil & gas companies, as a percentage of a company's market capitalization.",1001,
+825,1Y Chg in Future Cashflow Yield,OG_ChgFCFMktCap,2,"This ratio is the difference between current estimated future cash flows and estimated future cash flows one-year ago, with the difference divided by market capitalization.",1001,
+826,1Y Chg in Future Cash Flows to Total Assets,OG_ChgFCFTotAst,2,A growth factor that measures the change in estimated future cash flow scaled by total assets.,1001,
+827,1Y Chg in Future Cash Flows per Share,OG_ChgFCFPerShare,2,"This ratio is the difference between current estimated future cash flows, provided by oil & gas companies, and estimated future cash flows one-year ago on a per-share basis.",1001,
+828,1Y Chg in Reserve Exhaustion Rate,OG_ChgResvExhRate,2,"The one-year change in the ratio of total proved reserves to average daily production (including oil, natural gas liquids, and natural gas, if applicable).",1001,
+829,Reserve Exhaustion Rate,OG_ResvExhRate,6,"The ratio of total proved reserves to average daily production (for oil, natural gas liquids, and natural gas, if applicable).",1001,
+830,Reserve Acquisition Cost,OG_ChgResvExpDevC,6,"The ratio of the change in total proved reserves to total exploration and development costs (including oil, natural gas liquids, and natural gas, if applicable).",1001,
+831,1Y Chg in Reserve Acquired to Total Costs,OG_ChgResvTotCost,6,"The ratio of the one-year change (difference) in total reserves to total oil & gas costs incurred (including oil, natural gas liquids, and natural gas, if applicable).",1001,
+832,1Y Chg in Proved Reserves to Market Cap,OG_ChgResvMktCap,2,This signal measures the year over year change in the amount of reserves an oil & gas company holds relative to its market capitalization.,1001,
+833,Proved Reserves to Market Cap,OG_PrvdResvMktCap,6,The valuation of oil & gas firms is tied closely to the level of reserves they hold. This signal measures the amount of reserves an oil & gas company holds relative to its market capitalization.,1001,
+834,Developed Reserves per Share Growth,OG_ResvPerShrG,2,A growth indicator that measures the growth in reserves per common share outstanding.,1001,
+835,Reserve Replacement Ratio,OG_ResvRep,6,"This factor represents the percentage of annual production that was replaced through the finding or acquiring of new reserves in a given period, as reported by the company.",1001,
+836,Oil Margin,OG_OilMgn,4,"This ratio is the average price of a barrel of oil sold minus the cost of producing that barrel, divided by the average price per barrel.",1001,
+837,Gas Margin,OG_GasMgn,4,"The average price per Mcf (thousand cubic feet) of gas minus the cost of producing one Mcf of gas, divided by the average price per Mcf.",1001,
+859,Log of Unadjusted Stock Price,LogUnadjPrice,1,This is the log value of the monthly stock close price (unadjusted).,1001,
+863,Reserve Growth,GM_ReserveGrowth,2,This signal measures the year-over-year change in proved and probable gold ore reserves. Growth in gold ore reserves in general is a sign that a gold miner isn't in danger of depleting its gold reserves.,1001,
+864,Reserve Acquisition Yield,GM_ReserveAcqYield,6,This factor is the year-over-year change (difference) in proved & probable gold ore reserves to exploration expenditures. This signal measures the cost of acquiring new gold reserves. The ratio's dimension is metric tons per U.S. dollar.,1001,
+865,Proved & Prob Reserves to Market Cap,GM_PPRestoMktCap,5,This signal is the ratio of proved and probable gold ore reserves of a mining company to its market capitalization. The ratio's dimension is metric ton per U.S. dollar.,1001,
+866,Actual Production to Market Cap,GM_ProdtoMktCap,5,"This factor is the ratio of actual gold production, in troy ounces, to market capitalization in U.S. dollars.",1001,
+867,Production Growth,GM_ProductionGrowth,2,This factor is the year-over-year change in a gold mining company's actual gold production.,1001,
+868,Mine Life - Gold Mining,GM_MineLife,6,This signal is the ratio of proved & probable gold ore reserves to actual gold production. The ratio's dimension is metric tons of gold ore reserves per troy ounce of actual gold production. One metric ton of reserves typically yields a small number of troy ounces of actual gold in production.,1001,
+870,Restaurants Closing Momentum,RES_RestaurantsCLSMOM,2,This factor is the year-over-year percentage change in the number of restaurants closed over the trailing 12 months.,1001,
+871,Restaurants Opening Momentum,RES_RestaurantsOPMOM,2,This factor is the year-over-year percentage change in the number of restaurants opened over the trailing 12 months. Growth in restaurants opened can boost sales growth for a restaurant chain.,1001,
+872,TTM Rest Open & Acquire to Total Rest,RES_TTMRestaurantsOP_Acq,2,This factor measures the number of restaurants opened or acquired over the trailing 12 months as a percentage of the total number of restaurants at the beginning of the 12-month period.,1001,
+873,TTM Rest Closed & Sold to Total Rest,RES_TTMRestaurantCLS_Sold,2,Thia factor measures the number of restaurants closed or sold over the trailing 12 months as a percentage of the total number of restaurants at the beginning of the 12-month period.,1001,
+874,1 Yr Chg in Number of Restuarants,RES_1YChgNumRestaurants,2,This factor is the year-over-year change in the number of restaurants in operation.,1001,
+875,1 Yr Same Rest Sales Acceleration,RES_1YChgSRSGrowth,2,This factor is the year-over-year change in the sales growth rate for all restaurants that have been open at least one year. Same restaurant store growth figures are provided in restaurant company filings.,1001,
+876,Same Restaurant Sales Growth,RES_SameRestSalesGrw,2,This factor is the year-over-year sales growth rate for all restaurants that have been open for at least one year. Same restaurant store growth figures are provided in restaurant company filings.,1001,
+877,Restaurant Operating Margin,RES_RestaurantOperMargin,4,"This factor measures the profitability of a company's restaurant operations, expressed as a percentage of operating profit to total revenues earned during the period.",1001,
+878,1 Yr Chg in Revenue per Room,HG_1YChgRevperRoom,2,This factor is calculated as the one-year change (difference) in hotel room revenues divided by the total number of rooms at the beginning of the period.,1001,
+879,1 Yr Chg in Number of Rooms,HG_1YChgNumRooms,2,This factor is the year-over-year change in the number of rooms available at the end of the period.,1001,
+880,1 Yr Chg in Number of Properties,HG_1YChgNumProperties,2,This factor is the year-over-year change in the number of hotel and gaming properties owned.,1001,
+881,Profit per Room,HG_ProfitperRoom,6,This factor provides the average total profit per room generated by a hotel and gaming company. The ratio's units are millions of U.S. dollars per room.,1001,
+882,Room Margin,HG_RoomMargin,4,"This ratio is calculated as total room revenue minus total room expenses, divided by total room revenue.",1001,
+883,Revenue per Room,HG_RevperRoom,6,This factor is the ratio of total room revenue to the total number of rooms at the end of a period. The ratio's units are millions of U.S. dollars per room.,1001,
+884,Hotel & Casino Rev to Oper Exp,HG_HotelCasinoRevtoOpExp,4,"This factor is the ratio of total revenue, from both hotel/motel and casino/resort operations, to operating expense, with operating expense expressed as a positive number.",1001,
+885,Underwriting Margin,INS_UwMargin,4,This factor looks at underwriting profit as a percentage of insurance revenues. Underwriting profit (loss) represents the difference between earned premiums and the losses and administrative expenses of an insurance company.,1001,
+886,1 Yr Grw in Underwriting Profit,INS_1YGrwUwProfit,2,This factor measures the year-over-year change in underwriting profits. Underwriting profit is profit that an insurer derives from providing insurance or reinsurance coverage less claim losses and administrative costs associated with writing those policies.,1001,
+887,1 Yr Grw in Net Premiums Earned,INS_1YGrwNPE,2,"This factor is the year-over-year change in net premiums earned. Revenue from premiums is one of two primary sources of revenue for insurance companies, and it is generally more persistent than revenue from investments.",1001,
+888,1 Yr Grw in Total Investments,INS_1YGrwTotInvestments,2,"This factor is the year-over-year change in total investments. Total investments include investment securities, trading securities, and mortgage-backed securities.",1001,
+889,Retention Ratio,INS_RetentionRatio,4,This factor is the ratio of net written premiums to gross written premiums. It indicates the extent of dependence on reinsurance.,1001,
+890,Net Prem Written to Stat Surplus,INS_NPWtoStatSurp,6,This metric is the ratio of net written premiums to statutory surplus.,1001,
+891,Insurance: Net Premium Written to Net Assets,INS_NPWtoNetAssets,6,This factor is the ratio of net written premiums to net assets. It measures a firm's ability to cover claims with its capital base. A lower ratio means greater solvency for an insurer.,1001,
+892,Claims Ratio,INS_ClaimsRatio,4,This factor is the ratio of net claim and claim adjustment expense paid to net premiums collected. It measures claims paid as a percentage of net premiums collected.,1001,
+893,Expense Ratio,INS_ExpenseRatio,4,This ratio measures underwriting and acquisition expenses as a percentage of net premiums collected. It's a measure of operational efficiency in the underwriting operation of an insurer.,1001,
+894,Combined Ratio,INS_CombinedRatio,4,"This factor measures the sum of claims paid and operating expenses as a percentage of net premiums collected. It's a measure of profitability of the underwriting operation of an insurer. In general, a lower ratio means higher profitability.",1001,
+895,1 Yr Grw Tot Home Rev to Const in Prog,HB_1YGTotHRevConstinProg,2,This factor is the year-to-year change in the ratio of total homebuilding revenues to finished homes and construction in progress.,1001,
+896,Deliv Homes Value Grw to Mkt Cap,HB_DelivHomeValGrtoMktCap,5,This factor is the ratio of the year-over-year difference in the value of delivered homes to the market cap of the builder.,1001,
+897,1 Yr Grw Tot Home Rev to Inventory,HB_1YrGrTotHomeRevtoInv,2,"This factor is the year-over-year change in the ratio of home sales to inventory. Total inventories include finished homes, land under development, undeveloped inventories, and deposits.",1001,
+898,Home Gross Margin,HB_HomeGM,4,"This factor is calculated as total homebuilding revenues less total homebuilding costs, divided by total homebuilding revenues. It is a measure of profitability.",1001,
+899,1 Yr Grw House Sales Revenue,HB_1YGrHouseSalesRev,2,"This factor measures the year-over-year growth in total homebuilding sales, the largest sales component for homebuilders.",1001,
+900,1 Yr Grw Net New Orders,HB_1YGrNetNewOrders,2,This factor measures the year-over-year growth rate in the number of homes and condos that have come under contract during the past 12 months.,1001,
+901,Backlog Homes Value Grw,HB_BacklogHomesValueGr,2,This factor measures the year-over-year change in total dollar value of a homebuilder's backlog of unsold homes.,1001,
+902,1 Yr Grw Revenue Passengers Carried,AIR_1YGrRPC,2,This ratio is a year-over-year change in the actual number of passengers carried during a period. Revenue increases as a carrier flies more passengers.,1001,
+903,1 Yr Grw Revenue Passenger Miles,AIR_1YGrRPM,2,This factor is the year-over-year change in total miles flown by paying passengers.,1001,
+904,Passenger Load Factor,AIR_PassengerLF,6,This ratio represents the percent of an airline’s total seats that are actually filled during a period. A higher percentage generally means greater profitability.,1001,
+905,Total Profit per Available Seat Mile,AIR_TotProfittoASM,4,This factor looks at the amount of profit an airline generates per available seat mile (ASM). The units of the ratio are U.S. dollars per available seat mile.,1001,
+906,Operating Exp per Available Seat Miles,AIR_OpExptoASM,4,This factor looks at the amount of expense an airline incurs to support each available seat mile (ASM). The units of the ratio are U.S. dollars per available seat mile.,1001,
+907,Fuel Consumed per Available Seat Mile,AIR_FuelConstoASM,4,This factor looks specifically at the amount of fuel used to support each available seat mile (ASM). The units of the ratio are gallons of jet fuel per ASM.,1001,
+908,Average Age of Aircraft,AIR_AvgAgeofAircraft,4,This factor measures the average age of an airline's fleet of aircraft in years. It is reported by the airline.,1001,
+909,1 Yr Grw Broadband Subscribers,TEL_1YrGrBroadbandSubs,2,This factor is the year-over-year change in broadband subscribers. It is a main driver of revenues within wireline operations at telecommunication companies.,1001,
+910,1 Yr Grw Net Wireless Subs Additions,TEL_1YrGrNetSubsAdds,2,This factor is the year-over-year change in the net number of wireless subscribers added. The net number of wireless subscribers added is measured as the number of new customers added less the number of customers who terminated.,1001,
+911,Wireless Penetration Rate,TEL_WirelessPenetrateRate,4,This factor measures the number of wireless subscribers as a percentage of the total number of potential customers in a telecommunication company's coverage areas.,1001,
+912,Churn Rate,TEL_ChurnRate,4,This factor measures the rate of wireless subscriber turnover at a telecommunication company. A lower rate indicates a more stable customer base.,1001,
+913,1 Yr Grw Churn Rate,TEL_1YrGrChurnRate,2,"This factor measures the year-over-year change in the churn rate, which is the average monthly percentage turnover of wireless subscriber for a telecommunications company. Growth in the churn rate indicates that the company's subscriber base is becoming less stable.",1001,
+914,Number of Patents to Mkt Cap,PB_PatentstoMktCap,5,This factor is the ratio of the number of current patents to market capitalization for pharmaceutical and biotechnology firms. The units used in the ratio are the number of patents per 1 million U.S. dollars of market capitalization.,1001,
+915,1 Yr Grw Number of Patents,PB_1YGrNumPatents,2,This factor is the year-over-year change in the number of current patents for pharmaceutical and biotechnology firms.,1001,
+916,1 Yr Grw Num of Patent Applications,PB_1YGrNumPatentApps,2,This factor measures the year-over-year change in the number of patent applications for pharmaceutical and biotechnology firms.,1001,
+917,1 Yr Grw Num of Products in Phase 3,PB_1YGrNumProdsinPh3,2,This factor measures the year-over-year change in the number of products in the phase III stage of clinical trials for pharmaceutical and biotechnology firms.,1001,
+918,1 Yr Chg in Admissions,HF_1YChgAdmissions,2,This factor is the year-over-year change in inpatient admissions.,1001,
+919,Patient Days Growth,HF_PatientDaysGr,2,This factor is the year-over-year change in total inpatient days.,1001,
+920,1 Yr Grw Avg Length of Stay,HF_1YGrAvgLengthofStay,2,"This factor measures the year-over-year growth rate in the average length of inpatient stays, for hospitals and healthcare facilities. It is measured in days.",1001,
+921,Hospitals and Facilities Growth,HF_FacilitiesGr,2,This factor measures the year-over-year growth in the number of hospitals and facilities owned by healthcare providers.,1001,
+922,Total Revenue per Facility,HF_TotRevperFacility,6,This factor is the ratio of total revenue to total hospitals and healthcare facilities owned and operated. The ratio's units are millions of U.S. dollars per hospital/facility.,1001,
+923,Surgeries Growth,HF_SurgeriesGr,2,This factor measures the year-over-year growth in the number of surgeries performed at the provider's hospitals and  healthcare facilities.,1001,
+924,Licensed Beds Growth,HF_LicensedBedsGr,2,This factor is the year-over-year change in the number of beds in a company's licensed hospitals and healthcare facilities.,1001,
+925,Medical Loss Ratio,MH_MedicalLossRatio,4,"This factor measures total medical costs as a percentage of total premiums collected. In general, a managed healthcare company is more profitable with a lower medical loss ratio.",1001,
+927,1 Yr Grw Healthcare Premiums,MH_1YGrHealthcarePremiums,2,This factor is the year-over-year percentage change in healthcare premiums collected for managed care firms.,1001,
+928,1 Yr Grw Total Enrollments,MH_1YGrEnrollment,2,This factor is the year-over-year change in total enrollments for a managed healthcare company.,1001,
+929,"1 Yr Grw Fuel Cost - Electric,Gas",UT_1YGrFuelCostElecGas,2,This factor is the year-over-year change in a utility company's fuel costs.,1001,
+930,"1 Yr Grw Electric,Gas,Water Sales",UT_1YGrElecGasWaterSales,2,"This factor measures the year-over-year change in a public utility company's total electric, gas, and water sales.",1001,
+931,1 Yr Grw Avg Revenue per KWh,UT_1YGrAvgRevperKWh,2,This factor is the year-over-year change in average revenue per kilowatt-hour. Receiving more revenue per kilowatt-hour is a sign of growth for a public utility.,1001,
+932,"1 Yr Grw Oper Revenue - Elec,Gas,Water",UT_1YGrOpRevElecGasWater,2,"This factor measures the year-over-year change in operating revenues for a utility company's electric, gas, and water services. Increased operating revenue is a sign of growth for public utilities.",1001,
+933,1 Yr Grw Wireless Subscribers,TEL_1YrGrWirelessSubs,2,This factor is the year-over-year change in the number of wireless subscribers for a telecommunications company.,1001,
+941,Return on Equity Stability,ROEStab,2,This factor is measured by the ratio of the one year change in ROE over the standard deviation in the one year change in ROE going eight periods back.,1001,
+942,Dividend Growth,DIVIDENDGROWTH,2,This factor is the one year percent change in trailing twelve month cash dividends.,1001,
+943,Normalized ROE,60MAVGTTMROE,6,60 month average of the ratio of trailing four quarter income before extraordinary items available for common equity to average book value of common equity over the same period.,1001,
+944,Normalized ROA,60MAVGTTMROA,6,60 month average of the ratio of trailing four quarter after-tax net operating profit to average total assets over the same period.,1001,
+945,Return on Assets Stability,ROASTAB,2,This factor is measured by the ratio of the one year change in ROA over the standard deviation in the one year change in ROA going eight periods back.,1001,
+946,Normalized EP,60MAVGTTMEP,5,60 month average of the trailing four-quarter earnings per share to current stock price.,1001,
+947,Payout Ratio,PAYOUTRATIO,6,The payout ratio is the ratio of trailing twelve month cash dividends to trailing twelve month earnings per share.,1001,
+950,Net Income Stability,NIStab,4,This factor is measured by the ratio of 5-year average of the one year percentage change in Net Income over the mean absolute deviation in the one year percentage change in Net Income going 5 years back.,1001,
+952,Expected LTG,LTGC,3,This factor is consensus estimate of long-term growth in earnings per share.,1001,
+953,Analyst Earnings Estimate Diffusion,EstDiffC,3,"The factor measures difference between the number of upward 1month revisions and the number of downward 1 month revisions in analyst estimates of FY1 earnings per share, divided by the number of analyst earnings estimates. For US & Canada, Normalized EPS is used; for ex-NA, we use GAAP EPS.",1001,
+532,US Price Momentum Model - Long Term,US_PM_LT_Comp,1,"This indicator combines relative strength, price, and volume factors over a long-term horizon.",2002,
+518,Degree of Financial Leverage,FinLev,6,Degree of Financial leverage is the ratio of pretax income and interest over total pretax income.,1001,
+502,Adjusted Book to Enterprise Value,BVEV,5,"The metric measures the book value of a company relative to its enterprise value.*Note that EV in the denominator is only updated at same time that fundamental data items are updated, either quarterly or annually.",1001,
+504,Operating Cash Flow to Equity,OCFEqt,6,This factor shows the ratio of operating cash flow to total equity.,1001,
+505,EBITDA Margin,EBITDAMargin,4,"This ratio measures the company's profitability by comparing its earnings before interests, taxes, depreciation, and amortization to its total revenue.",1001,
+506,Current Liability to Price,CurLiaP,5,This factor is the ratio of current liabilities to price.,1001,
+507,Adjusted Interest Coverage Ratio,AdjIntCov,6,This ratio is a measure of a company’s ability to pay for interest on outstanding debt.  This one uses OIBDP rather than EBIT,1001,
+508,Operating Cash Flow Ratio,OCFRatio,6,This factor is the ratio of operating cash flow over current liabilities,1001,
+44,Free Cash Flow to Price,FCFP,5,The ratio of trailing four quarter free cash flow to average market value of equity over the same period.,1001,
+155,Sales to EV Ratio,SEV,5,The ratio of trailing four quarter sales to average enterprise value over the same period.,1001,
+1180,Institution Ownership Turnover,IO_TO,1,"Absolute change in shares held by institutional investors to current shares held by institutional investors.Data is sourced from the CIQ Ownership package in Xpressfeed.  Data is not Point-in-Time, for data prior to 2016, a 2 month lag was applied for US companies, and 12 month lag for ex-US.",1001,
+1277,Recurrent EBITDA to Enterprise Value,UT_RecEBITDAEV,2,"Recurring (i.e., continued) earnings before interest, taxes, depreciation and amortization divided by the enterprise value.",1001,
+1278,Tangible Book Value per Share,UT_TBP,2,"Book value per share excluding intangible assets, such as goodwill.",1001,
+1279,Adjusted Operating Cash Flow to Market Cap,UT_AdjOCFMC,2,"Cash flow from operating activities before the effect of changes in allowances for funds used for construction and changes in working capital, divided by market capitalization.",1001,
+1280,Book Value to Enterprise Value,BVEV_2,5,"The metric measures the book value of a company relative to its enterprise value.*Note that EV in the denominator is only updated at the same time that fundamental data items are updated, either quarterly or annually.",1001,
+21,1Y Chg in Stock Buybacks,BuyBackChg,6,The factor is a percentage change from a year ago in trailing four quarter net purchases of common and preferred stock. It measures the change in stock repurchases over the last twelve months.,1001,
+75,3Y Chg in Asset Adjusted Free Cash Flow,AstAdjChg3YFCF,2,This factor is the 3 Year change in Free Cash Flow divided by the 3 Year Average Total Assets for the firm.,1001,
+464,Adjusted 3Y Chg in Asset Adjusted Free Cash Flow,AdjAstAdjChg3YFCF,2,This factor is the 3-year change in Free Cash Flow divided by the one-year (4 quarters) Average Total Assets for the firm.,1001,
+460,Operating Cash Flow Stability,OCFStab,4,This metric compares the company's change of operating cash flow to the standard deviation of its last 8 quarter's history. A higher ratio indicates positive trend of the current quarter and stability of the historical cash generation.,1001,
