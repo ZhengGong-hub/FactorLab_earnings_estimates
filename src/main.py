@@ -58,7 +58,7 @@ if __name__ == "__main__":
     # - y_ for targets
     # - dummy_ for categorical
     df_clean6 = pp.rename_variables_xy(df_clean5)
-
+    print(df_clean6)
     # Step 9: Save Processed Data
     df_clean6.to_csv('output_data/cleaned_data.csv', index=False)
 
