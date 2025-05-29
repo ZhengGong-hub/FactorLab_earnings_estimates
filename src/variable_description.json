@@ -1,0 +1,89 @@
+{
+    "project_overview": {
+        "name": "FactorLab Earnings Estimates",
+        "description": "Financial data preprocessing pipeline for earnings estimates analysis",
+        "main_objectives": [
+            "Feature engineering",
+            "Data standardization",
+            "Variable classification",
+            "Handling categorical data"
+        ]
+    },
+    "variable_types": {
+        "features": {
+            "prefix": "x_",
+            "description": "Independent variables used for prediction",
+            "characteristics": {
+                "standardization": "Z-score normalized (mean=0, std=1)",
+                "handling": "Numeric variables automatically prefixed with x_",
+                "exceptions": ["dummy variables", "special variables", "target variables"]
+            }
+        },
+        "targets": {
+            "prefix": "y_",
+            "description": "Dependent variables to be predicted",
+            "variables": [
+                {
+                    "name": "y_EPS_normalizedDiff",
+                    "description": "Normalized difference in Earnings Per Share"
+                },
+                {
+                    "name": "y_EPS",
+                    "description": "Raw Earnings Per Share"
+                },
+                {
+                    "name": "y_EPSDiff",
+                    "description": "Difference in Earnings Per Share"
+                },
+                {
+                    "name": "y_revenue",
+                    "description": "Company revenue"
+                },
+                {
+                    "name": "y_revenueDiff",
+                    "description": "Difference in revenue"
+                },
+                {
+                    "name": "y_EPS_normalized",
+                    "description": "Normalized Earnings Per Share"
+                }
+            ]
+        },
+        "categorical": {
+            "prefix": "dummy_",
+            "description": "One-hot encoded categorical variables",
+            "original_variables": [
+                {
+                    "name": "simpleindustryid",
+                    "description": "Industry classification identifier"
+                },
+                {
+                    "name": "calendaryear",
+                    "description": "Year of the observation"
+                }
+            ],
+            "encoding": "One-hot encoding with dummy_ prefix"
+        }
+    },
+    "special_variables": {
+        "quarter_factor": {
+            "description": "Seasonal indicator for financial quarters",
+            "type": "Categorical",
+            "values": [1, 2, 3, 4],
+            "handling": "Preserved in original form (not standardized)",
+            "purpose": "Capture seasonal patterns in financial data"
+        },
+        "companyid": {
+            "description": "Unique identifier for companies",
+            "type": "Identifier",
+            "handling": "Preserved as original ID, used for data grouping and tracking",
+            "purpose": "Entity identification and grouping"
+        },
+        "securityid": {
+            "description": "Unique identifier for securities",
+            "type": "Identifier",
+            "handling": "Preserved as original ID, used for financial instrument tracking",
+            "purpose": "Security-level identification and analysis"
+        }
+    }
+} 

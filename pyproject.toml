@@ -10,5 +10,6 @@ dependencies = [
     "matplotlib==3.8.2",
     "seaborn==0.13.0",
     "scikit-learn==1.6.1",
-    "statsmodels>=0.14.4"
+    "statsmodels>=0.14.4",
+    "scipy>=1.15.3"
 ]

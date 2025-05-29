@@ -56,7 +56,7 @@ def encode_categorical_variables(
         
     # Default categorical columns if none provided
     if categorical_columns is None:
-        categorical_columns = {'companyid', 'securityid', 'simpleindustryid','calendaryear'}
+        categorical_columns = {'simpleindustryid','calendaryear'}
     
     # Validate columns exist
     missing_cols = categorical_columns - set(df.columns)
@@ -72,7 +72,7 @@ def encode_categorical_variables(
             # Perform one-hot encoding
             encoded = pd.get_dummies(
                 df_encoded[column],
-                prefix=column,
+                prefix=f'dummy_{column}',
                 prefix_sep='_'
             )
             

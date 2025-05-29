@@ -9,7 +9,7 @@ from collections import Counter
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-def check_correlation(df: pd.DataFrame, threshold: float = 0.8, target_var: str = 'EPS_normalizedDiff', output_dir: str = "output_data") -> pd.DataFrame:
+def drop_high_corr(df: pd.DataFrame, threshold: float = 0.8, target_var: str = 'EPS_normalizedDiff', output_dir: str = "output_data") -> pd.DataFrame:
     """
     Check correlations and remove highly correlated variables based on their correlation with target variable.
     
@@ -102,7 +102,7 @@ def check_correlation(df: pd.DataFrame, threshold: float = 0.8, target_var: str 
     os.makedirs(output_dir, exist_ok=True)
     
     # Save correlation matrix to file
-    output_path = os.path.join(output_dir, "correlation_check.csv")
+    output_path = os.path.join(output_dir, "correlation_matrix.csv")
     corr_matrix.to_csv(output_path)
     logger.info(f"Correlation matrix saved to: {output_path}")
     
@@ -123,7 +123,7 @@ def check_correlation(df: pd.DataFrame, threshold: float = 0.8, target_var: str 
             )
         
         # Save detailed correlations to CSV
-        high_corr_path = os.path.join(output_dir, "high_correlations.csv")
+        high_corr_path = os.path.join(output_dir, "high_corr_var_list.csv")
         pd.DataFrame(high_corr_sorted).to_csv(high_corr_path, index=False)
         logger.info(f"High correlation details saved to: {high_corr_path}")
         
