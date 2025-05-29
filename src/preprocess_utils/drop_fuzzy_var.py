@@ -15,9 +15,8 @@ FUZZY_VARIABLES = {
 METADATA_COLUMNS = {
     'transcriptid', 'keydevid', 'fiscalyear', 'fiscalquarter',
     'tradingitemid', 'ec_et', 'earningsdate', 'marketindicatortypename',
-    'EPSnormalized_et', 'revenue_et', 'EPS_et', 'affactor_asofdate_0',
-    'affactor_asofdate_1', 'affactor_asofdate_2', 'Unnamed: 0'
-}
+    'EPSnormalized_et', 'revenue_et', 'EPS_et', 'Unnamed: 0'
+}.union({f'affactor_asofdate_{i}' for i in range(13)})  # Add all affactor_asofdate_0 through affactor_asofdate_12
 
 def drop_fuzzy_variables(df: pd.DataFrame) -> Tuple[pd.DataFrame, List[str]]:
     """
