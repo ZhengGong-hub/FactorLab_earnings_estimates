@@ -56,7 +56,7 @@ def encode_categorical_variables(
         
     # Default categorical columns if none provided
     if categorical_columns is None:
-        categorical_columns = {'companyid', 'securityid', 'simpleindustryid'}
+        categorical_columns = {'companyid', 'securityid', 'simpleindustryid','calendaryear'}
     
     # Validate columns exist
     missing_cols = categorical_columns - set(df.columns)

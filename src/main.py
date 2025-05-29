@@ -30,7 +30,8 @@ if __name__ == "__main__":
 
     # winsorize the outliers in outcome variables   
     df_clean4 = pp.winsorize_financial_variables(df_clean3)
-
+    print(df_clean3)
+    print(df_clean4)
     # check the normalized and standardized variables
 
 
