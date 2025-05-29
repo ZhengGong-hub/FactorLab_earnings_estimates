@@ -1,0 +1,153 @@
+{  
+    "variable_types": {
+        "features": {
+            "prefix": "x_",
+            "description": "Independent variables used for prediction",
+            "characteristics": {
+                "standardization": "Z-score normalized (mean=0, std=1)",
+                "missing_values": "Dropped if >50% missing",
+                "handling": "Numeric variables automatically prefixed with x_",
+                "exceptions": [
+                    "dummy variables",
+                    "special variables",
+                    "target variables",
+                    "key financial metrics"
+                ]
+            }
+        },
+        "targets": {
+            "prefix": "y_",
+            "description": "Dependent variables to be predicted, including key financial metrics",
+            "variables": [
+                {
+                    "name": "y_EPSNormalized_surprise",
+                    "description": "Primary target: Normalized EPS surprise",
+                    "special_handling": {
+                        "missing_values": "Retained regardless of percentage",
+                        "standardization": "Kept in original form",
+                        "correlation": "Always preserved"
+                    }
+                },
+                {
+                    "name": "y_EPSDiff",
+                    "description": "Difference in Earnings Per Share",
+                    "special_handling": {
+                        "missing_values": "Retained regardless of percentage",
+                        "standardization": "Kept in original form",
+                        "correlation": "Always preserved"
+                    }
+                },
+                {
+                    "name": "y_EPS_actual",
+                    "description": "Actual Earnings Per Share",
+                    "special_handling": {
+                        "missing_values": "Retained regardless of percentage",
+                        "standardization": "Kept in original form",
+                        "correlation": "Always preserved"
+                    }
+                },
+                {
+                    "name": "y_revenue_actual",
+                    "description": "Actual company revenue",
+                    "special_handling": {
+                        "missing_values": "Retained regardless of percentage",
+                        "standardization": "Kept in original form",
+                        "correlation": "Always preserved"
+                    }
+                },
+                {
+                    "name": "y_revenueDiff",
+                    "description": "Difference in revenue",
+                    "special_handling": {
+                        "missing_values": "Retained regardless of percentage",
+                        "standardization": "Kept in original form",
+                        "correlation": "Always preserved"
+                    }
+                }
+            ],
+            "handling_rules": {
+                "missing_values": "Retained regardless of missing percentage",
+                "correlation": "Preserved regardless of correlation with other variables",
+                "standardization": "Kept in original scale to maintain interpretability"
+            }
+        },
+        "categorical": {
+            "prefix": "dummy_",
+            "description": "One-hot encoded categorical variables",
+            "original_variables": [
+                {
+                    "name": "calendaryear",
+                    "description": "Year of the observation",
+                    "encoding": "One-hot with dummy_ prefix"
+                }
+            ],
+            "encoding": "One-hot encoding with dummy_ prefix",
+            "handling": {
+                "missing_values": "Dropped if >50% missing",
+                "standardization": "Not standardized, binary 0/1 values",
+                "correlation": "Preserved as is"
+            }
+        }
+    },
+    "special_variables": {
+        "quarter_factor": {
+            "name": "x_quarter_factor",
+            "description": "Seasonal indicator for financial quarters",
+            "type": "Feature",
+            "values": [1, 2, 3, 4],
+            "handling": "Standardized and prefixed with x_",
+            "purpose": "Capture seasonal patterns in financial data"
+        },
+        "companyid": {
+            "name": "companyid",
+            "description": "Unique identifier for companies",
+            "type": "Identifier",
+            "handling": "Preserved as original ID without prefix",
+            "purpose": "Entity identification and grouping"
+        },
+        "key_financial_metrics": {
+            "description": "Essential EPS and revenue-related variables",
+            "target_variables": [
+                "y_EPS_actual",
+                "y_EPSDiff",
+                "y_EPS_surprise",
+                "y_EPSNormalized_actual",
+                "y_EPSNormalized_diff",
+                "y_EPSNormalized_surprise",
+                "y_revenue_actual",
+                "y_revenueDiff",
+                "y_revenue_surprise"
+            ],
+            "feature_variables": [
+                "x_EPS_count",
+                "x_EPS_std",
+                "x_EPS_guidance_high",
+                "x_EPS_guidance_low",
+                "x_EPSNormalized_count",
+                "x_EPSNormalized_std",
+                "x_EPSNormalized_guidance_high",
+                "x_EPSNormalized_guidance_low",
+                "x_revenue_count",
+                "x_revenue_std",
+                "x_revenue_guidance_high",
+                "x_revenue_guidance_low"
+            ],
+            "special_handling": {
+                "target_variables": {
+                    "missing_values": "Retained regardless of threshold",
+                    "correlation": "Preserved regardless of correlation",
+                    "standardization": "Kept in original scale",
+                    "prefix": "y_",
+                    "purpose": "Maintain interpretability of key target metrics"
+                },
+                "feature_variables": {
+                    "missing_values": "Retained regardless of threshold",
+                    "correlation": "Preserved regardless of correlation",
+                    "standardization": "Standardized with other features",
+                    "prefix": "x_",
+                    "purpose": "Provide key financial indicators as features"
+                }
+            }
+        }
+    }
+} 
