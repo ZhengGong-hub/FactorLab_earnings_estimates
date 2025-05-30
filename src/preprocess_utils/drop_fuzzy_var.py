@@ -3,8 +3,10 @@ import logging
 from typing import List, Tuple, Set
 
 # Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+from logger import setup_logger
+
+# setup logger
+logger = setup_logger(__name__)
 
 # Define constants for columns to drop
 FUZZY_VARIABLES = {
@@ -40,29 +42,14 @@ def drop_fuzzy_variables(df: pd.DataFrame) -> Tuple[pd.DataFrame, List[str]]:
     if df is None or df.empty:
         raise ValueError("Input DataFrame is empty or None")
     
-    # Create working copy
     df_clean = df.copy()
-    dropped_cols = []
+    cols_to_drop = list(FUZZY_VARIABLES.union(METADATA_COLUMNS).intersection(df.columns))
     
-    # Drop fuzzy variables and metadata columns
-    all_cols_to_drop = FUZZY_VARIABLES.union(METADATA_COLUMNS)
-    existing_cols = all_cols_to_drop.intersection(df_clean.columns)
+    if cols_to_drop:
+        df_clean = df_clean.drop(columns=cols_to_drop)
+        logger.info(f"Dropped {len(cols_to_drop)} columns")
+        logger.info(f"Dropped columns: {cols_to_drop}")
+    else:
+        logger.info("No fuzzy variables or metadata columns to drop")
     
-    if existing_cols:
-        df_clean = df_clean.drop(columns=list(existing_cols))
-        dropped_cols = list(existing_cols)
-        logger.info(f"Dropped {len(dropped_cols)} columns")
-    
-    # Create quarter factor if EPS_actual_et exists
-    if 'EPS_actual_et' in df.columns:
-        try:
-            # Convert date to quarter number (1-4)
-            df_clean['quarter_factor'] = pd.to_datetime(df['EPS_actual_et']).dt.quarter
-            logger.info("Created quarter_factor column (1-4)")
-            df_clean['calendaryear'] = pd.to_datetime(df['EPS_actual_et']).dt.year
-            logger.info("Created calendaryear column")
-        except Exception as e:
-            logger.error(f"Failed to create quarter factor: {str(e)}")
-            raise ValueError(f"Error creating quarter factor: {str(e)}")
-    
-    return df_clean, dropped_cols
+    return df_clean, cols_to_drop

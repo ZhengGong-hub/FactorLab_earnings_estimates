@@ -127,5 +127,4 @@ def missing_value_treatment(
     logger.info(f"Final DataFrame shape: {df_clean.shape}")
     logger.info(f"Columns removed: {len(columns_to_drop)}")
     logger.info(f"Columns retained: {len(df_clean.columns)}")
-    assert False
     return df_clean, columns_to_drop

@@ -5,9 +5,11 @@ import logging
 import os
 from collections import Counter
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+# internal imports
+from logger import setup_logger
+
+# setup logger
+logger = setup_logger(__name__)
 
 # Define constants for variables to always keep
 KEEP_VARIABLES = {

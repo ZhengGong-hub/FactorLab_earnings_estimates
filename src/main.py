@@ -19,6 +19,12 @@ if __name__ == "__main__":
     df = pd.read_parquet('input_data/universe_with_affactor.parquet')
     logger.info(f"Original data shape: {df.shape}")
 
+    if 'calendaryear' not in df.columns or 'calendarquarter' not in df.columns:
+        # Convert date to quarter number (1-4)
+        df['calendarquarter'] = pd.to_datetime(df['EPS_actual_et']).dt.quarter
+        df['calendaryear'] = pd.to_datetime(df['EPS_actual_et']).dt.year
+        logger.info("Created calendaryear and calendarquarter columns")
+
     # Run preprocessing pipeline
     df_processed = pp.preprocess_pipeline(
         df,
