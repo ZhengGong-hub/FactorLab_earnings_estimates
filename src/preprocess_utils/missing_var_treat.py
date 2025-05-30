@@ -96,7 +96,6 @@ def missing_value_treatment(
     missing_pct = calculate_missing_percentages(df_clean)
     
     # Log overall missing value statistics
-    logger.info(f"Missing value statistics:")
     logger.info(f"Average missing: {missing_pct.mean():.1f}%")
     logger.info(f"Median missing: {missing_pct.median():.1f}%")
     logger.info(f"Columns with >{threshold}% missing: {(missing_pct > threshold).sum()}")

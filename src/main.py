@@ -18,10 +18,10 @@ if __name__ == "__main__":
     print(df)
 
     # Step 1: Missing Value Treatment
-    # Remove columns with more than 50% missing values while preserving essential EPS and revenue metrics
+    # Remove columns with more than 20% missing values while preserving essential EPS and revenue metrics
     # Returns cleaned dataframe and list of dropped columns
     # Key metrics like EPS_actual, EPSDiff, revenue_actual etc. are retained regardless of missing percentage
-    df_clean0 = pp.missing_value_treatment(df,50)[0]
+    df_clean0 = pp.missing_value_treatment(df,20)[0]
     print(df_clean0)
 
     # Step 2: Duplicate Detection
@@ -73,7 +73,7 @@ if __name__ == "__main__":
     df_clean6 = pp.rename_variables_xy(df_clean5)
 
     # Step 9: Save Processed Data
-    df_clean6.to_csv('output_data/cleaned_data.csv', index=False)
+    df_clean6.to_parquet('output_data/cleaned_data.parquet', index=False)
     print(df_clean6)
 
     # Step 10: Y-Variable Analysis
