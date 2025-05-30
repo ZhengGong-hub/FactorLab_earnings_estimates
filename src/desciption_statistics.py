@@ -7,7 +7,7 @@ from summary_utils.y_variable_analysis import analyze_y_variables
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-def run():
+def describe_data(df: pd.DataFrame):
     """
     Run descriptive analysis on the cleaned dataset,
     focusing on y-variables (target variables).
@@ -20,18 +20,10 @@ def run():
     
     All results are saved in output_data/analysis/
     """
-    try:
-        # Load cleaned data
-        df = pd.read_csv('output_data/cleaned_data.csv')
-        logger.info(f"Loaded cleaned data with {len(df)} rows and {len(df.columns)} columns")
-        
-        # Analyze y-variables
-        results = analyze_y_variables(df)
-        logger.info("Y-variable analysis completed successfully")
-        
-    except Exception as e:
-        logger.error(f"Error in analysis: {str(e)}")
-        raise
-
-if __name__ == "__main__":
-    run()
+    # Load cleaned data
+    df = pd.read_parquet('output_data/cleaned_data.parquet')
+    logger.info(f"Loaded cleaned data with {len(df)} rows and {len(df.columns)} columns")
+    
+    # Analyze y-variables
+    results = analyze_y_variables(df)
+    logger.info("Y-variable analysis completed successfully")

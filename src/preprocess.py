@@ -12,29 +12,42 @@ from preprocess_utils.outlier_check import winsorize_financial_variables
 from preprocess_utils.standard_var import standardize_numeric_variables
 from preprocess_utils.rename_x_y import rename_variables_xy
 
-def run():
-
-    # missing value treatment
-    missing_value_treatment()
-
-    # near-duplicate variables and drop fuzzy variables
-    extract_near_duplicate_groups()
-    drop_fuzzy_variables()
-
-    # categorical variables
-    encode_categorical_variables()
-
-    # drop high correlated variables
-    drop_high_corr()
-
-    # winsorize the outliers in outcome variables   
-    winsorize_financial_variables()
-
-    # normalized standardized 
-    standardize_numeric_variables()
-
-    # rename the x and y variables
-    rename_variables_xy()
-
-if __name__ == "__main__":
-    run()
+def preprocess_pipeline(df: pd.DataFrame, 
+                       missing_threshold: float = 20,
+                       correlation_threshold: float = 0.8) -> pd.DataFrame:
+    """
+    Run the complete preprocessing pipeline on the input DataFrame.
+    
+    Args:
+        df (pd.DataFrame): Input DataFrame to preprocess
+        missing_threshold (float): Threshold percentage for missing values
+        correlation_threshold (float): Threshold for correlation between variables
+        
+    Returns:
+        pd.DataFrame: Preprocessed DataFrame
+    """
+    # Step 1: Missing Value Treatment
+    df_clean0 = missing_value_treatment(df, missing_threshold)[0]
+    
+    # Step 2: Duplicate Detection
+    duplicate_groups = extract_near_duplicate_groups(df_clean0.columns.tolist())
+    
+    # Step 3: Remove Fuzzy Variables
+    df_clean1 = drop_fuzzy_variables(df_clean0)
+    
+    # Step 4: Categorical Encoding
+    df_clean2 = encode_categorical_variables(df_clean1)
+    
+    # Step 5: Correlation Analysis
+    df_clean3 = drop_high_corr(df_clean2, threshold=correlation_threshold)
+    
+    # Step 6: Outlier Treatment
+    df_clean4 = winsorize_financial_variables(df_clean3)
+    
+    # Step 7: Variable Standardization
+    df_clean5 = standardize_numeric_variables(df_clean4)
+    
+    # Step 8: Variable Classification
+    df_clean6 = rename_variables_xy(df_clean5)
+    
+    return df_clean6

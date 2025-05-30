@@ -8,8 +8,7 @@ from typing import Tuple
 
 def set_default_style():
     """Set default style for all plots"""
-    plt.style.use('seaborn')
-    sns.set_palette("deep")
+    plt.style.use('seaborn-v0_8-whitegrid')
     plt.rcParams['figure.facecolor'] = 'white'
     plt.rcParams['axes.facecolor'] = 'white'
     plt.rcParams['grid.color'] = '#E5E5E5'
