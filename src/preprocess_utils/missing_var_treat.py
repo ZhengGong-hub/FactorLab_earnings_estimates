@@ -1,10 +1,11 @@
 import pandas as pd
-import logging
 from typing import Tuple, List, Set
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+# internal imports
+from logger import setup_logger
+
+# setup logger
+logger = setup_logger(__name__)
 
 # Define constants for variables to always keep
 KEEP_VARIABLES = {
@@ -17,7 +18,7 @@ KEEP_VARIABLES = {
     'revenue_guidance_high', 'revenue_guidance_low'
 }
 
-def calculate_missing_percentages(df: pd.DataFrame) -> pd.Series:
+def calculate_nan_percentages(df: pd.DataFrame) -> pd.Series:
     """
     Calculate the percentage of missing values for each column.
     
@@ -84,48 +85,47 @@ def missing_value_treatment(
     if not 0 <= threshold <= 100:
         raise ValueError(f"Threshold must be between 0 and 100, got {threshold}")
     
-    # Validate keep_variables
+    # check all keep_variables are in the dataframe
     invalid_vars = [var for var in keep_variables if var not in df.columns]
     if invalid_vars:
-        logger.warning(f"Some keep_variables not found in DataFrame: {invalid_vars}")
+        raise ValueError(f"Some keep_variables not found in DataFrame: {invalid_vars}")
     
     # Create working copy
     df_clean = df.copy()
     
     # Calculate missing value percentages
-    missing_pct = calculate_missing_percentages(df_clean)
+    missing_pct = calculate_nan_percentages(df_clean)
     
     # Log overall missing value statistics
     logger.info(f"Average missing: {missing_pct.mean():.1f}%")
     logger.info(f"Median missing: {missing_pct.median():.1f}%")
     logger.info(f"Columns with >{threshold}% missing: {(missing_pct > threshold).sum()}")
     
-    # Identify columns to drop (excluding keep_variables)
-    columns_to_drop = [col for col in missing_pct[missing_pct > threshold].index 
-                      if col not in keep_variables]
+    # Process columns based on missing value threshold
+    high_missing_cols = missing_pct[missing_pct > threshold]
     
-    # Log information about drops and keeps
+    # Separate columns into drops and keeps
+    columns_to_drop = [col for col in high_missing_cols.index if col not in keep_variables]
+    kept_high_missing = [col for col in keep_variables if col in high_missing_cols.index]
+    
+    # Log and process drops
     if columns_to_drop:
-        logger.info(f"\nDropping {len(columns_to_drop)} columns with >{threshold}% missing values")
+        logger.info(f"Dropping {len(columns_to_drop)} columns with >{threshold}% missing values")
         for col in columns_to_drop:
-            logger.info(f"Column '{col}': {missing_pct[col]:.1f}% missing")
-        
-        # Drop the columns
+            logger.info(f"Column '{col}': {high_missing_cols[col]:.1f}% missing")
         df_clean = df_clean.drop(columns=columns_to_drop)
     else:
-        logger.info(f"\nNo columns exceeded the {threshold}% missing value threshold")
+        logger.info(f"No columns exceeded the {threshold}% missing value threshold!")
     
-    # Log information about kept variables that exceeded threshold
-    kept_high_missing = [col for col in keep_variables 
-                        if col in df.columns and missing_pct.get(col, 0) > threshold]
+    # Log kept variables
     if kept_high_missing:
-        logger.info(f"\nKept {len(kept_high_missing)} variables despite high missing values:")
+        logger.info(f"Kept {len(kept_high_missing)} variables despite high missing values:")
         for col in kept_high_missing:
-            logger.info(f"Kept column '{col}': {missing_pct[col]:.1f}% missing")
+            logger.info(f"Kept column '{col}': {high_missing_cols[col]:.1f}% missing")
     
     # Final statistics
-    logger.info(f"\nFinal DataFrame shape: {df_clean.shape}")
+    logger.info(f"Final DataFrame shape: {df_clean.shape}")
     logger.info(f"Columns removed: {len(columns_to_drop)}")
     logger.info(f"Columns retained: {len(df_clean.columns)}")
-    
+    assert False
     return df_clean, columns_to_drop

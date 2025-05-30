@@ -5,10 +5,21 @@ Plot styling utilities for consistent visualization across analysis
 import matplotlib.pyplot as plt
 import seaborn as sns
 from typing import Tuple
+from logger import setup_logger
+
+# setup logger
+logger = setup_logger(__name__)
 
 def set_default_style():
     """Set default style for all plots"""
-    plt.style.use('seaborn-v0_8-whitegrid')
+    try:
+        plt.style.use('seaborn-v0_8-whitegrid')
+        logger.info("Successfully set plot style to seaborn-v0_8-whitegrid")
+    except Exception as e:
+        logger.error(f"Failed to set plot style: {str(e)}")
+        raise
+    
+    # Set additional custom parameters
     plt.rcParams['figure.facecolor'] = 'white'
     plt.rcParams['axes.facecolor'] = 'white'
     plt.rcParams['grid.color'] = '#E5E5E5'
@@ -18,6 +29,7 @@ def set_default_style():
     plt.rcParams['font.size'] = 10
     plt.rcParams['axes.titlesize'] = 12
     plt.rcParams['axes.labelsize'] = 10
+    logger.debug("Applied custom plot parameters")
 
 def get_figure_size(plot_type: str) -> Tuple[int, int]:
     """
