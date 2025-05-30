@@ -175,3 +175,5 @@ cython_debug/
 
 # Output data
 output_data/
+
+catboost_info/
