@@ -7,7 +7,7 @@
 
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.model_selection import train_test_split, cross_val_score, KFold
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, explained_variance_score
 from sklearn.linear_model import LinearRegression, Ridge, Lasso
@@ -68,12 +68,12 @@ class MLFramework:
             'xgb': XGBRegressor(n_estimators=500, learning_rate=0.05, max_depth=6, subsample=0.8, colsample_bytree=0.8, n_jobs=-1),
             'lgbm': LGBMRegressor(n_estimators=500, learning_rate=0.05, max_depth=-1, num_leaves=31, n_jobs=-1),
             'catboost': CatBoostRegressor(iterations=500, learning_rate=0.05, depth=6, verbose=0),
-            'et': ExtraTreesRegressor(n_estimators=500, n_jobs=-1),
+            # 'et': ExtraTreesRegressor(n_estimators=500, n_jobs=-1),
 
-            # neural network models
-            'nn1': MLPRegressor(**nn_config['nn1_stable']),
-            'nn2': MLPRegressor(**nn_config['nn2_deep']),
-            'nn3': MLPRegressor(**nn_config['nn3_fast']),
+            # # neural network models
+            # 'nn1': MLPRegressor(**nn_config['nn1_stable']),
+            # 'nn2': MLPRegressor(**nn_config['nn2_deep']),
+            # 'nn3': MLPRegressor(**nn_config['nn3_fast']),
         }
         self.best_model = None
         self.best_score = float('-inf')
@@ -146,6 +146,9 @@ class MLFramework:
         self._log_to_both(f"- Dropped {dropped_rows} rows with missing target values")
         self._log_to_both(f"- Final dataset size: {len(self.df)} rows")
 
+        # Store feature names for later use
+        self.feature_names = feature_cols
+        
         self.X = self.df[feature_cols]
         self.y = self.df[target_col]
 
@@ -168,7 +171,73 @@ class MLFramework:
         self._log_to_both(f"- Test set size: {len(self.X_test)} samples")
         self._log_to_both(f"- Number of features: {len(feature_cols)}")
         self._log_to_both(f"- Target variable: {target_col}")
+
+    def calculate_feature_importance(self, model, model_name: str, cv: int = 5) -> None:
+        """
+        Calculate average feature importance across CV splits.
         
+        Args:
+            model: The model instance to calculate feature importance for
+            model_name (str): Name of the model
+            cv (int): Number of cross-validation folds
+        """
+        kf = KFold(n_splits=cv, shuffle=True, random_state=42)
+        
+        # Initialize array to store feature importances
+        feature_importances = []
+        
+        # Train model on each fold and collect feature importances
+        for fold, (train_idx, val_idx) in enumerate(kf.split(self.X_train)):
+            X_fold_train = self.X_train[train_idx]
+            y_fold_train = self.y_train.iloc[train_idx]
+            
+            # Create and train model for this fold
+            fold_model = model.__class__(**model.get_params())
+            fold_model.fit(X_fold_train, y_fold_train)
+            
+            # Get feature importance for this fold
+            if hasattr(fold_model, 'feature_importances_'):
+                importances = fold_model.feature_importances_
+            elif hasattr(fold_model, 'coef_'):
+                importances = fold_model.coef_
+                if importances.ndim > 1:  # Handle multi-output
+                    importances = importances[0]
+            else:
+                continue  # Skip if model doesn't support feature importance
+            
+            feature_importances.append(importances)
+            
+            self._log_to_both(f"Fold {fold + 1} feature importance calculated", model_name)
+        
+        if feature_importances:
+            # Calculate average and std of feature importances
+            avg_importances = np.mean(feature_importances, axis=0)
+            std_importances = np.std(feature_importances, axis=0)
+            
+            # Create DataFrame with feature importance statistics
+            importance_df = pd.DataFrame({
+                'feature': self.feature_names,
+                'importance_mean': avg_importances,
+                'importance_std': std_importances
+            })
+            
+            # Sort by absolute importance
+            importance_df['abs_importance'] = np.abs(importance_df['importance_mean'])
+            importance_df = importance_df.sort_values('abs_importance', ascending=False)
+            importance_df = importance_df.drop('abs_importance', axis=1)
+            
+            # Save to CSV
+            importance_file = os.path.join(self.models_dir, f"{model_name}_feature_importance.csv")
+            importance_df.to_csv(importance_file, index=False)
+            
+            # Log top features
+            self._log_to_both(f"\nTop 10 most important features for {model_name}:", model_name)
+            for _, row in importance_df.head(10).iterrows():
+                self._log_to_both(
+                    f"- {row['feature']}: {row['importance_mean']:.4f} ± {row['importance_std']:.4f}",
+                    model_name
+                )
+
     def train_models(self, cv: int = 5) -> Dict[str, float]:
         """
         Train multiple models and evaluate their performance.
@@ -196,12 +265,16 @@ class MLFramework:
             self._log_to_both(f"- Mean R2 score: {mean_score:.4f} ± {std_score:.4f}", name)
             self._log_to_both(f"- Individual fold scores: {cv_scores}", name)
             
-            # Update best model if current model performs better
+            # Calculate feature importance across CV splits
+            self.calculate_feature_importance(model, name, cv)
+            
+            # Train final model on full training set only if it's the best model
             if mean_score > self.best_score:
+                final_model = model.__class__(**model.get_params())
+                final_model.fit(self.X_train, self.y_train)
                 self.best_score = mean_score
-                self.best_model = model
+                self.best_model = final_model
                 
-        self._log_to_both(f"\nTraining completed. Best model: {self.best_model.__class__.__name__} with R2 score: {self.best_score:.4f}")
         return scores
     
     def train_best_model(self) -> None:
@@ -256,14 +329,6 @@ class MLFramework:
         self._log_to_both(f"- Min prediction: {np.min(y_pred):.4f}")
         self._log_to_both(f"- Max prediction: {np.max(y_pred):.4f}")
         
-        # Log feature importance if available
-        if hasattr(self.best_model, 'feature_importances_'):
-            importances = self.best_model.feature_importances_
-            top_features = np.argsort(importances)[-10:]  # Top 10 features
-            self._log_to_both("\nTop 10 most important features:")
-            for idx in top_features:
-                self._log_to_both(f"- Feature {idx}: {importances[idx]:.4f}")
-                
         return metrics
     
     def predict(self, X: Union[pd.DataFrame, np.ndarray]) -> np.ndarray:
@@ -292,40 +357,3 @@ class MLFramework:
         self._log_to_both(f"- Max prediction: {np.max(predictions):.4f}")
         
         return predictions
-    
-    def save_model(self, path: str) -> None:
-        """
-        Save the trained model and scaler.
-        
-        Args:
-            path (str): Path to save the model
-        """
-        if self.best_model is None:
-            raise ValueError("No model trained. Run train_best_model() first.")
-            
-        self._log_to_both(f"\nSaving model to {path}...")
-        model_data = {
-            'model': self.best_model,
-            'scaler': self.scaler
-        }
-        joblib.dump(model_data, path)
-        self._log_to_both("Model saved successfully")
-        
-    @classmethod
-    def load_model(cls, path: str) -> 'MLFramework':
-        """
-        Load a saved model.
-        
-        Args:
-            path (str): Path to the saved model
-            
-        Returns:
-            MLFramework: Instance with loaded model
-        """
-        logger.info(f"\nLoading model from {path}...")
-        model_data = joblib.load(path)
-        instance = cls(pd.DataFrame())  # Create empty instance
-        instance.best_model = model_data['model']
-        instance.scaler = model_data['scaler']
-        logger.info(f"Model loaded successfully: {instance.best_model.__class__.__name__}")
-        return instance

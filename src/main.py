@@ -25,6 +25,11 @@ if __name__ == "__main__":
         df['calendaryear'] = pd.to_datetime(df['EPS_actual_et']).dt.year
         logger.info("Created calendaryear and calendarquarter columns")
 
+    # manually banned columns
+    manually_banned_cols = ['AE-style', 'EQ-style', 'CE-style', 'HG-style', 'PM-style', 'Sz-style', 'Val-style', 'Vol-style',]
+    df = df.drop(columns=manually_banned_cols)
+    logger.info(f"Dropped {len(manually_banned_cols)} columns: {manually_banned_cols}")
+
     # Run preprocessing pipeline
     df_processed = pp.preprocess_pipeline(
         df,
