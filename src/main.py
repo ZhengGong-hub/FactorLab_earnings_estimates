@@ -34,7 +34,9 @@ if __name__ == "__main__":
     df_processed = pp.preprocess_pipeline(
         df,
         missing_threshold=20,  # Remove columns with more than 20% missing values
-        correlation_threshold=0.8  # Remove highly correlated variables
+        correlation_threshold=0.8,  # Remove highly correlated variables
+        variance_threshold=0.01,  # Remove variables with variance below 0.01
+        same_value_threshold=0.95  # Remove variables with more than 95% same value
     )
     logger.info(f"Processed data shape: {df_processed.shape}")
     
