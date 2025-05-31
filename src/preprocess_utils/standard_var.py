@@ -91,21 +91,16 @@ def standardize_numeric_variables(
     
     # Standardize selected columns
     for column in columns_to_standardize:
-        try:
-            mean = df_standardized[column].mean()
-            std = df_standardized[column].std()
+        mean = df_standardized[column].mean()
+        std = df_standardized[column].std()
+        
+        # Check for zero standard deviation
+        if std == 0:
+            logger.warning(f"Column {column} has zero standard deviation, skipping standardization")
+            continue
             
-            # Check for zero standard deviation
-            if std == 0:
-                logger.warning(f"Column {column} has zero standard deviation, skipping standardization")
-                continue
-                
-            df_standardized[column] = (df_standardized[column] - mean) / std
-            logger.debug(f"Standardized {column}: mean={mean:.4f}, std={std:.4f}")
-            
-        except Exception as e:
-            logger.error(f"Error standardizing column {column}: {str(e)}")
-            raise
+        df_standardized[column] = (df_standardized[column] - mean) / std
+        
     
     logger.info("Completed numeric variable standardization")
     return df_standardized
