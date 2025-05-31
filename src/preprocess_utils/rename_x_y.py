@@ -16,6 +16,7 @@ def rename_variables_xy(
     Rename variables by adding prefixes:
     - 'y_' for outcome variables
     - 'x_' for numeric independent variables
+    Also calculates SUE (Standardized Unexpected Earnings) variables.
     Excludes one-hot encoded columns and other specified patterns.
     
     Parameters
@@ -32,7 +33,7 @@ def rename_variables_xy(
     Returns
     -------
     pd.DataFrame
-        DataFrame with renamed variables
+        DataFrame with renamed variables and additional SUE variables
         
     Examples
     --------
@@ -65,8 +66,40 @@ def rename_variables_xy(
     if exclude_patterns is None:
         exclude_patterns = ['dummy_', 'companyid']
     
+    # Variables to exclude from x_ prefixing
+    exclude_from_x_prefix = {
+        'EPS_count', 'EPS_std', 'EPS_guidance_high', 'EPS_guidance_low',
+        'EPSNormalized_count', 'EPSNormalized_std', 'EPSNormalized_guidance_high', 'EPSNormalized_guidance_low',
+        'revenue_count', 'revenue_std', 'revenue_guidance_high', 'revenue_guidance_low'
+    }
+    
     # Create working copy
     df_renamed = df.copy()
+    
+    # Calculate SUE variables
+    # EPS SUE
+    df_renamed['y_EPS_SUE'] = np.where(
+        df_renamed['EPS_count'] >= 3,
+        df_renamed['EPS_surprise'] / df_renamed['EPS_std'],
+        np.nan
+    )
+    
+    # EPSNormalized SUE
+    df_renamed['y_EPSNorm_SUE'] = np.where(
+        df_renamed['EPSNormalized_count'] >= 3,
+        df_renamed['EPSNormalized_surprise'] / df_renamed['EPSNormalized_std'],
+        np.nan
+    )
+    
+    # Revenue SUE
+    df_renamed['y_revenue_SUE'] = np.where(
+        df_renamed['revenue_count'] >= 3,
+        df_renamed['revenue_surprise'] / df_renamed['revenue_std'],
+        np.nan
+    )
+    
+    # Add new SUE variables to outcome variables
+    outcome_variables.update({'y_EPS_SUE', 'y_EPSNorm_SUE', 'y_revenue_SUE'})
     
     # Get numeric columns
     numeric_columns = df_renamed.select_dtypes(include=[np.number]).columns
@@ -97,6 +130,10 @@ def rename_variables_xy(
         if col.startswith('x_'):
             continue
             
+        # Skip if in exclude_from_x_prefix set
+        if col in exclude_from_x_prefix:
+            continue
+            
         rename_dict[col] = f'x_{col}'
     
     # Apply renaming
@@ -106,5 +143,6 @@ def rename_variables_xy(
     n_y = sum(1 for col in df_renamed.columns if col.startswith('y_'))
     n_x = sum(1 for col in df_renamed.columns if col.startswith('x_'))
     logger.info(f"Renamed {n_y} outcome variables (y_) and {n_x} independent variables (x_)")
+    logger.info("Added SUE variables: y_EPS_SUE, y_EPSNorm_SUE, y_revenue_SUE")
     
     return df_renamed
