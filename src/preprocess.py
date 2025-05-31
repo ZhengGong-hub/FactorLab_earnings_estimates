@@ -13,13 +13,16 @@ from preprocess_utils.drop_high_corr import drop_high_corr
 from preprocess_utils.outlier_check import winsorize_financial_variables
 from preprocess_utils.standard_var import standardize_numeric_variables
 from preprocess_utils.rename_x_y import rename_variables_xy
+from preprocess_utils.drop_low_variance import drop_low_variance
 
 # setup logger
 logger = setup_logger(__name__)
 
 def preprocess_pipeline(df: pd.DataFrame, 
                        missing_threshold: float = 20,
-                       correlation_threshold: float = 0.8) -> pd.DataFrame:
+                       correlation_threshold: float = 0.8,
+                       variance_threshold: float = 0.01,
+                       same_value_threshold: float = 0.95) -> pd.DataFrame:
     """
     Run the complete preprocessing pipeline on the input DataFrame.
     
@@ -27,6 +30,8 @@ def preprocess_pipeline(df: pd.DataFrame,
         df (pd.DataFrame): Input DataFrame to preprocess
         missing_threshold (float): Threshold percentage for missing values
         correlation_threshold (float): Threshold for correlation between variables
+        variance_threshold (float): Threshold for variance of variables
+        same_value_threshold (float): Threshold for same value of variables
         
     Returns:
         pd.DataFrame: Preprocessed DataFrame
@@ -64,6 +69,10 @@ def preprocess_pipeline(df: pd.DataFrame,
     # Step 8: Variable Classification
     df_clean = rename_variables_xy(df_clean)
     logger.info("Variable classification completed")
+
+    # Step 9: Drop Variables with low variance
+    df_clean = drop_low_variance(df_clean, var_threshold=variance_threshold, same_threshold=same_value_threshold)[0]
+    logger.info("Variables with low variance removed")
     
     logger.info("Preprocessing pipeline completed")
     return df_clean
