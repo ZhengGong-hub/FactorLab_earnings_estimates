@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from typing import Union, Tuple, List, Set
 import logging
+from .define_SUE import calculate_SUE_variables
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -16,7 +17,7 @@ def rename_variables_xy(
     Rename variables by adding prefixes:
     - 'y_' for outcome variables
     - 'x_' for numeric independent variables
-    Also calculates SUE (Standardized Unexpected Earnings) variables.
+    Also adds prefixes to SUE variables calculated by define_SUE module.
     Excludes one-hot encoded columns and other specified patterns.
     
     Parameters
@@ -33,13 +34,7 @@ def rename_variables_xy(
     Returns
     -------
     pd.DataFrame
-        DataFrame with renamed variables and additional SUE variables
-        
-    Examples
-    --------
-    >>> df_renamed = rename_variables_xy(df)
-    >>> # Or with custom outcome variables:
-    >>> df_renamed = rename_variables_xy(df, {'custom_outcome1', 'custom_outcome2'})
+        DataFrame with renamed variables and prefixed SUE variables
     """
     # Handle input that might be a tuple
     if isinstance(df, tuple):
@@ -53,13 +48,17 @@ def rename_variables_xy(
     if df.empty:
         raise ValueError("Input DataFrame is empty")
     
+    # Calculate SUE variables first
+    df = calculate_SUE_variables(df)
+    
     # Default outcome variables if none provided
     if outcome_variables is None:
         outcome_variables = {
-       'EPS_actual', 'EPSDiff', 'EPS_surprise',
-       'EPSNormalized_actual', 'EPSNormalized_diff',
-       'EPSNormalized_surprise',
-       'revenue_actual', 'revenueDiff', 'revenue_surprise'
+            'EPS_actual', 'EPSDiff', 'EPS_surprise',
+            'EPSNormalized_actual', 'EPSNormalized_diff',
+            'EPSNormalized_surprise',
+            'revenue_actual', 'revenueDiff', 'revenue_surprise',
+            'EPS_SUE', 'EPSNorm_SUE', 'revenue_SUE'  # Add SUE variables to outcomes
         }
     
     # Default exclude patterns if none provided
@@ -75,31 +74,6 @@ def rename_variables_xy(
     
     # Create working copy
     df_renamed = df.copy()
-    
-    # Calculate SUE variables
-    # EPS SUE
-    df_renamed['y_EPS_SUE'] = np.where(
-        df_renamed['EPS_count'] >= 3,
-        df_renamed['EPS_surprise'] / df_renamed['EPS_std'],
-        np.nan
-    )
-    
-    # EPSNormalized SUE
-    df_renamed['y_EPSNorm_SUE'] = np.where(
-        df_renamed['EPSNormalized_count'] >= 3,
-        df_renamed['EPSNormalized_surprise'] / df_renamed['EPSNormalized_std'],
-        np.nan
-    )
-    
-    # Revenue SUE
-    df_renamed['y_revenue_SUE'] = np.where(
-        df_renamed['revenue_count'] >= 3,
-        df_renamed['revenue_surprise'] / df_renamed['revenue_std'],
-        np.nan
-    )
-    
-    # Add new SUE variables to outcome variables
-    outcome_variables.update({'y_EPS_SUE', 'y_EPSNorm_SUE', 'y_revenue_SUE'})
     
     # Get numeric columns
     numeric_columns = df_renamed.select_dtypes(include=[np.number]).columns
@@ -143,6 +117,5 @@ def rename_variables_xy(
     n_y = sum(1 for col in df_renamed.columns if col.startswith('y_'))
     n_x = sum(1 for col in df_renamed.columns if col.startswith('x_'))
     logger.info(f"Renamed {n_y} outcome variables (y_) and {n_x} independent variables (x_)")
-    logger.info("Added SUE variables: y_EPS_SUE, y_EPSNorm_SUE, y_revenue_SUE")
     
     return df_renamed

@@ -35,7 +35,7 @@ if __name__ == "__main__":
         df,
         missing_threshold=20,  # Remove columns with more than 20% missing values
         correlation_threshold=0.8,  # Remove highly correlated variables
-        variance_threshold=0.00,  # Remove variables with variance below 0.01
+        variance_threshold=0.1,  # Remove variables with variance below variance threshold
         same_value_threshold=0.95  # Remove variables with more than 95% same value
     )
     logger.info(f"Processed data shape: {df_processed.shape}")
@@ -44,8 +44,6 @@ if __name__ == "__main__":
     df_processed.to_parquet('output_data/cleaned_data.parquet', index=False)
     logger.info("Processed data saved to output_data/cleaned_data.parquet")
 
-    # description statistics
-    describe_data(df_processed)
 
 
     

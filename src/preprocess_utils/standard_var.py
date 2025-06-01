@@ -15,7 +15,9 @@ EXCLUDE_VARIABLES = {
     'EPSNormalized_count', 'EPSNormalized_std', 'EPSNormalized_guidance_high', 
     'EPSNormalized_guidance_low', 'revenue_actual', 
     'revenueDiff', 'revenue_surprise', 'revenue_count', 'revenue_std',
-    'revenue_guidance_high', 'revenue_guidance_low'
+    'revenue_guidance_high', 'revenue_guidance_low',
+    # Add SUE variables
+    'EPS_SUE', 'EPSNorm_SUE', 'revenue_SUE'
 }
 
 # Default patterns to exclude
@@ -28,7 +30,8 @@ def standardize_numeric_variables(
 ) -> pd.DataFrame:
     """
     Standardize numeric variables in the DataFrame, excluding one-hot encoded columns,
-    specified patterns, and specific variables.
+    specified patterns, and specific variables. Handles both prefixed (x_, y_) and 
+    non-prefixed variables.
     
     Parameters
     ----------
@@ -40,22 +43,18 @@ def standardize_numeric_variables(
         Default excludes 'dummy_' prefixed columns.
     exclude_variables : set, optional
         Set of specific variable names to exclude from standardization.
-        Default includes EPS and revenue-related variables.
+        Default includes EPS, revenue, and SUE-related variables.
         
     Returns
     -------
     pd.DataFrame
         DataFrame with numeric variables standardized
         
-    Examples
-    --------
-    >>> df_standardized = standardize_numeric_variables(df)
-    >>> # Or with custom exclude patterns:
-    >>> df_standardized = standardize_numeric_variables(df, ['dummy_', 'raw_', 'id'])
-    
     Notes
     -----
-    Standardization uses z-score method: (x - mean) / std
+    - Standardization uses z-score method: (x - mean) / std
+    - Variables can be prefixed with 'x_' or 'y_', the function checks both
+      prefixed and non-prefixed versions against exclude_variables
     """
     # Handle input that might be a tuple
     if isinstance(df, tuple):
@@ -80,11 +79,22 @@ def standardize_numeric_variables(
     numeric_columns = df_standardized.select_dtypes(include=[np.number]).columns
     
     # Filter out columns matching exclude patterns and specific variables
-    columns_to_standardize = [
-        col for col in numeric_columns 
-        if not any(pattern in col for pattern in exclude_patterns)
-        and col not in exclude_variables
-    ]
+    columns_to_standardize = []
+    for col in numeric_columns:
+        # Check if the column matches any exclude pattern
+        if any(pattern in col for pattern in exclude_patterns):
+            continue
+            
+        # Remove prefix if exists to check against exclude_variables
+        base_col = col
+        if col.startswith(('x_', 'y_')):
+            base_col = col[2:]  # Remove prefix
+            
+        # Skip if base column name is in exclude_variables
+        if base_col in exclude_variables:
+            continue
+            
+        columns_to_standardize.append(col)
     
     logger.info(f"Standardizing {len(columns_to_standardize)} numeric variables")
     logger.info(f"Excluding {len(exclude_variables)} specific variables from standardization")
@@ -100,7 +110,6 @@ def standardize_numeric_variables(
             continue
             
         df_standardized[column] = (df_standardized[column] - mean) / std
-        
     
     logger.info("Completed numeric variable standardization")
     return df_standardized

@@ -7,13 +7,16 @@ from logger import setup_logger
 # setup logger
 logger = setup_logger(__name__)
 
+# Define default categorical columns
+DEFAULT_CATEGORICAL_COLUMNS = {'calendaryear', 'calendarquarter'}
+
 def encode_categorical_variables(
     df: pd.DataFrame,
     categorical_columns: Set[str] = None,
     drop_original: bool = True
 ) -> pd.DataFrame:
     """
-    One-hot encode categorical variables (calendaryear).
+    One-hot encode categorical variables (calendaryear and calendarquarter).
     
     Parameters
     ----------
@@ -21,6 +24,7 @@ def encode_categorical_variables(
         Input DataFrame containing categorical columns to encode.
     categorical_columns : Set[str], optional
         Set of columns to encode. If None, uses default columns
+        (calendaryear and calendarquarter)
     drop_original : bool, default=True
         Whether to drop original categorical columns after encoding
         
@@ -33,7 +37,7 @@ def encode_categorical_variables(
     --------
     >>> df_encoded = encode_categorical_variables(df)
     >>> # Or with custom columns:
-    >>> df_encoded = encode_categorical_variables(df, {'companyid', 'custom_category'})
+    >>> df_encoded = encode_categorical_variables(df, {'calendaryear', 'calendarquarter'})
     
     Raises
     ------
@@ -49,7 +53,7 @@ def encode_categorical_variables(
         raise ValueError("Input DataFrame is empty")
     
     # Set default and validate categorical columns
-    categorical_columns = categorical_columns or {'calendaryear'}
+    categorical_columns = categorical_columns or DEFAULT_CATEGORICAL_COLUMNS
     if missing := categorical_columns - set(df.columns):
         raise ValueError(f"Missing required categorical columns: {missing}")
     
@@ -73,7 +77,6 @@ def encode_categorical_variables(
             df_encoded = df_encoded.drop(columns=[column])
             
         logger.info(f"Encoded {column} into {encoded.shape[1]} categories")
-
     
-    logger.info("Completed categorical encoding")
+    logger.info(f"Completed categorical encoding for: {', '.join(categorical_columns)}")
     return df_encoded

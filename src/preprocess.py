@@ -12,8 +12,10 @@ from preprocess_utils.categorize_var import encode_categorical_variables
 from preprocess_utils.drop_high_corr import drop_high_corr
 from preprocess_utils.outlier_check import winsorize_financial_variables
 from preprocess_utils.standard_var import standardize_numeric_variables
+from preprocess_utils.define_SUE import calculate_SUE_variables
 from preprocess_utils.rename_x_y import rename_variables_xy
 from preprocess_utils.drop_low_variance import drop_low_variance
+
 
 # setup logger
 logger = setup_logger(__name__)
@@ -62,9 +64,9 @@ def preprocess_pipeline(df: pd.DataFrame,
     df_clean = winsorize_financial_variables(df_clean)
     logger.info("Outlier treatment completed")
     
-    # Step 7: Variable Standardization
-    df_clean = standardize_numeric_variables(df_clean)
-    logger.info("Variable standardization completed")
+    # Step 7: Calculate SUE Variables
+    df_clean = calculate_SUE_variables(df_clean)
+    logger.info("SUE variables calculated")
     
     # Step 8: Variable Classification
     df_clean = rename_variables_xy(df_clean)
@@ -73,6 +75,10 @@ def preprocess_pipeline(df: pd.DataFrame,
     # Step 9: Drop Variables with low variance
     df_clean = drop_low_variance(df_clean, var_threshold=variance_threshold, same_threshold=same_value_threshold)[0]
     logger.info("Variables with low variance removed")
+    
+    # Step 10: Variable Standardization
+    df_clean = standardize_numeric_variables(df_clean)
+    logger.info("Variable standardization completed")
     
     logger.info("Preprocessing pipeline completed")
     return df_clean
