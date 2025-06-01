@@ -9,7 +9,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split, cross_val_score, KFold
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, explained_variance_score
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.ensemble import RandomForestRegressor, HistGradientBoostingRegressor, ExtraTreesRegressor
 from sklearn.neural_network import MLPRegressor
@@ -82,6 +82,7 @@ class MLFramework:
             'lgbm': LGBMRegressor(n_estimators=500, learning_rate=0.05, max_depth=-1, 
                                 num_leaves=31, n_jobs=-1),
             'catboost': CatBoostRegressor(iterations=500, learning_rate=0.05, depth=6, verbose=0),
+            
             # neural network models
             # 'nn1': MLPRegressor(**nn_config['nn1_stable']),
             # 'nn2': MLPRegressor(**nn_config['nn2_deep']),
@@ -139,7 +140,7 @@ class MLFramework:
         )
         
         self.X_train = self.scaler.fit_transform(self.X_train)
-        self.X_test = self.scaler.transform(self.X_test)
+        self.X_test = self.scaler.transform(self.X_test) # never fit on test set
         
         self._log_to_both("Data split and scaling completed:")
         self._log_to_both(f"- Training set size: {len(self.X_train)} samples")
@@ -196,32 +197,71 @@ class MLFramework:
             importance_file = os.path.join(self.models_dir, f"{model_name}_feature_importance.csv")
             importance_df.to_csv(importance_file, index=False)
 
-    def train_models(self, cv: int = 5) -> Dict[str, float]:
-        """Train multiple models and evaluate their performance."""
+    def _calculate_metrics(self, y_true: np.ndarray, y_pred: np.ndarray) -> Dict[str, float]:
+        """Calculate all regression metrics for given predictions."""
+        return {
+            'mse': mean_squared_error(y_true, y_pred),
+            'rmse': np.sqrt(mean_squared_error(y_true, y_pred)),
+            'mae': mean_absolute_error(y_true, y_pred),
+            'r2': r2_score(y_true, y_pred)
+        }
+
+    def train_models(self, cv: int = 5) -> Dict[str, Dict[str, float]]:
+        """Train multiple models and evaluate their performance using multiple metrics."""
         scores = {}
         self._log_to_both(f"Starting model training with {cv}-fold cross-validation")
+        
+        # Define scoring metrics
+        scoring_metrics = {
+            'r2': 'r2',
+            'neg_mse': 'neg_mean_squared_error',
+            'neg_rmse': 'neg_root_mean_squared_error',
+            'neg_mae': 'neg_mean_absolute_error'
+        }
         
         for name, model in self.models.items():
             self._log_to_both(f"\nTraining {name} model...", name)
             
-            # Cross-validation
-            cv_scores = cross_val_score(model, self.X_train, self.y_train, cv=cv, scoring='r2')
-            mean_score = cv_scores.mean()
-            std_score = cv_scores.std()
-            scores[name] = mean_score
+            # Initialize metrics dictionary for this model
+            model_metrics = {}
             
+            # Perform cross-validation for each metric
+            for metric_name, metric in scoring_metrics.items():
+                cv_scores = cross_val_score(model, self.X_train, self.y_train, cv=cv, scoring=metric)
+                mean_score = cv_scores.mean()
+                std_score = cv_scores.std()
+                
+                # Convert negative scores back to positive for MSE, RMSE, and MAE
+                if metric_name.startswith('neg_'):
+                    mean_score = -mean_score
+                    std_score = std_score
+                    metric_name = metric_name[4:]  # Remove 'neg_' prefix
+                
+                model_metrics[metric_name] = {
+                    'mean': mean_score,
+                    'std': std_score,
+                    'scores': cv_scores
+                }
+            
+            scores[name] = model_metrics
+            
+            # Log results for each metric
             self._log_to_both(f"Model results:", name)
-            self._log_to_both(f"- Mean R2 score: {mean_score:.4f} ± {std_score:.4f}", name)
-            self._log_to_both(f"- Individual fold scores: {cv_scores}", name)
+            for metric_name, metric_data in model_metrics.items():
+                self._log_to_both(
+                    f"- {metric_name.upper()}: {metric_data['mean']:.4f} ± {metric_data['std']:.4f}",
+                    name
+                )
+                self._log_to_both(f"- Individual fold scores: {metric_data['scores']}", name)
             
             # Calculate feature importance
             self.calculate_feature_importance(model, name, cv)
             
-            # Update best model
-            if mean_score > self.best_score:
+            # Update best model based on R² score
+            if model_metrics['r2']['mean'] > self.best_score:
                 final_model = model.__class__(**model.get_params())
                 final_model.fit(self.X_train, self.y_train)
-                self.best_score = mean_score
+                self.best_score = model_metrics['r2']['mean']
                 self.best_model = final_model
                 
         return scores
@@ -230,47 +270,17 @@ class MLFramework:
         """Evaluate the best model on the test set."""
         if self.best_model is None:
             raise ValueError("No model trained. Run train_models() first.")
+        
+        # log who is the best model
+        self._log_to_both(f"Best model: {self.best_model}")
             
         self._log_to_both("\nEvaluating model on test set...")
         y_pred = self.best_model.predict(self.X_test)
         
-        metrics = {
-            'mse': mean_squared_error(self.y_test, y_pred),
-            'rmse': np.sqrt(mean_squared_error(self.y_test, y_pred)),
-            'mae': mean_absolute_error(self.y_test, y_pred),
-            'r2': r2_score(self.y_test, y_pred),
-            'explained_variance': explained_variance_score(self.y_test, y_pred)
-        }
+        # Calculate metrics using shared function
+        metrics = self._calculate_metrics(self.y_test, y_pred)
         
         self._log_to_both("Model evaluation metrics:")
         self._log_metrics(metrics)
         
-        self._log_to_both("\nPrediction statistics:")
-        self._log_metrics({
-            'mean': np.mean(y_pred),
-            'std': np.std(y_pred),
-            'min': np.min(y_pred),
-            'max': np.max(y_pred)
-        })
-        
         return metrics
-    
-    def predict(self, X: Union[pd.DataFrame, np.ndarray]) -> np.ndarray:
-        """Make predictions using the trained model."""
-        if self.best_model is None:
-            raise ValueError("No model trained. Run train_models() first.")
-            
-        self._log_to_both("\nMaking predictions...")
-        X_scaled = self.scaler.transform(X)
-        predictions = self.best_model.predict(X_scaled)
-        
-        self._log_to_both(f"Prediction statistics:")
-        self._log_metrics({
-            'count': len(predictions),
-            'mean': np.mean(predictions),
-            'std': np.std(predictions),
-            'min': np.min(predictions),
-            'max': np.max(predictions)
-        })
-        
-        return predictions
