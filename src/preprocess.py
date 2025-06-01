@@ -59,15 +59,15 @@ def preprocess_pipeline(df: pd.DataFrame,
     # Step 5: Correlation Analysis
     df_clean = drop_high_corr(df_clean, threshold=correlation_threshold)
     logger.info("Highly correlated variables removed")
-    
-    # Step 6: Outlier Treatment
-    df_clean = winsorize_financial_variables(df_clean)
-    logger.info("Outlier treatment completed")
-    
-    # Step 7: Calculate SUE Variables
+
+    # Step 6: Calculate SUE Variables
     df_clean = calculate_SUE_variables(df_clean)
     logger.info("SUE variables calculated")
-    
+
+    # Step 7: Outlier Treatment
+    df_clean = winsorize_financial_variables(df_clean)
+    logger.info("Outlier treatment completed")
+
     # Step 8: Variable Classification
     df_clean = rename_variables_xy(df_clean)
     logger.info("Variable classification completed")
@@ -75,10 +75,10 @@ def preprocess_pipeline(df: pd.DataFrame,
     # Step 9: Drop Variables with low variance
     df_clean = drop_low_variance(df_clean, var_threshold=variance_threshold, same_threshold=same_value_threshold)[0]
     logger.info("Variables with low variance removed")
-    
+
     # Step 10: Variable Standardization
     df_clean = standardize_numeric_variables(df_clean)
     logger.info("Variable standardization completed")
-    
+
     logger.info("Preprocessing pipeline completed")
     return df_clean

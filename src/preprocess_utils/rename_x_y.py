@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 from typing import Union, Tuple, List, Set
 import logging
-from .define_SUE import calculate_SUE_variables
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -47,9 +46,6 @@ def rename_variables_xy(
     # Check if DataFrame is empty
     if df.empty:
         raise ValueError("Input DataFrame is empty")
-    
-    # Calculate SUE variables first
-    df = calculate_SUE_variables(df)
     
     # Default outcome variables if none provided
     if outcome_variables is None:

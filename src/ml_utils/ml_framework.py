@@ -118,6 +118,8 @@ class MLFramework:
         # Prepare data
         initial_rows = len(self.df)
         self.df = self.df.dropna(subset=[target_col])
+        # drop rows where target_col is infinity
+        self.df = self.df[~np.isinf(self.df[target_col])]
         dropped_rows = initial_rows - len(self.df)
         
         self._log_to_both("Data preparation started:")

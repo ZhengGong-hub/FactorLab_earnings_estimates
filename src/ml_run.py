@@ -1,5 +1,6 @@
 import pandas as pd
 import multiprocessing as mp
+import numpy as np
 from functools import partial
 
 # internal imports
@@ -30,6 +31,9 @@ if __name__ == "__main__":
     # Load data once
     df = pd.read_parquet('output_data/cleaned_data.parquet')
     print("Available columns:", df.columns.tolist())
+
+    # df.to_csv('output_data/cleaned_data.csv')
+    # assert False
 
     # Define target columns
     target_cols = [

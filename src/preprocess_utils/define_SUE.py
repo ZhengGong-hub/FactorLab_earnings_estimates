@@ -35,22 +35,22 @@ def calculate_SUE_variables(df: pd.DataFrame) -> pd.DataFrame:
     # Calculate SUE variables
     # EPS SUE
     df_with_sue['EPS_SUE'] = np.where(
-        df_with_sue['EPS_count'] >= 3,
-        df_with_sue['EPS_surprise'] / df_with_sue['EPS_std'],
+        (df_with_sue['EPS_count'] >= 3) & (df_with_sue['EPS_std'] > 0),
+        df_with_sue['EPSDiff'] / df_with_sue['EPS_std'],
         np.nan
     )
     
     # EPSNormalized SUE
     df_with_sue['EPSNorm_SUE'] = np.where(
-        df_with_sue['EPSNormalized_count'] >= 3,
-        df_with_sue['EPSNormalized_surprise'] / df_with_sue['EPSNormalized_std'],
+        (df_with_sue['EPSNormalized_count'] >= 3) & (df_with_sue['EPSNormalized_std'] > 0),
+        df_with_sue['EPSNormalized_diff'] / df_with_sue['EPSNormalized_std'],
         np.nan
     )
     
     # Revenue SUE
     df_with_sue['revenue_SUE'] = np.where(
-        df_with_sue['revenue_count'] >= 3,
-        df_with_sue['revenue_surprise'] / df_with_sue['revenue_std'],
+        (df_with_sue['revenue_count'] >= 3) & (df_with_sue['revenue_std'] > 0),
+        df_with_sue['revenueDiff'] / df_with_sue['revenue_std'],
         np.nan
     )
     
