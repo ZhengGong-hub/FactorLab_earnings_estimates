@@ -7,7 +7,7 @@
 
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split, cross_val_score, KFold
+from sklearn.model_selection import train_test_split, cross_val_score, cross_validate
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 from sklearn.linear_model import LinearRegression, Ridge, Lasso
@@ -75,8 +75,8 @@ class MLFramework:
             'ridge': Ridge(),
             'lasso': Lasso(),
             'enet': ElasticNet(alpha=1.0, l1_ratio=0.5, max_iter=1000),
+            
             # tree based models
-            'hgb': HistGradientBoostingRegressor(),
             'xgb': XGBRegressor(n_estimators=500, learning_rate=0.05, max_depth=6, 
                               subsample=0.8, colsample_bytree=0.8, n_jobs=-1),
             'lgbm': LGBMRegressor(n_estimators=500, learning_rate=0.05, max_depth=-1, 
@@ -153,51 +153,16 @@ class MLFramework:
     def _get_feature_importance(self, model: Any) -> Optional[np.ndarray]:
         """Get feature importance or coefficients from a model."""
         if hasattr(model, 'feature_importances_'):
+            self._log_to_both("Feature importances: feature_importances_")
             return model.feature_importances_
+        elif hasattr(model, 'get_score'):
+            self._log_to_both("Feature importances: get_score")
+            return model.get_score()
         elif hasattr(model, 'coef_'):
+            self._log_to_both("Feature importances: coef_")
             coef = model.coef_
             return coef[0] if coef.ndim > 1 else coef
         return None
-
-    def _calculate_fold_importance(self, model: Any, X: np.ndarray, y: pd.Series) -> Optional[np.ndarray]:
-        """Calculate feature importance for a single fold."""
-        fold_model = model.__class__(**model.get_params())
-        fold_model.fit(X, y)
-        return self._get_feature_importance(fold_model)
-
-    def calculate_feature_importance(self, model: Any, model_name: str, cv: int = 5) -> None:
-        """Calculate average feature importance across CV splits."""
-        kf = KFold(n_splits=cv, shuffle=True, random_state=42)
-        feature_importances = []
-        
-        # Calculate importance for each fold
-        for fold, (train_idx, _) in enumerate(kf.split(self.X_train)):
-            X_fold_train = self.X_train[train_idx]
-            y_fold_train = self.y_train.iloc[train_idx]
-            
-            importance = self._calculate_fold_importance(model, X_fold_train, y_fold_train)
-            if importance is not None:
-                feature_importances.append(importance)
-        
-        if feature_importances:
-            # Calculate statistics
-            avg_importances = np.mean(feature_importances, axis=0)
-            std_importances = np.std(feature_importances, axis=0)
-            
-            # Create and save importance DataFrame
-            importance_df = pd.DataFrame({
-                'feature': self.feature_names,
-                'importance_mean': avg_importances,
-                'importance_std': std_importances
-            })
-            
-            # Sort by absolute importance
-            importance_df['abs_importance'] = np.abs(importance_df['importance_mean'])
-            importance_df = importance_df.sort_values('abs_importance', ascending=False).drop('abs_importance', axis=1)
-            
-            # Save to CSV
-            importance_file = os.path.join(self.models_dir, f"{model_name}_feature_importance.csv")
-            importance_df.to_csv(importance_file, index=False)
 
     def _calculate_metrics(self, y_true: np.ndarray, y_pred: np.ndarray) -> Dict[str, float]:
         """Calculate all regression metrics for given predictions."""
@@ -208,63 +173,122 @@ class MLFramework:
             'r2': r2_score(y_true, y_pred)
         }
 
+    def _process_cv_results(self, cv_results: Dict[str, np.ndarray], scoring: Dict[str, str]) -> Dict[str, Dict[str, float]]:
+        """Process cross-validation results for all metrics."""
+        model_metrics = {}
+        for metric in scoring:
+            scores_array = cv_results[f'test_{metric}']
+            # Convert negative scores back to positive for MSE, RMSE, and MAE
+            if metric in ['mse', 'rmse', 'mae']:
+                scores_array = -scores_array
+            
+            model_metrics[metric] = {
+                'mean': scores_array.mean(),
+                'std': scores_array.std(),
+                'scores': scores_array
+            }
+        return model_metrics
+
+    def _log_model_metrics(self, model_metrics: Dict[str, Dict[str, float]], model_name: str) -> None:
+        """Log model metrics in a consistent format."""
+        self._log_to_both(f"Model results:", model_name)
+        for metric_name, metric_data in model_metrics.items():
+            self._log_to_both(
+                f"- {metric_name.upper()}: {metric_data['mean']:.4f} ± {metric_data['std']:.4f}",
+                model_name
+            )
+            self._log_to_both(f"- Individual fold scores: {metric_data['scores']}", model_name)
+
+    def _save_feature_importance(self, model: Any, model_name: str) -> None:
+        """Calculate and save feature importance for a model."""
+        importance = self._get_feature_importance(model)
+        if importance is not None:
+            importance_df = pd.DataFrame({
+                'feature': self.feature_names,
+                'importance': importance
+            })
+            
+            # Sort by absolute importance
+            importance_df['abs_importance'] = np.abs(importance_df['importance'])
+            importance_df = importance_df.sort_values('abs_importance', ascending=False).drop('abs_importance', axis=1)
+            
+            # Save to CSV
+            importance_file = os.path.join(self.models_dir, f"{model_name}_feature_importance.csv")
+            importance_df.to_csv(importance_file, index=False)
+
     def train_models(self, cv: int = 5) -> Dict[str, Dict[str, float]]:
         """Train multiple models and evaluate their performance using multiple metrics."""
         scores = {}
         self._log_to_both(f"Starting model training with {cv}-fold cross-validation")
         
         # Define scoring metrics
-        scoring_metrics = {
+        scoring = {
             'r2': 'r2',
-            'neg_mse': 'neg_mean_squared_error',
-            'neg_rmse': 'neg_root_mean_squared_error',
-            'neg_mae': 'neg_mean_absolute_error'
+            'mse': 'neg_mean_squared_error',
+            'rmse': 'neg_root_mean_squared_error',
+            'mae': 'neg_mean_absolute_error'
         }
         
         for name, model in self.models.items():
             self._log_to_both(f"\nTraining {name} model...", name)
             
-            # Initialize metrics dictionary for this model
-            model_metrics = {}
+            # Perform cross-validation with multiple metrics at once
+            cv_results = cross_validate(
+                model, 
+                self.X_train, 
+                self.y_train,
+                cv=cv,
+                scoring=scoring,
+                return_train_score=False
+            )
             
-            # Perform cross-validation for each metric
-            for metric_name, metric in scoring_metrics.items():
-                cv_scores = cross_val_score(model, self.X_train, self.y_train, cv=cv, scoring=metric)
-                mean_score = cv_scores.mean()
-                std_score = cv_scores.std()
-                
-                # Convert negative scores back to positive for MSE, RMSE, and MAE
-                if metric_name.startswith('neg_'):
-                    mean_score = -mean_score
-                    std_score = std_score
-                    metric_name = metric_name[4:]  # Remove 'neg_' prefix
-                
-                model_metrics[metric_name] = {
-                    'mean': mean_score,
-                    'std': std_score,
-                    'scores': cv_scores
-                }
-            
+            # Process results
+            model_metrics = self._process_cv_results(cv_results, scoring)
             scores[name] = model_metrics
             
-            # Log results for each metric
-            self._log_to_both(f"Model results:", name)
-            for metric_name, metric_data in model_metrics.items():
-                self._log_to_both(
-                    f"- {metric_name.upper()}: {metric_data['mean']:.4f} ± {metric_data['std']:.4f}",
-                    name
-                )
-                self._log_to_both(f"- Individual fold scores: {metric_data['scores']}", name)
+            # Log results
+            self._log_model_metrics(model_metrics, name)
             
-            # Calculate feature importance
-            self.calculate_feature_importance(model, name, cv)
+            # Train final model for feature importance
+            final_model = model.__class__(**model.get_params())
+            final_model.fit(self.X_train, self.y_train)
+            
+            # Save feature importance
+            self._save_feature_importance(final_model, name)
             
             # Update best model based on R² score
             if model_metrics['r2']['mean'] > self.best_score:
-                final_model = model.__class__(**model.get_params())
-                final_model.fit(self.X_train, self.y_train)
                 self.best_score = model_metrics['r2']['mean']
                 self.best_model = final_model
+        
+        # Create consolidated score files
+        all_scores = []
+        all_stds = []
+        
+        for model_name, model_metrics in scores.items():
+            # Mean scores
+            mean_scores = {
+                'model': model_name,
+                'r2': model_metrics['r2']['mean'],
+                'mse': model_metrics['mse']['mean'],
+                'rmse': model_metrics['rmse']['mean'],
+                'mae': model_metrics['mae']['mean']
+            }
+            all_scores.append(mean_scores)
+            
+            # Standard deviations
+            std_scores = {
+                'model': model_name,
+                'r2': model_metrics['r2']['std'],
+                'mse': model_metrics['mse']['std'],
+                'rmse': model_metrics['rmse']['std'],
+                'mae': model_metrics['mae']['std']
+            }
+            all_stds.append(std_scores)
+        
+        # Save consolidated files
+        pd.DataFrame(all_scores).to_csv(os.path.join(self.models_dir, 'scores.csv'), index=False)
+        pd.DataFrame(all_stds).to_csv(os.path.join(self.models_dir, 'scores_std.csv'), index=False)
                 
         return scores
     
