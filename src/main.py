@@ -19,11 +19,14 @@ if __name__ == "__main__":
     df = pd.read_parquet('input_data/universe_with_affactor.parquet')
     logger.info(f"Original data shape: {df.shape}")
 
-    if 'calendaryear' not in df.columns or 'calendarquarter' not in df.columns:
+    if 'calendaryear' not in df.columns or 'calendarquarter' not in df.columns or 'calendardate' not in df.columns:
+        # Create calendar year, quarter, and date columns from EPS_actual_et
         # Convert date to quarter number (1-4)
         df['calendarquarter'] = pd.to_datetime(df['EPS_actual_et']).dt.quarter
         df['calendaryear'] = pd.to_datetime(df['EPS_actual_et']).dt.year
-        logger.info("Created calendaryear and calendarquarter columns")
+        df['calendardate'] = pd.to_datetime(df['EPS_actual_et'])
+        df['calendardate'] = df['calendardate'].dt.strftime('%Y-%m-%d')
+        logger.info("Created calendaryear, calendarquarter and calendardate columns")
 
     # manually banned columns
     manually_banned_cols = ['AE-style', 'EQ-style', 'CE-style', 'HG-style', 'PM-style', 'Sz-style', 'Val-style', 'Vol-style',]
@@ -43,6 +46,9 @@ if __name__ == "__main__":
     # Save processed data
     df_processed.to_parquet('output_data/cleaned_data.parquet', index=False)
     logger.info("Processed data saved to output_data/cleaned_data.parquet")
+
+    # Run description statistics
+    describe_data(df_processed)
 
 
 

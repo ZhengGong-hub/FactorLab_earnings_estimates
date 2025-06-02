@@ -14,23 +14,31 @@ def set_default_style():
     """Set default style for all plots"""
     try:
         plt.style.use('seaborn-v0_8-whitegrid')
-        logger.info("Successfully set plot style to seaborn-v0_8-whitegrid")
+        
+        # Memory-efficient parameters
+        plt.rcParams['figure.dpi'] = 100
+        plt.rcParams['savefig.dpi'] = 100
+        plt.rcParams['figure.max_open_warning'] = 50
+        
+        # Visual parameters
+        plt.rcParams['figure.facecolor'] = 'white'
+        plt.rcParams['axes.facecolor'] = 'white'
+        plt.rcParams['grid.color'] = '#E5E5E5'
+        plt.rcParams['grid.linestyle'] = '--'
+        plt.rcParams['grid.alpha'] = 0.5
+        plt.rcParams['font.family'] = 'sans-serif'
+        plt.rcParams['font.size'] = 10
+        plt.rcParams['axes.titlesize'] = 12
+        plt.rcParams['axes.labelsize'] = 10
+        
+        # Memory optimization
+        plt.rcParams['agg.path.chunksize'] = 10000
+        
+        logger.info("Successfully set plot style and parameters")
     except Exception as e:
         logger.error(f"Failed to set plot style: {str(e)}")
         raise
     
-    # Set additional custom parameters
-    plt.rcParams['figure.facecolor'] = 'white'
-    plt.rcParams['axes.facecolor'] = 'white'
-    plt.rcParams['grid.color'] = '#E5E5E5'
-    plt.rcParams['grid.linestyle'] = '--'
-    plt.rcParams['grid.alpha'] = 0.5
-    plt.rcParams['font.family'] = 'sans-serif'
-    plt.rcParams['font.size'] = 10
-    plt.rcParams['axes.titlesize'] = 12
-    plt.rcParams['axes.labelsize'] = 10
-    logger.debug("Applied custom plot parameters")
-
 def get_figure_size(plot_type: str) -> Tuple[int, int]:
     """
     Get standardized figure sizes for different plot types
@@ -46,15 +54,15 @@ def get_figure_size(plot_type: str) -> Tuple[int, int]:
         Width and height of the figure
     """
     sizes = {
-        'distribution': (10, 6),
-        'boxplot': (8, 6),
-        'correlation': (10, 8),
-        'time_series': (12, 6),
-        'combined': (15, 8),
-        'heatmap': (10, 8),
-        'multi_series': (15, 8)
+        'distribution': (8, 5),
+        'boxplot': (6, 4),
+        'correlation': (8, 6),
+        'time_series': (10, 5),
+        'combined': (12, 6),
+        'heatmap': (8, 6),
+        'multi_series': (12, 6)
     }
-    return sizes.get(plot_type, (10, 6))
+    return sizes.get(plot_type, (8, 5))
 
 def style_axis(ax, title: str, xlabel: str, ylabel: str, rotate_xticks: bool = False):
     """
@@ -73,7 +81,7 @@ def style_axis(ax, title: str, xlabel: str, ylabel: str, rotate_xticks: bool = F
     rotate_xticks : bool, default=False
         Whether to rotate x-axis tick labels
     """
-    ax.set_title(title, pad=20)
+    ax.set_title(title, pad=15)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.grid(True, alpha=0.3)
@@ -89,7 +97,7 @@ def style_distribution_plot(ax, title: str, var_name: str):
 
 def style_correlation_plot(fig, ax, title: str):
     """Style for correlation heatmaps"""
-    ax.set_title(title, pad=20)
+    ax.set_title(title, pad=15)
     fig.tight_layout()
 
 def style_time_series_plot(ax, title: str, xlabel: str = 'Time', ylabel: str = 'Value'):
@@ -108,9 +116,9 @@ def set_color_scheme(plot_type: str):
         Type of plot
     """
     if plot_type == 'correlation':
-        return sns.color_palette("coolwarm", as_cmap=True)
+        return sns.color_palette("coolwarm", n_colors=11, as_cmap=True)
     elif plot_type == 'distribution':
-        return sns.color_palette("deep")
+        return sns.color_palette("deep", n_colors=6)
     elif plot_type == 'time_series':
-        return sns.color_palette("husl", 8)
-    return sns.color_palette("deep") 
+        return sns.color_palette("husl", n_colors=8)
+    return sns.color_palette("deep", n_colors=6) 

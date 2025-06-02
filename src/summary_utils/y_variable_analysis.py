@@ -20,10 +20,9 @@ from .plot_style import (
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-def analyze_y_variables(df: pd.DataFrame, output_dir: str = "output_data") -> Dict:
+def analyze_y_variables(df: pd.DataFrame, output_dir: str = "output_data", sample_size: int = 10000) -> Dict:
     """
-    Perform comprehensive analysis of y-variables including distribution,
-    correlation, and time series patterns.
+    Analyze y-variables with efficient memory handling for large datasets.
     
     Parameters
     ----------
@@ -31,11 +30,13 @@ def analyze_y_variables(df: pd.DataFrame, output_dir: str = "output_data") -> Di
         Cleaned data containing y-variables
     output_dir : str
         Directory to save analysis outputs
+    sample_size : int
+        Size of random sample for distribution analysis
         
     Returns
     -------
     Dict
-        Dictionary containing analysis results
+        Analysis results
     """
     # Set default plotting style
     set_default_style()
@@ -53,16 +54,23 @@ def analyze_y_variables(df: pd.DataFrame, output_dir: str = "output_data") -> Di
     
     logger.info(f"Analyzing {len(y_vars)} y-variables")
     
+    # Create sample for distribution analysis
+    if len(df) > sample_size:
+        df_sample = df.sample(n=sample_size, random_state=42)
+        logger.info(f"Using random sample of {sample_size} rows for distribution analysis")
+    else:
+        df_sample = df
+    
     results = {}
     
     # 1. Basic Statistics
     results['basic_stats'] = _calculate_basic_stats(df[y_vars], stats_dir)
     
     # 2. Distribution Analysis
-    results['distribution'] = _analyze_distributions(df[y_vars], plots_dir, stats_dir)
+    results['distribution'] = _analyze_distributions(df_sample[y_vars], plots_dir, stats_dir)
     
     # 3. Correlation Analysis
-    results['correlation'] = _analyze_correlations(df[y_vars], plots_dir, stats_dir)
+    results['correlation'] = _analyze_correlations(df_sample[y_vars], plots_dir, stats_dir)
     
     # 4. Time Series Analysis
     required_cols = ['calendaryear', 'quarter_factor']
@@ -89,50 +97,49 @@ def _calculate_basic_stats(df: pd.DataFrame, stats_dir: str) -> pd.DataFrame:
     return stats
 
 def _analyze_distributions(df: pd.DataFrame, plots_dir: str, stats_dir: str) -> Dict:
-    """Analyze and plot distributions of y-variables"""
+    """Analyze distributions with memory-efficient binning"""
     dist_stats = {}
     
-    # Create individual distribution plots for each variable
     for col in df.columns:
-        # Histogram with KDE
+        data = df[col].dropna()
+        
+        # Calculate optimal number of bins
+        n_bins = min(int(np.sqrt(len(data))), 50)
+        
+        # Distribution plot
         fig, ax = plt.subplots(figsize=get_figure_size('distribution'))
-        sns.histplot(data=df, x=col, kde=True, ax=ax)
+        sns.histplot(data=data, bins=n_bins, kde=False, ax=ax)
         style_distribution_plot(ax, f'Distribution of {col}', col)
         plt.savefig(os.path.join(plots_dir, f'{col}_distribution.png'))
         plt.close()
         
         # Boxplot
         fig, ax = plt.subplots(figsize=get_figure_size('boxplot'))
-        sns.boxplot(data=df, y=col, ax=ax)
+        sns.boxplot(y=data, ax=ax)
         style_distribution_plot(ax, f'Boxplot of {col}', col)
         plt.savefig(os.path.join(plots_dir, f'{col}_boxplot.png'))
         plt.close()
         
         # Calculate distribution statistics
         dist_stats[col] = {
-            'normality_test': stats.normaltest(df[col].dropna()),
-            'quantiles': df[col].quantile([0.25, 0.5, 0.75]).to_dict()
+            'normality_test': stats.normaltest(data),
+            'quantiles': data.quantile([0.25, 0.5, 0.75]).to_dict()
         }
     
     logger.info("Distribution analysis completed")
     return dist_stats
 
 def _analyze_correlations(df: pd.DataFrame, plots_dir: str, stats_dir: str) -> pd.DataFrame:
-    """Analyze correlations between y-variables"""
+    """Analyze correlations with memory efficiency"""
     corr = df.corr()
     
     # Plot correlation heatmap
     fig, ax = plt.subplots(figsize=get_figure_size('correlation'))
-    sns.heatmap(corr, annot=True, cmap=set_color_scheme('correlation'), center=0, ax=ax)
+    mask = np.triu(np.ones_like(corr), k=1)
+    sns.heatmap(corr, mask=mask, annot=True, fmt='.2f',
+                cmap=set_color_scheme('correlation'), center=0, ax=ax)
     style_correlation_plot(fig, ax, 'Correlation Matrix of Y Variables')
     plt.savefig(os.path.join(plots_dir, 'y_variables_correlation.png'))
-    plt.close()
-    
-    # Create pairplot with custom styling
-    sns.set_palette(set_color_scheme('distribution'))
-    g = sns.pairplot(df)
-    g.fig.suptitle('Pairwise Relationships of Y Variables', y=1.02)
-    plt.savefig(os.path.join(plots_dir, 'y_variables_pairplot.png'))
     plt.close()
     
     # Save correlation matrix
@@ -142,19 +149,13 @@ def _analyze_correlations(df: pd.DataFrame, plots_dir: str, stats_dir: str) -> p
     return corr
 
 def _analyze_time_series(df: pd.DataFrame, y_vars: List[str], plots_dir: str, stats_dir: str) -> Dict:
-    """Analyze time series patterns in y-variables by year and quarter"""
+    """Analyze time series with efficient aggregation"""
     ts_stats = {}
     
-    # Set time series color palette
-    sns.set_palette(set_color_scheme('time_series'))
-    
-    # Yearly statistics
+    # Yearly aggregation
     yearly_stats = df.groupby('calendaryear')[y_vars].agg(['mean', 'std', 'count'])
-    
-    # Quarterly statistics within each year
     year_quarter_stats = df.groupby(['calendaryear', 'quarter_factor'])[y_vars].agg(['mean', 'std', 'count'])
     
-    # Plot time series for each variable
     for var in y_vars:
         # 1. Yearly trend
         fig, ax = plt.subplots(figsize=get_figure_size('time_series'))
@@ -193,7 +194,7 @@ def _analyze_time_series(df: pd.DataFrame, y_vars: List[str], plots_dir: str, st
             aggfunc='mean'
         )
         
-        sns.heatmap(pivot_data, annot=True, fmt='.2f', 
+        sns.heatmap(pivot_data, annot=True, fmt='.2f',
                    cmap=set_color_scheme('correlation'), center=0, ax=ax)
         style_correlation_plot(fig, ax, f'Year-Quarter Heatmap: {var}')
         plt.savefig(os.path.join(plots_dir, f'{var}_year_quarter_heatmap.png'))

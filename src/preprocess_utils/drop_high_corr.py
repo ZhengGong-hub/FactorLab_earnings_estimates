@@ -5,22 +5,15 @@ import logging
 import os
 from collections import Counter
 
-# internal imports
+# imports
 from logger import setup_logger
+from constants import EXCLUDE_VARIABLES
 
-# setup logger
+# logger setup
 logger = setup_logger(__name__)
 
-# Define constants for variables to always keep
-KEEP_VARIABLES = {
-    'EPS_actual', 'EPSDiff', 'EPS_surprise', 'EPS_count', 
-    'EPS_std', 'EPS_guidance_high', 'EPS_guidance_low', 'EPSNormalized_actual',
-    'EPSNormalized_diff', 'EPSNormalized_surprise', 
-    'EPSNormalized_count', 'EPSNormalized_std', 'EPSNormalized_guidance_high', 
-    'EPSNormalized_guidance_low', 'revenue_actual', 
-    'revenueDiff', 'revenue_surprise', 'revenue_count', 'revenue_std',
-    'revenue_guidance_high', 'revenue_guidance_low'
-}
+# keep variables
+KEEP_VARIABLES = EXCLUDE_VARIABLES.union({'EPSSurpC', 'IndRel_EPSSurpC', 'IndRel_SUEC', 'SUEC'})
 
 def drop_high_corr(df: pd.DataFrame, threshold: float = 0.8, target_var: str = 'EPSNormalized_surprise', output_dir: str = "output_data", keep_variables: Set[str] = KEEP_VARIABLES) -> pd.DataFrame:
     """
@@ -54,7 +47,7 @@ def drop_high_corr(df: pd.DataFrame, threshold: float = 0.8, target_var: str = '
     if target_var not in df.columns:
         raise ValueError(f"Target variable '{target_var}' not found in DataFrame")
     
-    # Select only numeric columns
+    # select numeric columns
     numeric_df = df.select_dtypes(include=[np.number])
     
     if numeric_df.empty:
@@ -62,53 +55,49 @@ def drop_high_corr(df: pd.DataFrame, threshold: float = 0.8, target_var: str = '
         
     logger.info(f"Computing correlations for {len(numeric_df.columns)} numeric variables")
     
-    # Calculate correlation matrix for numeric columns
+    # correlation matrix
     corr_matrix = numeric_df.corr()
-    
-    # Calculate correlations with target variable
     target_corrs = corr_matrix[target_var].abs()
     
-    # Find high correlations
+    # track correlations and variables
     high_corr = []
-    high_corr_vars = set()  # Set to store names of highly correlated variables
-    var_count = Counter()  # Counter for variable occurrences
-    dropped_var_list = set()  # Set to store variables to be dropped
+    high_corr_vars = set()
+    var_count = Counter()
+    dropped_var_list = set()
     
+    # check correlations
     for i in range(len(corr_matrix.columns)):
-        for j in range(i+1, len(corr_matrix.columns)):  # upper triangle only
+        for j in range(i+1, len(corr_matrix.columns)):
             correlation = corr_matrix.iloc[i, j]
             if abs(correlation) > threshold:
                 var1 = corr_matrix.columns[i]
                 var2 = corr_matrix.columns[j]
                 
-                # Skip if both variables are in keep_variables
                 if var1 in keep_variables and var2 in keep_variables:
                     continue
                 
-                # Count variable occurrences
                 var_count[var1] += 1
                 var_count[var2] += 1
                 
-                # Get non-missing value counts
+                # count non-missing values
                 non_missing_var1 = numeric_df[var1].count()
                 non_missing_var2 = numeric_df[var2].count()
                 non_missing_both = numeric_df[[var1, var2]].dropna().shape[0]
                 
-                # Determine which variable to drop based on correlation with target and keep_variables
+                # determine which variable to drop
                 var1_target_corr = target_corrs[var1]
                 var2_target_corr = target_corrs[var2]
                 
-                # If one variable is in keep_variables, drop the other
                 if var1 in keep_variables:
                     dropped_var = var2
                 elif var2 in keep_variables:
                     dropped_var = var1
-                # Otherwise, drop the one with weaker correlation to target
                 else:
                     dropped_var = var2 if var1_target_corr >= var2_target_corr else var1
                 
                 dropped_var_list.add(dropped_var)
                 
+                # record correlation info
                 high_corr.append({
                     'variable1': var1,
                     'variable2': var2,
@@ -124,22 +113,20 @@ def drop_high_corr(df: pd.DataFrame, threshold: float = 0.8, target_var: str = '
                 high_corr_vars.add(var1)
                 high_corr_vars.add(var2)
     
-    # Create output directory if it doesn't exist
+    # create output directory
     os.makedirs(output_dir, exist_ok=True)
     
-    # Save correlation matrix to file
+    # save correlation matrix
     output_path = os.path.join(output_dir, "correlation_matrix.csv")
     corr_matrix.to_csv(output_path)
     logger.info(f"Correlation matrix saved to: {output_path}")
     
-    # Save high correlation information
+    # process and save high correlations
     if high_corr:
         logger.info(f"\nHigh correlations (>{threshold}):")
-        
-        # Sort high correlations by absolute correlation value
         high_corr_sorted = sorted(high_corr, key=lambda x: abs(x['correlation']), reverse=True)
         
-        # Log and save detailed correlations
+        # log correlations
         for corr_info in high_corr_sorted:
             logger.info(
                 f"{corr_info['variable1']:<20} -- {corr_info['variable2']:<20}: "
@@ -148,19 +135,19 @@ def drop_high_corr(df: pd.DataFrame, threshold: float = 0.8, target_var: str = '
                 f"Dropped: {corr_info['dropped_variable']}, Keep involved: {corr_info['keep_variable_involved']})"
             )
         
-        # Save detailed correlations to CSV
+        # save detailed correlations
         high_corr_path = os.path.join(output_dir, "high_corr_var_list.csv")
         pd.DataFrame(high_corr_sorted).to_csv(high_corr_path, index=False)
         logger.info(f"High correlation details saved to: {high_corr_path}")
         
-        # Save list of variables to drop
+        # save dropped variables
         drop_path = os.path.join(output_dir, "dropped_var_list.txt")
         with open(drop_path, 'w') as f:
             for var in sorted(dropped_var_list):
                 f.write(f"{var}\n")
         logger.info(f"List of variables to drop saved to: {drop_path}")
         
-        # Save variable count summary
+        # save variable count summary
         count_data = []
         for var, count in var_count.most_common():
             count_data.append({
@@ -180,6 +167,5 @@ def drop_high_corr(df: pd.DataFrame, threshold: float = 0.8, target_var: str = '
     else:
         logger.info(f"No correlations above {threshold} found")
     
-    # Drop the identified variables and return the filtered dataset
     logger.info(f"Dropping {len(dropped_var_list)} variables due to high correlation")
     return df.drop(columns=list(dropped_var_list))
