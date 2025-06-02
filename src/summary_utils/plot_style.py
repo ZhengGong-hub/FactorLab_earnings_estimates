@@ -60,7 +60,8 @@ def get_figure_size(plot_type: str) -> Tuple[int, int]:
         'time_series': (10, 5),
         'combined': (12, 6),
         'heatmap': (8, 6),
-        'multi_series': (12, 6)
+        'multi_series': (12, 6),
+        'ml_metrics': (12, 8)  # Added size for ML metrics plots
     }
     return sizes.get(plot_type, (8, 5))
 
@@ -106,6 +107,32 @@ def style_time_series_plot(ax, title: str, xlabel: str = 'Time', ylabel: str = '
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
 
+def style_ml_metrics_plot(ax, title: str, metric: str):
+    """
+    Style specifically for ML metrics plots
+    
+    Parameters
+    ----------
+    ax : matplotlib.axes.Axes
+        Axis to style
+    title : str
+        Plot title
+    metric : str
+        Metric name for y-axis label
+    """
+    style_axis(ax, title, 'Year', metric, rotate_xticks=True)
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    
+    # Customize legend
+    ax.legend(
+        title='Variables',
+        title_fontsize=12,
+        fontsize=10,
+        bbox_to_anchor=(1.05, 1),
+        loc='upper left'
+    )
+
 def set_color_scheme(plot_type: str):
     """
     Set color scheme for different plot types
@@ -121,4 +148,6 @@ def set_color_scheme(plot_type: str):
         return sns.color_palette("deep", n_colors=6)
     elif plot_type == 'time_series':
         return sns.color_palette("husl", n_colors=8)
+    elif plot_type == 'ml_metrics':
+        return sns.color_palette("husl", n_colors=10)  # Added color scheme for ML metrics
     return sns.color_palette("deep", n_colors=6) 

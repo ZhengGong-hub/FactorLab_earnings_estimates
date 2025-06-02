@@ -5,6 +5,7 @@ from pathlib import Path
 from logger import setup_logger
 import preprocess as pp
 from desciption_statistics import describe_data
+from summary_utils.ml_results_analysis import ml_summary
 
 # setup logger
 logger = setup_logger(__name__)
@@ -49,6 +50,9 @@ if __name__ == "__main__":
 
     # Run description statistics
     describe_data(df_processed)
+
+    # Run ML results analysis
+    ml_summary()
 
 
 

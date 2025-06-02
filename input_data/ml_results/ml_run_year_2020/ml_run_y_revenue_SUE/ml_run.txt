@@ -1,0 +1,109 @@
+ML Framework Run - 2025-06-02 07:49:17
+
+Data preparation started:
+- Initial dataset size: 8051 rows
+- Dropped 1156 rows with missing target values
+- Final dataset size: 6895 rows
+- Applied mean imputation to features
+Data split and scaling completed:
+- Training set size: 5516 samples
+- Test set size: 1379 samples
+- Number of features: 226
+- Target variable: y_revenue_SUE
+Starting model training with 2-fold cross-validation
+[linear] 
+Training linear model...
+[linear] Model results:
+[linear] - R2: -42.0978 ± 32.2106
+[linear] - Individual fold scores: [-74.30837002  -9.8871482 ]
+[linear] - MSE: 326.7848 ± 244.3250
+[linear] - Individual fold scores: [-571.10981437  -82.45974296]
+[linear] - RMSE: 16.4893 ± 7.4086
+[linear] - Individual fold scores: [-23.89790397  -9.08073471]
+[linear] - MAE: 2.4529 ± 0.1760
+[linear] - Individual fold scores: [-2.62887278 -2.27692968]
+[ridge] 
+Training ridge model...
+[ridge] Model results:
+[ridge] - R2: -0.8235 ± 0.1236
+[ridge] - Individual fold scores: [-0.9470571  -0.69993434]
+[ridge] - MSE: 13.8206 ± 0.9452
+[ridge] - Individual fold scores: [-14.76573477 -12.87537802]
+[ridge] - RMSE: 3.7154 ± 0.1272
+[ridge] - Individual fold scores: [-3.84262082 -3.5882277 ]
+[ridge] - MAE: 2.1576 ± 0.0283
+[ridge] - Individual fold scores: [-2.18592485 -2.12933588]
+[lasso] 
+Training lasso model...
+[lasso] Model results:
+[lasso] - R2: -0.0000 ± 0.0000
+[lasso] - Individual fold scores: [-4.65970325e-05 -4.66559239e-05]
+[lasso] - MSE: 7.5792 ± 0.0048
+[lasso] - Individual fold scores: [-7.5839701  -7.57439769]
+[lasso] - RMSE: 2.7530 ± 0.0009
+[lasso] - Individual fold scores: [-2.75390089 -2.75216237]
+[lasso] - MAE: 2.0932 ± 0.0013
+[lasso] - Individual fold scores: [-2.09197653 -2.09449416]
+[enet] 
+Training enet model...
+[enet] Model results:
+[enet] - R2: 0.0014 ± 0.0014
+[enet] - Individual fold scores: [-2.04957662e-05  2.84837942e-03]
+[enet] - MSE: 7.5681 ± 0.0157
+[enet] - Individual fold scores: [-7.58377216 -7.55247056]
+[enet] - RMSE: 2.7510 ± 0.0028
+[enet] - Individual fold scores: [-2.75386495 -2.74817586]
+[enet] - MAE: 2.0919 ± 0.0001
+[enet] - Individual fold scores: [-2.09194566 -2.09182202]
+[hgb] 
+Training hgb model...
+[hgb] Model results:
+[hgb] - R2: 0.2043 ± 0.0071
+[hgb] - Individual fold scores: [0.19719955 0.21145041]
+[hgb] - MSE: 6.0303 ± 0.0578
+[hgb] - Individual fold scores: [-6.08813089 -5.97250951]
+[hgb] - RMSE: 2.4556 ± 0.0118
+[hgb] - Individual fold scores: [-2.46741381 -2.44387183]
+[hgb] - MAE: 1.8441 ± 0.0176
+[hgb] - Individual fold scores: [-1.86173177 -1.82653325]
+[xgb] 
+Training xgb model...
+[xgb] Model results:
+[xgb] - R2: 0.2199 ± 0.0044
+[xgb] - Individual fold scores: [0.22420774 0.21549801]
+[xgb] - MSE: 5.9126 ± 0.0293
+[xgb] - Individual fold scores: [-5.88331116 -5.94185287]
+[xgb] - RMSE: 2.4316 ± 0.0060
+[xgb] - Individual fold scores: [-2.42555378 -2.43759161]
+[xgb] - MAE: 1.8284 ± 0.0026
+[xgb] - Individual fold scores: [-1.83104973 -1.82575468]
+[lgbm] 
+Training lgbm model...
+[lgbm] Model results:
+[lgbm] - R2: 0.2138 ± 0.0028
+[lgbm] - Individual fold scores: [0.21104361 0.21658108]
+[lgbm] - MSE: 5.9584 ± 0.0247
+[lgbm] - Individual fold scores: [-5.9831429  -5.93364964]
+[lgbm] - RMSE: 2.4410 ± 0.0051
+[lgbm] - Individual fold scores: [-2.44604638 -2.43590838]
+[lgbm] - MAE: 1.8350 ± 0.0121
+[lgbm] - Individual fold scores: [-1.84711654 -1.82290938]
+[catboost] 
+Training catboost model...
+[catboost] Model results:
+[catboost] - R2: 0.2365 ± 0.0010
+[catboost] - Individual fold scores: [0.23547742 0.23750954]
+[catboost] - MSE: 5.7865 ± 0.0114
+[catboost] - Individual fold scores: [-5.79784619 -5.77513653]
+[catboost] - RMSE: 2.4055 ± 0.0024
+[catboost] - Individual fold scores: [-2.40787171 -2.40315137]
+[catboost] - MAE: 1.8096 ± 0.0043
+[catboost] - Individual fold scores: [-1.81383981 -1.80529089]
+Best model: <catboost.core.CatBoostRegressor object at 0x17d828e00>
+
+Evaluating model on test set...
+Model evaluation metrics:
+- MSE: 5.6177
+- RMSE: 2.3702
+- MAE: 1.7743
+- R2: 0.2374

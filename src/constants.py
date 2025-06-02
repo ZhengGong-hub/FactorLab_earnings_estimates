@@ -32,5 +32,4 @@ EXCLUDE_VARIABLES: Set[str] = {
     'revenue_std',
     'revenue_guidance_high',
     'revenue_guidance_low',
-    
 } 

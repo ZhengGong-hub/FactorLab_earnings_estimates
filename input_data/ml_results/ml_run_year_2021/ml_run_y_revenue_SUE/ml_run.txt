@@ -1,0 +1,109 @@
+ML Framework Run - 2025-06-02 09:16:26
+
+Data preparation started:
+- Initial dataset size: 8585 rows
+- Dropped 3914 rows with missing target values
+- Final dataset size: 4671 rows
+- Applied mean imputation to features
+Data split and scaling completed:
+- Training set size: 3736 samples
+- Test set size: 935 samples
+- Number of features: 226
+- Target variable: y_revenue_SUE
+Starting model training with 2-fold cross-validation
+[linear] 
+Training linear model...
+[linear] Model results:
+[linear] - R2: -725.2835 ± 279.4976
+[linear] - Individual fold scores: [-1004.78104534  -445.7858849 ]
+[linear] - MSE: 6287.9260 ± 2252.3706
+[linear] - Individual fold scores: [-8540.29653899 -4035.5553906 ]
+[linear] - RMSE: 77.9699 ± 14.4439
+[linear] - Individual fold scores: [-92.41372484 -63.52602137]
+[linear] - MAE: 5.7475 ± 1.5404
+[linear] - Individual fold scores: [-7.28784662 -4.20709887]
+[ridge] 
+Training ridge model...
+[ridge] Model results:
+[ridge] - R2: -2.9644 ± 2.6558
+[ridge] - Individual fold scores: [-5.62020022 -0.30863294]
+[ridge] - MSE: 34.0168 ± 22.1967
+[ridge] - Individual fold scores: [-56.21350023 -11.82011537]
+[ridge] - RMSE: 5.4678 ± 2.0298
+[ridge] - Individual fold scores: [-7.49756629 -3.43803947]
+[ridge] - MAE: 2.6485 ± 0.2012
+[ridge] - Individual fold scores: [-2.84971501 -2.44728812]
+[lasso] 
+Training lasso model...
+[lasso] Model results:
+[lasso] - R2: -0.0001 ± 0.0000
+[lasso] - Individual fold scores: [-0.00012886 -0.00012114]
+[lasso] - MSE: 8.7629 ± 0.2706
+[lasso] - Individual fold scores: [-8.49230269 -9.0335089 ]
+[lasso] - RMSE: 2.9599 ± 0.0457
+[lasso] - Individual fold scores: [-2.91415557 -3.00557963]
+[lasso] - MAE: 2.3498 ± 0.0421
+[lasso] - Individual fold scores: [-2.30775151 -2.39190879]
+[enet] 
+Training enet model...
+[enet] Model results:
+[enet] - R2: -0.0001 ± 0.0000
+[enet] - Individual fold scores: [-0.00012886 -0.00012114]
+[enet] - MSE: 8.7629 ± 0.2706
+[enet] - Individual fold scores: [-8.49230269 -9.0335089 ]
+[enet] - RMSE: 2.9599 ± 0.0457
+[enet] - Individual fold scores: [-2.91415557 -3.00557963]
+[enet] - MAE: 2.3498 ± 0.0421
+[enet] - Individual fold scores: [-2.30775151 -2.39190879]
+[hgb] 
+Training hgb model...
+[hgb] Model results:
+[hgb] - R2: 0.2049 ± 0.0022
+[hgb] - Individual fold scores: [0.20264301 0.20707974]
+[hgb] - MSE: 6.9663 ± 0.1957
+[hgb] - Individual fold scores: [-6.77052444 -7.16198462]
+[hgb] - RMSE: 2.6391 ± 0.0371
+[hgb] - Individual fold scores: [-2.60202314 -2.67618845]
+[hgb] - MAE: 2.0459 ± 0.0293
+[hgb] - Individual fold scores: [-2.01665799 -2.07519826]
+[xgb] 
+Training xgb model...
+[xgb] Model results:
+[xgb] - R2: 0.2103 ± 0.0075
+[xgb] - Individual fold scores: [0.21778347 0.20276322]
+[xgb] - MSE: 6.9215 ± 0.2795
+[xgb] - Individual fold scores: [-6.64196365 -7.20097321]
+[xgb] - RMSE: 2.6303 ± 0.0531
+[xgb] - Individual fold scores: [-2.57720074 -2.68346291]
+[xgb] - MAE: 2.0400 ± 0.0407
+[xgb] - Individual fold scores: [-1.99931735 -2.08067149]
+[lgbm] 
+Training lgbm model...
+[lgbm] Model results:
+[lgbm] - R2: 0.2056 ± 0.0070
+[lgbm] - Individual fold scores: [0.19859032 0.21261168]
+[lgbm] - MSE: 6.9585 ± 0.1535
+[lgbm] - Individual fold scores: [-6.8049367  -7.11201782]
+[lgbm] - RMSE: 2.6377 ± 0.0291
+[lgbm] - Individual fold scores: [-2.60862736 -2.66683667]
+[lgbm] - MAE: 2.0426 ± 0.0151
+[lgbm] - Individual fold scores: [-2.0275184  -2.05764055]
+[catboost] 
+Training catboost model...
+[catboost] Model results:
+[catboost] - R2: 0.2291 ± 0.0015
+[catboost] - Individual fold scores: [0.22756976 0.23060805]
+[catboost] - MSE: 6.7542 ± 0.1953
+[catboost] - Individual fold scores: [-6.55886617 -6.94946714]
+[catboost] - RMSE: 2.5986 ± 0.0376
+[catboost] - Individual fold scores: [-2.56102834 -2.6361842 ]
+[catboost] - MAE: 2.0159 ± 0.0275
+[catboost] - Individual fold scores: [-1.98835956 -2.04339033]
+Best model: <catboost.core.CatBoostRegressor object at 0x17f551370>
+
+Evaluating model on test set...
+Model evaluation metrics:
+- MSE: 6.3632
+- RMSE: 2.5225
+- MAE: 1.9574
+- R2: 0.2780

@@ -1,0 +1,109 @@
+ML Framework Run - 2025-06-01 23:08:23
+
+Data preparation started:
+- Initial dataset size: 7525 rows
+- Dropped 1240 rows with missing target values
+- Final dataset size: 6285 rows
+- Applied mean imputation to features
+Data split and scaling completed:
+- Training set size: 5028 samples
+- Test set size: 1257 samples
+- Number of features: 226
+- Target variable: y_revenue_SUE
+Starting model training with 2-fold cross-validation
+[linear] 
+Training linear model...
+[linear] Model results:
+[linear] - R2: -542.6931 ± 523.8566
+[linear] - Individual fold scores: [  -18.83656897 -1066.54971353]
+[linear] - MSE: 3124.4108 ± 2997.0029
+[linear] - Individual fold scores: [ -127.40786303 -6121.41367474]
+[linear] - RMSE: 44.7635 ± 33.4760
+[linear] - Individual fold scores: [-11.28750916 -78.23946367]
+[linear] - MAE: 2.9319 ± 0.6369
+[linear] - Individual fold scores: [-2.29503764 -3.56884548]
+[ridge] 
+Training ridge model...
+[ridge] Model results:
+[ridge] - R2: -3.2186 ± 2.5861
+[ridge] - Individual fold scores: [-0.63249754 -5.80471667]
+[ridge] - MSE: 24.7521 ± 14.2667
+[ridge] - Individual fold scores: [-10.4853326 -39.0187784]
+[ridge] - RMSE: 4.7423 ± 1.5042
+[ridge] - Individual fold scores: [-3.23810633 -6.24650129]
+[ridge] - MAE: 2.0472 ± 0.0389
+[ridge] - Individual fold scores: [-2.00835049 -2.08606755]
+[lasso] 
+Training lasso model...
+[lasso] Model results:
+[lasso] - R2: -0.0005 ± 0.0000
+[lasso] - Individual fold scores: [-0.00051672 -0.00057879]
+[lasso] - MSE: 6.0818 ± 0.3444
+[lasso] - Individual fold scores: [-6.42619683 -5.73739713]
+[lasso] - RMSE: 2.4651 ± 0.0699
+[lasso] - Individual fold scores: [-2.53499444 -2.39528644]
+[lasso] - MAE: 1.8390 ± 0.0487
+[lasso] - Individual fold scores: [-1.88766267 -1.79023945]
+[enet] 
+Training enet model...
+[enet] Model results:
+[enet] - R2: -0.0005 ± 0.0000
+[enet] - Individual fold scores: [-0.00051672 -0.00057879]
+[enet] - MSE: 6.0818 ± 0.3444
+[enet] - Individual fold scores: [-6.42619683 -5.73739713]
+[enet] - RMSE: 2.4651 ± 0.0699
+[enet] - Individual fold scores: [-2.53499444 -2.39528644]
+[enet] - MAE: 1.8390 ± 0.0487
+[enet] - Individual fold scores: [-1.88766267 -1.79023945]
+[hgb] 
+Training hgb model...
+[hgb] Model results:
+[hgb] - R2: 0.0853 ± 0.0277
+[hgb] - Individual fold scores: [0.11302985 0.05765013]
+[hgb] - MSE: 5.5502 ± 0.1467
+[hgb] - Individual fold scores: [-5.69690112 -5.40350795]
+[hgb] - RMSE: 2.3557 ± 0.0311
+[hgb] - Individual fold scores: [-2.3868182  -2.32454467]
+[hgb] - MAE: 1.7591 ± 0.0233
+[hgb] - Individual fold scores: [-1.78245545 -1.73580799]
+[xgb] 
+Training xgb model...
+[xgb] Model results:
+[xgb] - R2: 0.1126 ± 0.0185
+[xgb] - Individual fold scores: [0.1310541  0.09406686]
+[xgb] - MSE: 5.3879 ± 0.1932
+[xgb] - Individual fold scores: [-5.58113352 -5.19469157]
+[xgb] - RMSE: 2.3208 ± 0.0416
+[xgb] - Individual fold scores: [-2.36244228 -2.2791866 ]
+[xgb] - MAE: 1.7306 ± 0.0262
+[xgb] - Individual fold scores: [-1.75674493 -1.70437619]
+[lgbm] 
+Training lgbm model...
+[lgbm] Model results:
+[lgbm] - R2: 0.0924 ± 0.0317
+[lgbm] - Individual fold scores: [0.12410294 0.06060499]
+[lgbm] - MSE: 5.5062 ± 0.1196
+[lgbm] - Individual fold scores: [-5.62577999 -5.38656455]
+[lgbm] - RMSE: 2.3464 ± 0.0255
+[lgbm] - Individual fold scores: [-2.37187268 -2.32089736]
+[lgbm] - MAE: 1.7503 ± 0.0187
+[lgbm] - Individual fold scores: [-1.76892993 -1.73162512]
+[catboost] 
+Training catboost model...
+[catboost] Model results:
+[catboost] - R2: 0.1278 ± 0.0112
+[catboost] - Individual fold scores: [0.1390839  0.11661536]
+[catboost] - MSE: 5.2975 ± 0.2321
+[catboost] - Individual fold scores: [-5.52955913 -5.06539672]
+[catboost] - RMSE: 2.3011 ± 0.0504
+[catboost] - Individual fold scores: [-2.35150146 -2.25064362]
+[catboost] - MAE: 1.7165 ± 0.0262
+[catboost] - Individual fold scores: [-1.74268291 -1.69035441]
+Best model: <catboost.core.CatBoostRegressor object at 0x17ff33530>
+
+Evaluating model on test set...
+Model evaluation metrics:
+- MSE: 5.0459
+- RMSE: 2.2463
+- MAE: 1.6687
+- R2: 0.1756

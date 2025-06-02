@@ -90,9 +90,6 @@ def _calculate_basic_stats(df: pd.DataFrame, stats_dir: str) -> pd.DataFrame:
                     lambda x: x.skew(), lambda x: x.kurtosis()])
     stats.index = ['count', 'mean', 'std', 'min', 'max', 'median', 'skewness', 'kurtosis']
     
-    # Save to CSV
-    stats.to_csv(os.path.join(stats_dir, 'y_variables_basic_stats.csv'))
-    logger.info("Basic statistics calculated and saved")
     
     return stats
 

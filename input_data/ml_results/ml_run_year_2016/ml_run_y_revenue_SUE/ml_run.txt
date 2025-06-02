@@ -1,0 +1,109 @@
+ML Framework Run - 2025-06-02 03:44:52
+
+Data preparation started:
+- Initial dataset size: 8171 rows
+- Dropped 1091 rows with missing target values
+- Final dataset size: 7080 rows
+- Applied mean imputation to features
+Data split and scaling completed:
+- Training set size: 5664 samples
+- Test set size: 1416 samples
+- Number of features: 226
+- Target variable: y_revenue_SUE
+Starting model training with 2-fold cross-validation
+[linear] 
+Training linear model...
+[linear] Model results:
+[linear] - R2: -432.7865 ± 429.6888
+[linear] - Individual fold scores: [-862.47532527   -3.09771058]
+[linear] - MSE: 3010.7983 ± 2980.9466
+[linear] - Individual fold scores: [-5991.74491754   -29.85165263]
+[linear] - RMSE: 41.4350 ± 35.9713
+[linear] - Individual fold scores: [-77.40636225  -5.46366659]
+[linear] - MAE: 3.3851 ± 1.1798
+[linear] - Individual fold scores: [-4.56483625 -2.20527085]
+[ridge] 
+Training ridge model...
+[ridge] Model results:
+[ridge] - R2: -2.5366 ± 0.8334
+[ridge] - Individual fold scores: [-3.36999494 -1.70315799]
+[ridge] - MSE: 25.0081 ± 5.3157
+[ridge] - Individual fold scores: [-30.32384854 -19.69239451]
+[ridge] - RMSE: 4.9722 ± 0.5345
+[ridge] - Individual fold scores: [-5.50670941 -4.43761135]
+[ridge] - MAE: 2.1848 ± 0.0190
+[ridge] - Individual fold scores: [-2.20380475 -2.16584834]
+[lasso] 
+Training lasso model...
+[lasso] Model results:
+[lasso] - R2: -0.0000 ± 0.0000
+[lasso] - Individual fold scores: [-5.83414225e-06 -5.55716511e-06]
+[lasso] - MSE: 7.1121 ± 0.1729
+[lasso] - Individual fold scores: [-6.93914429 -7.28499925]
+[lasso] - RMSE: 2.6666 ± 0.0324
+[lasso] - Individual fold scores: [-2.63422556 -2.69907378]
+[lasso] - MAE: 2.0129 ± 0.0268
+[lasso] - Individual fold scores: [-1.98612655 -2.03972598]
+[enet] 
+Training enet model...
+[enet] Model results:
+[enet] - R2: 0.0045 ± 0.0004
+[enet] - Individual fold scores: [0.0040357  0.00489632]
+[enet] - MSE: 7.0802 ± 0.1691
+[enet] - Individual fold scores: [-6.91109964 -7.24928925]
+[enet] - RMSE: 2.6607 ± 0.0318
+[enet] - Individual fold scores: [-2.62889704 -2.69245042]
+[enet] - MAE: 2.0085 ± 0.0264
+[enet] - Individual fold scores: [-1.98207386 -2.03492225]
+[hgb] 
+Training hgb model...
+[hgb] Model results:
+[hgb] - R2: 0.1479 ± 0.0020
+[hgb] - Individual fold scores: [0.1459442 0.1499034]
+[hgb] - MSE: 6.0597 ± 0.1333
+[hgb] - Individual fold scores: [-5.92638183 -6.19291868]
+[hgb] - RMSE: 2.4615 ± 0.0271
+[hgb] - Individual fold scores: [-2.43441612 -2.48855755]
+[hgb] - MAE: 1.8557 ± 0.0255
+[hgb] - Individual fold scores: [-1.83019284 -1.88123603]
+[xgb] 
+Training xgb model...
+[xgb] Model results:
+[xgb] - R2: 0.1600 ± 0.0083
+[xgb] - Individual fold scores: [0.15175569 0.16833879]
+[xgb] - MSE: 5.9723 ± 0.0863
+[xgb] - Individual fold scores: [-5.88605533 -6.05861761]
+[xgb] - RMSE: 2.4438 ± 0.0177
+[xgb] - Individual fold scores: [-2.4261194  -2.46142593]
+[xgb] - MAE: 1.8481 ± 0.0109
+[xgb] - Individual fold scores: [-1.83714544 -1.85896537]
+[lgbm] 
+Training lgbm model...
+[lgbm] Model results:
+[lgbm] - R2: 0.1496 ± 0.0080
+[lgbm] - Individual fold scores: [0.14156211 0.15761343]
+[lgbm] - MSE: 6.0468 ± 0.0900
+[lgbm] - Individual fold scores: [-5.95678964 -6.13675142]
+[lgbm] - RMSE: 2.4590 ± 0.0183
+[lgbm] - Individual fold scores: [-2.44065353 -2.47724674]
+[lgbm] - MAE: 1.8546 ± 0.0214
+[lgbm] - Individual fold scores: [-1.83312294 -1.8760183 ]
+[catboost] 
+Training catboost model...
+[catboost] Model results:
+[catboost] - R2: 0.1798 ± 0.0012
+[catboost] - Individual fold scores: [0.18097856 0.1786264 ]
+[catboost] - MSE: 5.8335 ± 0.1502
+[catboost] - Individual fold scores: [-5.68327478 -5.98367278]
+[catboost] - RMSE: 2.4151 ± 0.0311
+[catboost] - Individual fold scores: [-2.38396199 -2.44615469]
+[catboost] - MAE: 1.8198 ± 0.0257
+[catboost] - Individual fold scores: [-1.79406161 -1.84555683]
+Best model: <catboost.core.CatBoostRegressor object at 0x147700800>
+
+Evaluating model on test set...
+Model evaluation metrics:
+- MSE: 5.3507
+- RMSE: 2.3132
+- MAE: 1.7310
+- R2: 0.2205

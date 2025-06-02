@@ -1,0 +1,109 @@
+ML Framework Run - 2025-06-01 23:01:07
+
+Data preparation started:
+- Initial dataset size: 7536 rows
+- Dropped 1858 rows with missing target values
+- Final dataset size: 5678 rows
+- Applied mean imputation to features
+Data split and scaling completed:
+- Training set size: 4542 samples
+- Test set size: 1136 samples
+- Number of features: 226
+- Target variable: y_EPSNormalized_surprise
+Starting model training with 2-fold cross-validation
+[linear] 
+Training linear model...
+[linear] Model results:
+[linear] - R2: -19.5006 ± 11.9567
+[linear] - Individual fold scores: [ -7.54384428 -31.45729889]
+[linear] - MSE: 16016.3096 ± 9149.9369
+[linear] - Individual fold scores: [ -6866.37264624 -25166.24647516]
+[linear] - RMSE: 120.7512 ± 37.8876
+[linear] - Individual fold scores: [ -82.86357853 -158.63872943]
+[linear] - MAE: 25.6390 ± 2.1022
+[linear] - Individual fold scores: [-23.53679742 -27.74110465]
+[ridge] 
+Training ridge model...
+[ridge] Model results:
+[ridge] - R2: -4.4576 ± 3.7650
+[ridge] - Individual fold scores: [-0.6925622  -8.22264806]
+[ridge] - MSE: 4255.5832 ± 2895.3333
+[ridge] - Individual fold scores: [-1360.24983589 -7150.91650591]
+[ridge] - RMSE: 60.7223 ± 23.8408
+[ridge] - Individual fold scores: [-36.88156499 -84.56309187]
+[ridge] - MAE: 22.6365 ± 0.5715
+[ridge] - Individual fold scores: [-22.06502048 -23.20793764]
+[lasso] 
+Training lasso model...
+[lasso] Model results:
+[lasso] - R2: 0.0831 ± 0.0023
+[lasso] - Individual fold scores: [0.08080109 0.08539352]
+[lasso] - MSE: 723.9400 ± 14.7863
+[lasso] - Individual fold scores: [-738.72627551 -709.15365173]
+[lasso] - RMSE: 26.9047 ± 0.2748
+[lasso] - Individual fold scores: [-27.17951941 -26.62993901]
+[lasso] - MAE: 19.9428 ± 0.0015
+[lasso] - Individual fold scores: [-19.94123189 -19.94428953]
+[enet] 
+Training enet model...
+[enet] Model results:
+[enet] - R2: 0.0915 ± 0.0052
+[enet] - Individual fold scores: [0.08623861 0.09669149]
+[enet] - MSE: 717.3750 ± 16.9814
+[enet] - Individual fold scores: [-734.35633757 -700.39360844]
+[enet] - RMSE: 26.7820 ± 0.3170
+[enet] - Individual fold scores: [-27.0990099  -26.46495057]
+[enet] - MAE: 19.8547 ± 0.0254
+[enet] - Individual fold scores: [-19.88016104 -19.8292704 ]
+[hgb] 
+Training hgb model...
+[hgb] Model results:
+[hgb] - R2: 0.1191 ± 0.0019
+[hgb] - Individual fold scores: [0.11713017 0.12099613]
+[hgb] - MSE: 695.5393 ± 13.9906
+[hgb] - Individual fold scores: [-709.52993192 -681.54864661]
+[hgb] - RMSE: 26.3717 ± 0.2653
+[hgb] - Individual fold scores: [-26.63700306 -26.10648668]
+[hgb] - MAE: 19.3295 ± 0.0732
+[hgb] - Individual fold scores: [-19.40269033 -19.2562144 ]
+[xgb] 
+Training xgb model...
+[xgb] Model results:
+[xgb] - R2: 0.1265 ± 0.0063
+[xgb] - Individual fold scores: [0.13277051 0.12015307]
+[xgb] - MSE: 689.5813 ± 7.3790
+[xgb] - Individual fold scores: [-696.96036863 -682.20232065]
+[xgb] - RMSE: 26.2595 ± 0.1405
+[xgb] - Individual fold scores: [-26.40000698 -26.11900306]
+[xgb] - MAE: 19.2746 ± 0.0182
+[xgb] - Individual fold scores: [-19.25634568 -19.29281688]
+[lgbm] 
+Training lgbm model...
+[lgbm] Model results:
+[lgbm] - R2: 0.1191 ± 0.0013
+[lgbm] - Individual fold scores: [0.12040847 0.11787172]
+[lgbm] - MSE: 695.4332 ± 11.4620
+[lgbm] - Individual fold scores: [-706.89528299 -683.97120055]
+[lgbm] - RMSE: 26.3702 ± 0.2173
+[lgbm] - Individual fold scores: [-26.58750238 -26.15284307]
+[lgbm] - MAE: 19.3135 ± 0.0397
+[lgbm] - Individual fold scores: [-19.35311949 -19.27380942]
+[catboost] 
+Training catboost model...
+[catboost] Model results:
+[catboost] - R2: 0.1544 ± 0.0024
+[catboost] - Individual fold scores: [0.1567948  0.15197149]
+[catboost] - MSE: 667.5922 ± 10.0607
+[catboost] - Individual fold scores: [-677.65293291 -657.53143842]
+[catboost] - RMSE: 25.8371 ± 0.1947
+[catboost] - Individual fold scores: [-26.03176776 -25.64237583]
+[catboost] - MAE: 18.9268 ± 0.0027
+[catboost] - Individual fold scores: [-18.92410752 -18.92954527]
+Best model: <catboost.core.CatBoostRegressor object at 0x1694f6150>
+
+Evaluating model on test set...
+Model evaluation metrics:
+- MSE: 630.7408
+- RMSE: 25.1146
+- MAE: 18.1162
+- R2: 0.1373

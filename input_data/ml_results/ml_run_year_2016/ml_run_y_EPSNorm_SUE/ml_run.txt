@@ -1,0 +1,109 @@
+ML Framework Run - 2025-06-02 03:44:52
+
+Data preparation started:
+- Initial dataset size: 8171 rows
+- Dropped 894 rows with missing target values
+- Final dataset size: 7277 rows
+- Applied mean imputation to features
+Data split and scaling completed:
+- Training set size: 5821 samples
+- Test set size: 1456 samples
+- Number of features: 226
+- Target variable: y_EPSNorm_SUE
+Starting model training with 2-fold cross-validation
+[linear] 
+Training linear model...
+[linear] Model results:
+[linear] - R2: -205.4947 ± 170.1375
+[linear] - Individual fold scores: [-375.63221158  -35.35711216]
+[linear] - MSE: 1912.2378 ± 1576.7669
+[linear] - Individual fold scores: [-3489.0047025   -335.47089565]
+[linear] - RMSE: 38.6918 ± 20.3760
+[linear] - Individual fold scores: [-59.06779751 -18.31586459]
+[linear] - MAE: 3.3931 ± 0.5101
+[linear] - Individual fold scores: [-3.90319664 -2.88294661]
+[ridge] 
+Training ridge model...
+[ridge] Model results:
+[ridge] - R2: -1.2019 ± 0.3509
+[ridge] - Individual fold scores: [-0.85093474 -1.55282406]
+[ridge] - MSE: 20.3508 ± 3.2043
+[ridge] - Individual fold scores: [-17.1464888  -23.55517591]
+[ridge] - RMSE: 4.4971 ± 0.3563
+[ridge] - Individual fold scores: [-4.1408319  -4.85336748]
+[ridge] - MAE: 2.5329 ± 0.0143
+[ridge] - Individual fold scores: [-2.51862521 -2.54718752]
+[lasso] 
+Training lasso model...
+[lasso] Model results:
+[lasso] - R2: -0.0000 ± 0.0000
+[lasso] - Individual fold scores: [-5.64715689e-06 -5.66954856e-06]
+[lasso] - MSE: 9.2455 ± 0.0183
+[lasso] - Individual fold scores: [-9.26374404 -9.22715743]
+[lasso] - RMSE: 3.0406 ± 0.0030
+[lasso] - Individual fold scores: [-3.04363993 -3.03762365]
+[lasso] - MAE: 2.3370 ± 0.0040
+[lasso] - Individual fold scores: [-2.34094334 -2.33301892]
+[enet] 
+Training enet model...
+[enet] Model results:
+[enet] - R2: 0.0023 ± 0.0018
+[enet] - Individual fold scores: [0.00411097 0.00044879]
+[enet] - MSE: 9.2243 ± 0.0013
+[enet] - Individual fold scores: [-9.22560899 -9.22296406]
+[enet] - RMSE: 3.0372 ± 0.0002
+[enet] - Individual fold scores: [-3.03736876 -3.03693333]
+[enet] - MAE: 2.3338 ± 0.0014
+[enet] - Individual fold scores: [-2.33520507 -2.33249269]
+[hgb] 
+Training hgb model...
+[hgb] Model results:
+[hgb] - R2: 0.0685 ± 0.0089
+[hgb] - Individual fold scores: [0.07741189 0.05968009]
+[hgb] - MSE: 8.6115 ± 0.0649
+[hgb] - Individual fold scores: [-8.54657184 -8.67643064]
+[hgb] - RMSE: 2.9345 ± 0.0111
+[hgb] - Individual fold scores: [-2.92345204 -2.94557815]
+[hgb] - MAE: 2.2576 ± 0.0039
+[hgb] - Individual fold scores: [-2.25370358 -2.26153432]
+[xgb] 
+Training xgb model...
+[xgb] Model results:
+[xgb] - R2: 0.0910 ± 0.0135
+[xgb] - Individual fold scores: [0.10449644 0.0774728 ]
+[xgb] - MSE: 8.4040 ± 0.1083
+[xgb] - Individual fold scores: [-8.2956689  -8.51225544]
+[xgb] - RMSE: 2.8989 ± 0.0187
+[xgb] - Individual fold scores: [-2.88022029 -2.91757698]
+[xgb] - MAE: 2.2219 ± 0.0157
+[xgb] - Individual fold scores: [-2.20623782 -2.23763595]
+[lgbm] 
+Training lgbm model...
+[lgbm] Model results:
+[lgbm] - R2: 0.0727 ± 0.0084
+[lgbm] - Individual fold scores: [0.08103916 0.06428505]
+[lgbm] - MSE: 8.5735 ± 0.0605
+[lgbm] - Individual fold scores: [-8.51296997 -8.6339402 ]
+[lgbm] - RMSE: 2.9280 ± 0.0103
+[lgbm] - Individual fold scores: [-2.91769943 -2.93835672]
+[lgbm] - MAE: 2.2526 ± 0.0084
+[lgbm] - Individual fold scores: [-2.24412971 -2.26101563]
+[catboost] 
+Training catboost model...
+[catboost] Model results:
+[catboost] - R2: 0.1075 ± 0.0064
+[catboost] - Individual fold scores: [0.11397132 0.10112077]
+[catboost] - MSE: 8.2510 ± 0.0431
+[catboost] - Individual fold scores: [-8.20789656 -8.29405317]
+[catboost] - RMSE: 2.8724 ± 0.0075
+[catboost] - Individual fold scores: [-2.86494268 -2.87993979]
+[catboost] - MAE: 2.1987 ± 0.0104
+[catboost] - Individual fold scores: [-2.18832503 -2.20908873]
+Best model: <catboost.core.CatBoostRegressor object at 0x158ccfe60>
+
+Evaluating model on test set...
+Model evaluation metrics:
+- MSE: 8.0660
+- RMSE: 2.8401
+- MAE: 2.1547
+- R2: 0.1079

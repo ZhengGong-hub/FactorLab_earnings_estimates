@@ -1,0 +1,109 @@
+ML Framework Run - 2025-06-02 04:32:38
+
+Data preparation started:
+- Initial dataset size: 8094 rows
+- Dropped 1627 rows with missing target values
+- Final dataset size: 6467 rows
+- Applied mean imputation to features
+Data split and scaling completed:
+- Training set size: 5173 samples
+- Test set size: 1294 samples
+- Number of features: 226
+- Target variable: y_EPS_SUE
+Starting model training with 2-fold cross-validation
+[linear] 
+Training linear model...
+[linear] Model results:
+[linear] - R2: -721.0794 ± 584.4446
+[linear] - Individual fold scores: [ -136.63480625 -1305.52393249]
+[linear] - MSE: 19106.5836 ± 15406.8010
+[linear] - Individual fold scores: [ -3699.78265934 -34513.38458463]
+[linear] - RMSE: 123.3018 ± 62.4760
+[linear] - Individual fold scores: [ -60.82583875 -185.77778281]
+[linear] - MAE: 7.8592 ± 1.8984
+[linear] - Individual fold scores: [-5.96079925 -9.75754888]
+[ridge] 
+Training ridge model...
+[ridge] Model results:
+[ridge] - R2: -2.3250 ± 1.1592
+[ridge] - Individual fold scores: [-3.48420781 -1.16583102]
+[ridge] - MSE: 88.8768 ± 31.6638
+[ridge] - Individual fold scores: [-120.54068847  -57.21300399]
+[ridge] - RMSE: 9.2715 ± 1.7076
+[ridge] - Individual fold scores: [-10.97910235  -7.56392781]
+[ridge] - MAE: 4.1297 ± 0.0737
+[ridge] - Individual fold scores: [-4.20348937 -4.05599229]
+[lasso] 
+Training lasso model...
+[lasso] Model results:
+[lasso] - R2: -0.0007 ± 0.0000
+[lasso] - Individual fold scores: [-0.00065887 -0.00067046]
+[lasso] - MSE: 26.6664 ± 0.2325
+[lasso] - Individual fold scores: [-26.89886682 -26.43390121]
+[lasso] - RMSE: 5.1639 ± 0.0225
+[lasso] - Individual fold scores: [-5.18641175 -5.14139098]
+[lasso] - MAE: 3.6343 ± 0.0023
+[lasso] - Individual fold scores: [-3.63661023 -3.63196326]
+[enet] 
+Training enet model...
+[enet] Model results:
+[enet] - R2: 0.0081 ± 0.0010
+[enet] - Individual fold scores: [0.007141  0.0091411]
+[enet] - MSE: 26.4320 ± 0.2572
+[enet] - Individual fold scores: [-26.68919727 -26.17471715]
+[enet] - RMSE: 5.1411 ± 0.0250
+[enet] - Individual fold scores: [-5.16615885 -5.11612325]
+[enet] - MAE: 3.6156 ± 0.0040
+[enet] - Individual fold scores: [-3.6196369  -3.61156158]
+[hgb] 
+Training hgb model...
+[hgb] Model results:
+[hgb] - R2: 0.0541 ± 0.0029
+[hgb] - Individual fold scores: [0.05116992 0.05696165]
+[hgb] - MSE: 25.2086 ± 0.2971
+[hgb] - Individual fold scores: [-25.50564912 -24.91148032]
+[hgb] - RMSE: 5.0207 ± 0.0296
+[hgb] - Individual fold scores: [-5.05031178 -4.99114018]
+[hgb] - MAE: 3.6516 ± 0.0167
+[hgb] - Individual fold scores: [-3.66829022 -3.63489578]
+[xgb] 
+Training xgb model...
+[xgb] Model results:
+[xgb] - R2: 0.0754 ± 0.0007
+[xgb] - Individual fold scores: [0.07613497 0.07463901]
+[xgb] - MSE: 24.6395 ± 0.1950
+[xgb] - Individual fold scores: [-24.83455984 -24.44451196]
+[xgb] - RMSE: 4.9638 ± 0.0196
+[xgb] - Individual fold scores: [-4.98342852 -4.94413915]
+[xgb] - MAE: 3.5981 ± 0.0122
+[xgb] - Individual fold scores: [-3.61025653 -3.5858838 ]
+[lgbm] 
+Training lgbm model...
+[lgbm] Model results:
+[lgbm] - R2: 0.0611 ± 0.0032
+[lgbm] - Individual fold scores: [0.06432976 0.05795212]
+[lgbm] - MSE: 25.0186 ± 0.1333
+[lgbm] - Individual fold scores: [-25.15189738 -24.88531598]
+[lgbm] - RMSE: 5.0018 ± 0.0133
+[lgbm] - Individual fold scores: [-5.01516673 -4.98851842]
+[lgbm] - MAE: 3.6460 ± 0.0014
+[lgbm] - Individual fold scores: [-3.64734051 -3.64458736]
+[catboost] 
+Training catboost model...
+[catboost] Model results:
+[catboost] - R2: 0.0825 ± 0.0000
+[catboost] - Individual fold scores: [0.08245062 0.08251767]
+[catboost] - MSE: 24.4506 ± 0.2142
+[catboost] - Individual fold scores: [-24.6647877  -24.23638772]
+[catboost] - RMSE: 4.9447 ± 0.0217
+[catboost] - Individual fold scores: [-4.96636564 -4.92304659]
+[catboost] - MAE: 3.5535 ± 0.0007
+[catboost] - Individual fold scores: [-3.55424179 -3.55278082]
+Best model: <catboost.core.CatBoostRegressor object at 0x17aa33170>
+
+Evaluating model on test set...
+Model evaluation metrics:
+- MSE: 22.2025
+- RMSE: 4.7120
+- MAE: 3.3277
+- R2: 0.1351
