@@ -49,7 +49,7 @@ if __name__ == "__main__":
     logger.info("Processed data saved to output_data/cleaned_data.parquet")
 
     # Run description statistics
-    describe_data(df_processed)
+    #describe_data(df_processed)
 
     # Run ML results analysis
     ml_summary()
