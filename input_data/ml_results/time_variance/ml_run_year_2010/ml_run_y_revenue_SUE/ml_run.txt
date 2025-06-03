@@ -1,0 +1,207 @@
+ML Framework Run - 2025-06-03 08:12:31
+
+Data preparation started:
+- Initial dataset size: 7525 rows
+- Dropped 1240 rows with missing target values
+- Final dataset size: 6285 rows
+- Applied mean imputation to features
+Data split and scaling completed:
+- Training set size: 5028 samples
+- Test set size: 1257 samples
+- Number of features: 226
+- Target variable: y_revenue_SUE
+Starting model training with 5-fold cross-validation
+[linear] 
+Training linear model...
+[linear] Model results:
+[linear] - R2: -430.9207 ± 853.5346
+[linear] - Individual fold scores: [-1.20204919e-03 -1.34659138e-01 -1.63033123e+01 -2.20502341e-01
+ -2.13794396e+03]
+[linear] - MSE: 2367.5835 ± 4673.6628
+[linear] - Individual fold scores: [6.38857565e+00 7.50776441e+00 1.02103261e+02 7.29855017e+00
+ 1.17146192e+04]
+[linear] - RMSE: 25.2616 ± 41.5865
+[linear] - Individual fold scores: [  2.52756318   2.74003     10.10461584   2.7015829  108.23409452]
+[linear] - MAE: 2.6177 ± 1.3169
+[linear] - Individual fold scores: [1.87784803 1.92637602 2.16564595 1.87571667 5.24284412]
+Feature importances: coef_
+[ridge] 
+Training ridge model...
+[ridge] Model results:
+[ridge] - R2: -7.0035 ± 13.5649
+[ridge] - Individual fold scores: [ 5.38323587e-03 -6.58737957e-02 -6.46060447e-01 -1.81463823e-01
+ -3.41293949e+01]
+[ridge] - MSE: 44.5150 ± 73.9502
+[ridge] - Individual fold scores: [  6.34655557   7.05262848   9.71306169   7.06510155 192.39750659]
+[ridge] - RMSE: 4.9641 ± 4.4579
+[ridge] - Individual fold scores: [ 2.5192371   2.65567854  3.11657852  2.65802588 13.87074283]
+[ridge] - MAE: 1.9568 ± 0.1312
+[ridge] - Individual fold scores: [1.87319635 1.91570087 1.91305492 1.86612418 2.21602447]
+Feature importances: coef_
+[lasso] 
+Training lasso model...
+[lasso] Model results:
+[lasso] - R2: -0.0020 ± 0.0020
+[lasso] - Individual fold scores: [-8.54082983e-05 -5.34359334e-03 -1.50593700e-03 -3.06815942e-03
+ -6.08266507e-05]
+[lasso] - MSE: 6.0837 ± 0.4043
+[lasso] - Individual fold scores: [6.38145047 6.65211481 5.90967906 5.99830335 5.47715695]
+[lasso] - RMSE: 2.4652 ± 0.0821
+[lasso] - Individual fold scores: [2.52615329 2.5791694  2.43098315 2.44914339 2.34033266]
+[lasso] - MAE: 1.8388 ± 0.0604
+[lasso] - Individual fold scores: [1.88498776 1.91059557 1.81751356 1.84427417 1.73654344]
+Feature importances: coef_
+[enet] 
+Training enet model...
+[enet] Model results:
+[enet] - R2: -0.0020 ± 0.0020
+[enet] - Individual fold scores: [-8.54082983e-05 -5.34359334e-03 -1.50593700e-03 -3.06815942e-03
+ -6.08266507e-05]
+[enet] - MSE: 6.0837 ± 0.4043
+[enet] - Individual fold scores: [6.38145047 6.65211481 5.90967906 5.99830335 5.47715695]
+[enet] - RMSE: 2.4652 ± 0.0821
+[enet] - Individual fold scores: [2.52615329 2.5791694  2.43098315 2.44914339 2.34033266]
+[enet] - MAE: 1.8388 ± 0.0604
+[enet] - Individual fold scores: [1.88498776 1.91059557 1.81751356 1.84427417 1.73654344]
+Feature importances: coef_
+[xgb] 
+Training xgb model...
+[xgb] Model results:
+[xgb] - R2: 0.1287 ± 0.0309
+[xgb] - Individual fold scores: [0.15535696 0.17371369 0.09846927 0.11912365 0.09670325]
+[xgb] - MSE: 5.2783 ± 0.1787
+[xgb] - Individual fold scores: [5.38958738 5.46733619 5.31974607 5.26760172 4.94719713]
+[xgb] - RMSE: 2.2971 ± 0.0392
+[xgb] - Individual fold scores: [2.32154849 2.33823356 2.30645747 2.29512564 2.22422956]
+[xgb] - MAE: 1.7033 ± 0.0305
+[xgb] - Individual fold scores: [1.7206834  1.73135712 1.69382972 1.72267054 1.64771266]
+Feature importances: feature_importances_
+[lgbm] 
+Training lgbm model...
+[lgbm] Model results:
+[lgbm] - R2: 0.1248 ± 0.0286
+[lgbm] - Individual fold scores: [0.16900409 0.14660043 0.09848179 0.11481997 0.0952569 ]
+[lgbm] - MSE: 5.3035 ± 0.2189
+[lgbm] - Individual fold scores: [5.30250635 5.64673806 5.3196722  5.29333751 4.95511857]
+[lgbm] - RMSE: 2.3024 ± 0.0476
+[lgbm] - Individual fold scores: [2.30271717 2.37628661 2.30644146 2.30072543 2.22600956]
+[lgbm] - MAE: 1.7050 ± 0.0430
+[lgbm] - Individual fold scores: [1.71598503 1.74830704 1.70525846 1.73133348 1.6240308 ]
+Feature importances: feature_importances_
+[catboost] 
+Training catboost model...
+[catboost] Model results:
+[catboost] - R2: 0.1385 ± 0.0265
+[catboost] - Individual fold scores: [0.17844541 0.15702618 0.11672855 0.13491173 0.10542136]
+[catboost] - MSE: 5.2209 ± 0.2161
+[catboost] - Individual fold scores: [5.24226222 5.57775336 5.21200182 5.17318971 4.89944962]
+[catboost] - RMSE: 2.2844 ± 0.0472
+[catboost] - Individual fold scores: [2.2895987  2.36172677 2.28298091 2.27446471 2.21347004]
+[catboost] - MAE: 1.6915 ± 0.0316
+[catboost] - Individual fold scores: [1.69366745 1.73211488 1.6747153  1.71532529 1.64155425]
+Feature importances: feature_importances_
+[nn1] 
+Training nn1 model...
+[nn1] Model results:
+[nn1] - R2: 0.0270 ± 0.0241
+[nn1] - Individual fold scores: [ 0.05765494  0.0409596   0.03794628  0.00608069 -0.00780194]
+[nn1] - MSE: 5.8998 ± 0.2856
+[nn1] - Individual fold scores: [6.01301478 6.34573779 5.67687968 5.94359361 5.51955364]
+[nn1] - RMSE: 2.4282 ± 0.0587
+[nn1] - Individual fold scores: [2.45214493 2.51907479 2.38262034 2.43794865 2.34937303]
+[nn1] - MAE: 1.7878 ± 0.0555
+[nn1] - Individual fold scores: [1.8225103  1.85581941 1.73784144 1.81465545 1.70796233]
+[nn2] 
+Training nn2 model...
+[nn2] Model results:
+[nn2] - R2: 0.0312 ± 0.0290
+[nn2] - Individual fold scores: [ 0.07193978  0.02057451 -0.01151491  0.05363936  0.02112522]
+[nn2] - MSE: 5.8783 ± 0.3710
+[nn2] - Individual fold scores: [5.92186454 6.48062098 5.96873994 5.65919486 5.36112472]
+[nn2] - RMSE: 2.4233 ± 0.0763
+[nn2] - Individual fold scores: [2.43348814 2.54570638 2.44310048 2.37890623 2.31541027]
+[nn2] - MAE: 1.7834 ± 0.0515
+[nn2] - Individual fold scores: [1.82058693 1.85166124 1.78255216 1.76111656 1.70129865]
+[nn3] 
+Training nn3 model...
+[nn3] Model results:
+[nn3] - R2: -0.0686 ± 0.0501
+[nn3] - Individual fold scores: [-0.03389332 -0.10202721 -0.13543761  0.00660702 -0.07833304]
+[nn3] - MSE: 6.4871 ± 0.5180
+[nn3] - Individual fold scores: [6.59717554 7.29184684 6.69998212 5.9404462  5.90584008]
+[nn3] - RMSE: 2.5450 ± 0.1013
+[nn3] - Individual fold scores: [2.56849675 2.70034199 2.58843237 2.43730306 2.43019342]
+[nn3] - MAE: 1.8767 ± 0.0694
+[nn3] - Individual fold scores: [1.90577186 1.96344422 1.90034664 1.85918087 1.75494518]
+
+Evaluating all models on test set...
+[linear] 
+Evaluating linear model...
+[linear] Test set metrics:
+- MSE: 6.8377
+- RMSE: 2.6149
+- MAE: 1.8662
+- R2: -0.1171
+[ridge] 
+Evaluating ridge model...
+[ridge] Test set metrics:
+- MSE: 6.8196
+- RMSE: 2.6114
+- MAE: 1.8618
+- R2: -0.1142
+[lasso] 
+Evaluating lasso model...
+[lasso] Test set metrics:
+- MSE: 6.1249
+- RMSE: 2.4749
+- MAE: 1.8443
+- R2: -0.0007
+[enet] 
+Evaluating enet model...
+[enet] Test set metrics:
+- MSE: 6.1249
+- RMSE: 2.4749
+- MAE: 1.8443
+- R2: -0.0007
+[xgb] 
+Evaluating xgb model...
+[xgb] Test set metrics:
+- MSE: 5.1392
+- RMSE: 2.2670
+- MAE: 1.6957
+- R2: 0.1604
+[lgbm] 
+Evaluating lgbm model...
+[lgbm] Test set metrics:
+- MSE: 5.0872
+- RMSE: 2.2555
+- MAE: 1.6751
+- R2: 0.1689
+[catboost] 
+Evaluating catboost model...
+[catboost] Test set metrics:
+- MSE: 5.0459
+- RMSE: 2.2463
+- MAE: 1.6687
+- R2: 0.1756
+[nn1] 
+Evaluating nn1 model...
+[nn1] Test set metrics:
+- MSE: 6.0168
+- RMSE: 2.4529
+- MAE: 1.7995
+- R2: 0.0170
+[nn2] 
+Evaluating nn2 model...
+[nn2] Test set metrics:
+- MSE: 5.6976
+- RMSE: 2.3870
+- MAE: 1.7814
+- R2: 0.0691
+[nn3] 
+Evaluating nn3 model...
+[nn3] Test set metrics:
+- MSE: 5.7465
+- RMSE: 2.3972
+- MAE: 1.8167
+- R2: 0.0611

@@ -22,7 +22,7 @@ def extract_ml_results(ml_results_dir: str) -> pd.DataFrame:
     Returns
     -------
     pd.DataFrame
-        DataFrame with columns: year, variable_name, metrics, value
+        DataFrame with columns: year, variable_name, metrics, value, method
     """
     results_data = []
     
@@ -50,28 +50,46 @@ def extract_ml_results(ml_results_dir: str) -> pd.DataFrame:
                             with open(ml_run_file, 'r') as f:
                                 content = f.read()
                                 
-                                # extract metrics
-                                metrics_pattern = r'- (MSE|RMSE|MAE|R2): ([\d.]+)'
-                                metrics_matches = re.finditer(metrics_pattern, content)
+                                # extract test set metrics
+                                test_section = re.search(r'Model evaluation metrics:(.*?)(?=\n\n|\Z)', content, re.DOTALL)
+                                if test_section:
+                                    test_content = test_section.group(1)
+                                    test_metrics_pattern = r'- (MSE|RMSE|MAE|R2): ([\d.-]+)'
+                                    test_matches = re.finditer(test_metrics_pattern, test_content)
+                                    
+                                    for match in test_matches:
+                                        metric, value = match.groups()
+                                        results_data.append({
+                                            'year': year,
+                                            'variable_name': variable_name,
+                                            'metric': metric,
+                                            'value': float(value),
+                                            'method': 'test'
+                                        })
                                 
-                                for match in metrics_matches:
-                                    metric, value = match.groups()
+                                # extract cross-validation metrics
+                                cv_metrics_pattern = r'\[(.*?)\] - (MSE|RMSE|MAE|R2): ([\d.-]+) ±'
+                                cv_matches = re.finditer(cv_metrics_pattern, content)
+                                
+                                for match in cv_matches:
+                                    model_type, metric, value = match.groups()
                                     results_data.append({
                                         'year': year,
                                         'variable_name': variable_name,
                                         'metric': metric,
-                                        'value': float(value)
+                                        'value': float(value),
+                                        'method': model_type
                                     })
         
         # create DataFrame
         if not results_data:
             logger.warning("No ML results found in the specified directory")
-            return pd.DataFrame(columns=['year', 'variable_name', 'metric', 'value'])
+            return pd.DataFrame(columns=['year', 'variable_name', 'metric', 'value', 'method'])
         
         df_results = pd.DataFrame(results_data)
         
         # sort for better organization
-        df_results = df_results.sort_values(['year', 'variable_name', 'metric'])
+        df_results = df_results.sort_values(['year', 'variable_name', 'method', 'metric'])
         
         logger.info(f"Successfully extracted ML results for {df_results['year'].nunique()} years "
                    f"and {df_results['variable_name'].nunique()} variables")
