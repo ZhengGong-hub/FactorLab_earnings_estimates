@@ -19,7 +19,7 @@ def run_ml_for_target(target_col: str, df: pd.DataFrame, output_dir: str = '') -
     ml.prepare_data(feature_cols, target_col)
     
     # Train and evaluate models
-    scores = ml.train_models(cv=2)
+    scores = ml.train_models(cv=5)
     
     # Evaluate the best model
     metrics = ml.evaluate_model()
@@ -45,7 +45,7 @@ if __name__ == "__main__":
     #############################################
     # ALL DATA
     #############################################
-    if False:
+    if True:
         # Create a partial function with the DataFrame
         run_ml = partial(run_ml_for_target, df=df, output_dir='output_data/ml_run_all')
 
@@ -83,11 +83,11 @@ if __name__ == "__main__":
     #############################################
     # HETEROGENEITY ANALYSIS: CALENDAR YEAR
     #############################################
-    if False:
+    if True:
         for year in range(2009, 2023):
             year_df = df[df[f'dummy_calendaryear_{year}'] == 1]
             # Create a partial function with the DataFrame
-            run_ml = partial(run_ml_for_target, df=year_df, output_dir=f'output_data/ml_run_year_{year}')
+            run_ml = partial(run_ml_for_target, df=year_df, output_dir=f'output_data/time_variance/ml_run_year_{year}')
 
             with mp.Pool(processes=len(target_cols)) as pool:
                 # Use imap_unordered to get results as they complete

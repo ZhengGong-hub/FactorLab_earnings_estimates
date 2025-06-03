@@ -54,8 +54,6 @@ class MLFramework:
         
         # Initialize models with default configurations
         self.models = self._initialize_models()
-        self.best_model = None
-        self.best_score = float('-inf')
         
         # Setup output directories
         self.output_dir = output_dir
@@ -84,9 +82,9 @@ class MLFramework:
             'catboost': CatBoostRegressor(iterations=500, learning_rate=0.05, depth=6, verbose=0),
             
             # neural network models
-            # 'nn1': MLPRegressor(**nn_config['nn1_stable']),
-            # 'nn2': MLPRegressor(**nn_config['nn2_deep']),
-            # 'nn3': MLPRegressor(**nn_config['nn3_fast']),
+            'nn1': MLPRegressor(**nn_config['nn1_stable']),
+            'nn2': MLPRegressor(**nn_config['nn2_deep']),
+            'nn3': MLPRegressor(**nn_config['nn3_fast']),
         }
         
     def _write_to_file(self, filepath: str, content: str, mode: str = 'a') -> None:
@@ -211,7 +209,14 @@ class MLFramework:
             # Sort by absolute importance
             importance_df['abs_importance'] = np.abs(importance_df['importance'])
             importance_df = importance_df.sort_values('abs_importance', ascending=False).drop('abs_importance', axis=1)
-            
+
+            # merge on feature categories 
+            affactor_ref = pd.read_csv('input_data/affactor.csv')[['factorabbreviation', 'styleid']]
+            # add x_ to the beginning of the feature name   
+            affactor_ref['feature'] = 'x_' + affactor_ref['factorabbreviation']
+            importance_df = importance_df.merge(affactor_ref[['feature', 'styleid']], on='feature', how='left')
+            importance_df = importance_df.rename(columns={'styleid': 'feature_category'})
+
             # Save to CSV
             importance_file = os.path.join(self.models_dir, f"{model_name}_feature_importance.csv")
             importance_df.to_csv(importance_file, index=False)
@@ -256,11 +261,6 @@ class MLFramework:
             # Save feature importance
             self._save_feature_importance(final_model, name)
             
-            # Update best model based on R² score
-            if model_metrics['r2']['mean'] > self.best_score:
-                self.best_score = model_metrics['r2']['mean']
-                self.best_model = final_model
-        
         # Create consolidated score files
         all_scores = []
         all_stds = []
@@ -287,26 +287,52 @@ class MLFramework:
             all_stds.append(std_scores)
         
         # Save consolidated files
-        pd.DataFrame(all_scores).to_csv(os.path.join(self.models_dir, 'scores.csv'), index=False)
-        pd.DataFrame(all_stds).to_csv(os.path.join(self.models_dir, 'scores_std.csv'), index=False)
+        pd.DataFrame(all_scores).to_csv(os.path.join(self.models_dir, 'cv_scores.csv'), index=False)
+        pd.DataFrame(all_stds).to_csv(os.path.join(self.models_dir, 'cv_scores_std.csv'), index=False)
                 
         return scores
     
-    def evaluate_model(self) -> Dict[str, float]:
-        """Evaluate the best model on the test set."""
-        if self.best_model is None:
-            raise ValueError("No model trained. Run train_models() first.")
+    def evaluate_model(self) -> Dict[str, Dict[str, float]]:
+        """Evaluate all models on the test set."""
+        if not self.models:
+            raise ValueError("No models trained. Run train_models() first.")
         
-        # log who is the best model
-        self._log_to_both(f"Best model: {self.best_model}")
+        self._log_to_both("\nEvaluating all models on test set...")
+        test_metrics = {}
+        
+        for name, model in self.models.items():
+            self._log_to_both(f"\nEvaluating {name} model...", name)
             
-        self._log_to_both("\nEvaluating model on test set...")
-        y_pred = self.best_model.predict(self.X_test)
+            # Train model on full training set
+            final_model = model.__class__(**model.get_params())
+            final_model.fit(self.X_train, self.y_train)
+            
+            # Make predictions
+            y_pred = final_model.predict(self.X_test)
+            
+            # Calculate metrics
+            metrics = self._calculate_metrics(self.y_test, y_pred)
+            test_metrics[name] = metrics
+            
+            # Log metrics
+            self._log_to_both("Test set metrics:", name)
+            self._log_metrics(metrics)
         
-        # Calculate metrics using shared function
-        metrics = self._calculate_metrics(self.y_test, y_pred)
+        # Save test metrics to CSV
+        test_scores = []
+        for model_name, metrics in test_metrics.items():
+            test_scores.append({
+                'model': model_name,
+                'r2': metrics['r2'],
+                'mse': metrics['mse'],
+                'rmse': metrics['rmse'],
+                'mae': metrics['mae']
+            })
         
-        self._log_to_both("Model evaluation metrics:")
-        self._log_metrics(metrics)
+        # Save to CSV
+        pd.DataFrame(test_scores).to_csv(
+            os.path.join(self.models_dir, 'oos_test_scores.csv'), 
+            index=False
+        )
         
-        return metrics
+        return test_metrics
