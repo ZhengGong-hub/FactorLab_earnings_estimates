@@ -1,10 +1,24 @@
 """ML results analysis module for aggregating feature importance and model performance data."""
 
+import os
+import sys
+from pathlib import Path
+
+# Add the necessary directories to sys.path
+current_dir = Path(__file__).resolve().parent
+src_dir = current_dir.parent
+for path in [str(current_dir), str(src_dir)]:
+    if path not in sys.path:
+        sys.path.append(path)
+
 import pandas as pd
 import logging
 import re
-from pathlib import Path
 from typing import List, Dict, Any
+from plot_ml_results import (
+    plot_time_variance_feature_importance,
+    plot_time_variance_model_performance
+)
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -60,8 +74,10 @@ def calculate_importance_metrics(df: pd.DataFrame, group_cols: List[str]) -> pd.
     df["category_abs_importance"] = cat_tot
     
     # Calculate category relative importance
-    tot_cat_imp = df.groupby(group_cols)["category_abs_importance"].transform("max")
-    df["category_relative_importance"] = df["category_abs_importance"] / tot_cat_imp
+    total_group_imp = df.groupby(group_cols)["feature_abs_importance"].transform("sum")
+    df["category_relative_importance"] = (
+        df["category_abs_importance"] / total_group_imp
+    )
     
     return df
 
@@ -457,6 +473,19 @@ def ml_summary(input_dir: str = 'input_data/ml_results/ml_run_all',
     
     time_variance_performance_output = Path(time_variance_output) / 'time_variance_performance.csv'
     build_time_variance_performance(Path(time_variance_input), time_variance_performance_output)
+    
+    # Generate time variance plots
+    logger.info("Generating time variance feature importance plots...")
+    plot_time_variance_feature_importance(
+        csv_path=time_variance_importance_output,
+        save_dir=Path("output_data/plots/time_variance/feature_importance")
+    )
+    
+    logger.info("Generating time variance model performance plots...")
+    plot_time_variance_model_performance(
+        csv_path=time_variance_performance_output,
+        save_dir=Path("output_data/plots/time_variance/model_performance")
+    )
     
     logger.info("ML results aggregation completed successfully")
 

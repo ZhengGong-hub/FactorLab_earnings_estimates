@@ -5,6 +5,15 @@ Plot styling utilities for consistent visualization across analysis
 import matplotlib.pyplot as plt
 import seaborn as sns
 from typing import Tuple
+import os
+import sys
+from pathlib import Path
+
+# Add the src directory to sys.path to allow importing logger
+src_dir = Path(__file__).resolve().parent.parent
+if str(src_dir) not in sys.path:
+    sys.path.append(str(src_dir))
+
 from logger import setup_logger
 
 # setup logger
