@@ -171,9 +171,14 @@ def plot_time_variance_model_performance(
 
     • Separate figures for CV and OOS results.
     • Within each dataset, one figure per metric.
+    • Only the tree models (LightGBM, CatBoost, XGBoost) are plotted.
     """
     df = pd.read_csv(csv_path)
     df = df.drop_duplicates()   # guarantee one line per (year, outcome, model, dataset)
+
+    # ── keep only tree-based models ──
+    tree_models = {"lgbm", "catboost", "xgb"}
+    df = df[df["model"].isin(tree_models)]
 
     # drop outcomes we do NOT want
     exclude = {"y_EPSNormalized_surprise", "y_revenue_surprise"}
