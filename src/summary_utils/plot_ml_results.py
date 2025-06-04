@@ -83,7 +83,7 @@ def plot_time_variance_feature_importance(
         # Get top N categories for this outcome
         top_cats = (
             df[df["outcome"] == out]
-            .groupby("feature_category")["feature_relative_importance"]
+            .groupby("feature_category")["category_relative_importance"]
             .mean()
             .nlargest(n_categories)
             .index
@@ -112,7 +112,7 @@ def plot_time_variance_feature_importance(
             for cat in range(1, 9):
                 ser = (
                     tmp[tmp["feature_category"] == cat]
-                    .set_index("year_numeric")["feature_relative_importance"]
+                    .set_index("year_numeric")["category_relative_importance"]
                     .reindex(full_year_idx, fill_value=0)
                 )
                 if not ser.empty:  # Only add series if it has values
@@ -141,7 +141,7 @@ def plot_time_variance_feature_importance(
 
             ax.set_title(f"{out} · {mdl}")
             ax.set_xlabel("Year")
-            ax.set_ylabel("Feature Relative Importance")
+            ax.set_ylabel("Category Relative Importance")
             ax.set_xticks(years_sorted)
             ax.set_xticklabels(years_sorted, rotation=45, ha="right")
             ax.legend(title="Category", bbox_to_anchor=(1.02, 0.5), loc="center left")
