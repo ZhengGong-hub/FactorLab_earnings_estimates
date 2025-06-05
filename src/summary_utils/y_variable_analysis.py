@@ -20,7 +20,7 @@ from .plot_style import (
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-def analyze_y_variables(df: pd.DataFrame, output_dir: str = "output_data", sample_size: int = 10000) -> Dict:
+def analyze_y_variables(df: pd.DataFrame, output_dir: str = "output_data") -> Dict:
     """
     Analyze y-variables with efficient memory handling for large datasets.
     
@@ -30,8 +30,6 @@ def analyze_y_variables(df: pd.DataFrame, output_dir: str = "output_data", sampl
         Cleaned data containing y-variables
     output_dir : str
         Directory to save analysis outputs
-    sample_size : int
-        Size of random sample for distribution analysis
         
     Returns
     -------
@@ -52,14 +50,7 @@ def analyze_y_variables(df: pd.DataFrame, output_dir: str = "output_data", sampl
     if not y_vars:
         raise ValueError("No y-variables found in the dataset")
     
-    logger.info(f"Analyzing {len(y_vars)} y-variables")
-    
-    # Create sample for distribution analysis
-    if len(df) > sample_size:
-        df_sample = df.sample(n=sample_size, random_state=42)
-        logger.info(f"Using random sample of {sample_size} rows for distribution analysis")
-    else:
-        df_sample = df
+    logger.info(f"Analyzing {len(y_vars)} y-variables using full sample of {len(df)} rows")
     
     results = {}
     
@@ -67,10 +58,10 @@ def analyze_y_variables(df: pd.DataFrame, output_dir: str = "output_data", sampl
     results['basic_stats'] = _calculate_basic_stats(df[y_vars], stats_dir)
     
     # 2. Distribution Analysis
-    results['distribution'] = _analyze_distributions(df_sample[y_vars], plots_dir, stats_dir)
+    results['distribution'] = _analyze_distributions(df[y_vars], plots_dir, stats_dir)
     
     # 3. Correlation Analysis
-    results['correlation'] = _analyze_correlations(df_sample[y_vars], plots_dir, stats_dir)
+    results['correlation'] = _analyze_correlations(df[y_vars], plots_dir, stats_dir)
     
     # 4. Time Series Analysis
     required_cols = ['calendaryear', 'quarter_factor']
@@ -231,4 +222,41 @@ def _save_results(results: Dict, stats_dir: str):
     if 'distribution' in results:
         pd.DataFrame(results['distribution']).to_csv(os.path.join(stats_dir, 'y_variables_distribution_stats.csv'))
     
-    logger.info("Analysis results saved to files") 
+    logger.info("Analysis results saved to files")
+
+def summarize_y_variables_by_attention(
+    high_path: Path = Path("data_sample_high_attention.parquet"),
+    low_path: Path = Path("data_sample_low_attention.parquet"),
+    save_dir: Path = Path("output_data/stats"),
+) -> None:
+    """
+    Read the two Parquet samples (high / low attention), filter for y-variables,
+    drop the `companyid` column, compute descriptive statistics (count, mean,
+    std, min, 25 %, 50 %, 75 %, max) for every y-variable, and save each
+    summary as CSV:
+
+        output_data/stats/y_variables_summary_high.csv
+        output_data/stats/y_variables_summary_low.csv
+    """
+    save_dir.mkdir(parents=True, exist_ok=True)
+
+    for path, tag in [(high_path, "high"), (low_path, "low")]:
+        df = pd.read_parquet(path)
+
+        # Filter for y-variables only
+        y_vars = [col for col in df.columns if col.startswith('y_')]
+        if not y_vars:
+            logger.warning(f"No y-variables found in {path}")
+            continue
+
+        df = df[y_vars]  # Keep only y-variables
+
+        # pandas.describe gives the 8 standard statistics
+        stats = df.describe().T  # variables down rows
+
+        stats.to_csv(save_dir / f"y_variables_summary_{tag}.csv")
+        logger.info(f"Saved summary of {len(y_vars)} y-variables for {tag}-attention group")
+
+
+if __name__ == "__main__":
+    summarize_y_variables_by_attention() 

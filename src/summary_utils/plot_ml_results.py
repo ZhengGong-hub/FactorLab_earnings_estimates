@@ -65,7 +65,7 @@ def plot_time_variance_feature_importance(
     )
     
     # Drop excluded outcomes
-    exclude = {"y_EPSNormalized_surprise", "y_revenue_surprise"}
+    exclude = {}
     df = df[~df["outcome"].isin(exclude)]
     
     if outcomes is not None:
@@ -181,7 +181,7 @@ def plot_time_variance_model_performance(
     df = df[df["model"].isin(tree_models)]
 
     # drop outcomes we do NOT want
-    exclude = {"y_EPSNormalized_surprise", "y_revenue_surprise"}
+    exclude = {}
     df = df[~df["outcome"].isin(exclude)]
 
     if outcomes is not None:
