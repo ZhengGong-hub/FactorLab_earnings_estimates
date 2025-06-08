@@ -10,6 +10,9 @@ This project processes and analyzes earnings estimates data using various prepro
 │   ├── main.py                  # Main entry point of the application
 │   ├── preprocess.py            # Main preprocessing pipeline
 │   ├── ml_run.py               # Machine learning execution script
+│   ├── ml_utils/               # Machine learning utilities
+│   │   ├── ml_framework.py     # Core ML framework implementation
+│   │   └── nn.yaml            # Neural network configurations
 │   └── preprocess_utils/        # Preprocessing utility functions
 │       ├── near_duplicates_var.py    # Handle near-duplicate variables
 │       ├── drop_fuzzy_var.py         # Drop fuzzy matching variables
@@ -23,16 +26,42 @@ This project processes and analyzes earnings estimates data using various prepro
 1. **main.py**
    - Entry point of the application
    - Orchestrates the overall data processing pipeline
-   - Size: 674B (31 lines)
-
-2. **preprocess.py**
-   - Implements the main preprocessing pipeline
-   - Coordinates various preprocessing steps
-   - Size: 654B (32 lines)
 
 3. **ml_run.py**
    - Handles machine learning model execution
    - (Currently empty, prepared for future implementation)
+
+### Machine Learning Framework (`ml_utils/`)
+
+1. **ml_framework.py**
+   - Core machine learning implementation
+   - Features:
+     - Multiple model support (Linear, Tree-based, Neural Networks)
+     - Cross-validation with multiple metrics
+     - Feature importance analysis
+     - Model evaluation and comparison
+     - Comprehensive logging
+   - Supported Models:
+     - Linear: LinearRegression, Ridge, Lasso, ElasticNet
+     - Tree-based: XGBoost, LightGBM, CatBoost
+     - Neural Networks: MLPRegressor (3 configurations)
+   - Metrics:
+     - R² Score
+     - Mean Squared Error (MSE)
+     - Root Mean Squared Error (RMSE)
+     - Mean Absolute Error (MAE)
+   - Output Files:
+     - Cross-validation scores (cv_scores.csv)
+     - Cross-validation standard deviations (cv_scores_std.csv)
+     - Out-of-sample test scores (oos_test_scores.csv)
+     - Feature importance per model (*_feature_importance.csv)
+
+2. **nn.yaml**
+   - Neural network configuration file
+   - Contains three model configurations:
+     - nn1_stable: Stable configuration
+     - nn2_deep: Deep network configuration
+     - nn3_fast: Fast training configuration
 
 ### Preprocessing Utilities (`preprocess_utils/`)
 
@@ -62,37 +91,7 @@ To run the main application:
 ```bash
 uv run src/main.py
 ```
-
-## Dependencies
-
-The project uses various Python libraries including:
-- pandas
-- numpy
-- re (Python standard library)
-- collections (Python standard library)
-
-## Development
-
-### Code Quality Standards
-- Type hints are used throughout the codebase
-- Comprehensive docstrings with NumPy style
-- Input validation and error handling
-- Consistent code formatting
-- Performance optimizations where applicable
-
-### Best Practices
-- Modular code structure
-- Clear separation of concerns
-- Efficient data structures
-- Comprehensive error handling
-- Well-documented functions and modules
-
-## Contributing
-
-When contributing to this project, please:
-1. Follow the existing code style
-2. Add appropriate type hints
-3. Include comprehensive docstrings
-4. Add proper error handling
-5. Update tests if applicable
-6. Update this README when adding new functionality 
+and
+```bash
+uv run src/ml_run.py
+```
