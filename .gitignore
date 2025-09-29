@@ -177,3 +177,5 @@ cython_debug/
 output_data/
 
 catboost_info/
+
+*.parquet
